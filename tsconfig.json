@@ -1,0 +1,33 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "strict": true,
+    "esModuleInterop": true,
+    "allowImportingTsExtensions": true,
+    "noEmit": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "baseUrl": ".",
+    "paths": {
+      "@actions/*": ["pages/actions/*"],
+      "@locators/*": ["pages/locators/*"],
+      "@utils/*": ["utils/*"]
+    }
+  },
+  "include": [
+    "tests/**/*.ts",
+    "pages/**/*.ts",
+    "utils/**/*.ts",
+    "playwright.config.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "test-results",
+    "playwright-report",
+    "playwright-automated-test-opencart"
+  ]
+}
