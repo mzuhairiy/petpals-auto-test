@@ -1,18 +1,13 @@
-import { type Page, expect } from '@playwright/test';
+import { type Page } from '@playwright/test';
 import LayoutElements from '../locators/layout-elements';
-import { logger } from '../../utils/logger/logger';
+import BaseAction from './base-action';
 
-export default class LayoutActions {
-    readonly page: Page;
+export default class LayoutActions extends BaseAction {
     readonly layoutElements: LayoutElements;
 
     constructor(page: Page) {
-        this.page = page;
+        super(page);
         this.layoutElements = new LayoutElements(page);
-    }
-
-    async gotoAsync(url: string): Promise<void> {
-        await this.page.goto(url);
     }
 
     async clickLogo(): Promise<void> {
@@ -51,74 +46,7 @@ export default class LayoutActions {
         await this.layoutElements.CART_BUTTON.click();
     }
 
-    async accessAllNavbarMenus(): Promise<void> {
-        const links = this.layoutElements.NAVBAR_LINKS;
-        const total = await links.count();
-        logger.info(`Total Navbar Links: ${total}`);
-        expect(total).toBeGreaterThan(0);
-
-        for (let i = 0; i < total; i++) {
-            const link = links.nth(i);
-            const linkText = (await link.innerText()).trim();
-
-            await link.click();
-            await this.page.waitForLoadState('load');
-
-            logger.info(`✅ Accessed Navbar Menu: ${linkText}`);
-        }
-    }
-
-    async accessAllFooterShopLinks(): Promise<void> {
-        const links = this.layoutElements.FOOTER_SHOP_LINKS;
-        const count = await links.count();
-        logger.info(`Total Footer Shop Links: ${count}`);
-
-        for (let i = 0; i < count; i++) {
-            const link = links.nth(i);
-            const text = (await link.textContent())?.trim();
-
-            await link.click();
-            await this.page.waitForLoadState('load');
-
-            logger.info(`✅ Accessed Footer Shop Link: ${text}`);
-            await this.page.goBack();
-            await this.page.waitForLoadState('load');
-        }
-    }
-
-    async accessAllFooterCompanyLinks(): Promise<void> {
-        const links = this.layoutElements.FOOTER_COMPANY_LINKS;
-        const count = await links.count();
-        logger.info(`Total Footer Company Links: ${count}`);
-
-        for (let i = 0; i < count; i++) {
-            const link = links.nth(i);
-            const text = (await link.textContent())?.trim();
-
-            await link.click();
-            await this.page.waitForLoadState('load');
-
-            logger.info(`✅ Accessed Footer Company Link: ${text}`);
-            await this.page.goBack();
-            await this.page.waitForLoadState('load');
-        }
-    }
-
-    async accessAllFooterCustomerServiceLinks(): Promise<void> {
-        const links = this.layoutElements.FOOTER_CUSTOMER_SERVICE_LINKS;
-        const count = await links.count();
-        logger.info(`Total Footer Customer Service Links: ${count}`);
-
-        for (let i = 0; i < count; i++) {
-            const link = links.nth(i);
-            const text = (await link.textContent())?.trim();
-
-            await link.click();
-            await this.page.waitForLoadState('load');
-
-            logger.info(`✅ Accessed Footer Customer Service Link: ${text}`);
-            await this.page.goBack();
-            await this.page.waitForLoadState('load');
-        }
+    async signOut(): Promise<void> {
+        await this.layoutElements.SIGN_OUT_BUTTON.click();
     }
 }

@@ -1,22 +1,18 @@
-import { type Page, expect } from '@playwright/test';
+import { type Page } from '@playwright/test';
 import ProductPageElements from '../locators/product-page-elements';
+import BaseAction from './base-action';
 import { logger } from '../../utils/logger/logger';
 
-export default class ProductActions {
-    readonly page: Page;
+export default class ProductActions extends BaseAction {
     readonly productElements: ProductPageElements;
 
     constructor(page: Page) {
-        this.page = page;
+        super(page);
         this.productElements = new ProductPageElements(page);
     }
 
-    async gotoAsync(url: string): Promise<void> {
-        await this.page.goto(url);
-    }
-
     async goToProductPage(productSlug: string): Promise<void> {
-        await this.page.goto(`/product/${productSlug}`);
+        await this.gotoAsync(`/product/${productSlug}`);
         logger.info(`Navigated to product page: ${productSlug}`);
     }
 

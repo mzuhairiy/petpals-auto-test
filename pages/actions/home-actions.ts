@@ -1,18 +1,14 @@
-import { type Page, expect } from '@playwright/test';
+import { type Page } from '@playwright/test';
 import HomePageElements from '../locators/home-page-elements';
+import BaseAction from './base-action';
 import { logger } from '../../utils/logger/logger';
 
-export default class HomeActions {
-    readonly page: Page;
+export default class HomeActions extends BaseAction {
     readonly homeElements: HomePageElements;
 
     constructor(page: Page) {
-        this.page = page;
+        super(page);
         this.homeElements = new HomePageElements(page);
-    }
-
-    async gotoAsync(url: string): Promise<void> {
-        await this.page.goto(url);
     }
 
     async navigateCarouselNext(): Promise<void> {
