@@ -3,6 +3,19 @@ import { type Page, type Locator } from '@playwright/test';
 export default class HomePageElements {
     readonly page: Page;
 
+    // NAVBAR
+    readonly LOGO: Locator;
+    readonly HOME_LINK: Locator;
+    readonly SHOP_LINK: Locator;
+    readonly CATS_MENU: Locator;
+    readonly DOGS_MENU: Locator
+    readonly ABOUT_US_LINK: Locator;
+    readonly SIGN_IN_BUTTON: Locator;
+    readonly SIGN_UP_BUTTON: Locator;
+    readonly CART_ICON: Locator;
+    readonly SEARCH_ICON: Locator;
+    readonly SEARCH_INPUT: Locator;
+
     // HERO CAROUSEL
     readonly HERO_CAROUSEL: Locator;
     readonly HERO_HEADING: Locator;
@@ -50,6 +63,19 @@ export default class HomePageElements {
 
     constructor(page: Page) {
         this.page = page;
+
+        // NAVBAR
+        this.LOGO = page.locator(`div.flex > a.flex > svg`)
+        this.HOME_LINK = page.getByRole('link', { name: 'Home' });
+        this.SHOP_LINK = page.getByRole('link', { name: 'Shop' });
+        this.CATS_MENU = page.getByRole('link', { name: 'Cats' });
+        this.DOGS_MENU = page.getByRole('button', { name: 'Dogs' });
+        this.ABOUT_US_LINK = page.getByRole('link', { name: 'About Us' });
+        this.SIGN_IN_BUTTON = page.getByRole('link', { name: 'Sign In' });
+        this.SIGN_UP_BUTTON = page.getByRole('link', { name: 'Sign Up' });
+        this.CART_ICON = page.getByRole('button', { name: 'Cart' });
+        this.SEARCH_ICON = page.getByRole('button', { name: 'Search' });
+        this.SEARCH_INPUT = page.getByPlaceholder('Search products, brands, and more');
 
         // HERO CAROUSEL
         this.HERO_CAROUSEL = page.locator('main').locator('div').first();
