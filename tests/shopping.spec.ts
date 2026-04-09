@@ -97,7 +97,11 @@ test.describe('Shopping E2E', () => {
         });
 
         test('should sort products by price low to high', async ({ page }) => {
+            // Wait for initial products to be visible before sorting
+            await expect(shopElements.PRODUCT_CARDS.first()).toBeVisible();
             await shopActions.sortBy('Price: Low to High');
+            // Wait for at least one product card to be visible after sort
+            await expect(shopElements.PRODUCT_CARDS.first()).toBeVisible();
 
             const prices = await shopActions.getAllProductPrices();
             expect(prices.length, 'Should have at least one product with a price').toBeGreaterThan(0);
@@ -111,7 +115,11 @@ test.describe('Shopping E2E', () => {
         });
 
         test('should sort products by price high to low', async ({ page }) => {
+            // Wait for initial products to be visible before sorting
+            await expect(shopElements.PRODUCT_CARDS.first()).toBeVisible();
             await shopActions.sortBy('Price: High to Low');
+            // Wait for at least one product card to be visible after sort
+            await expect(shopElements.PRODUCT_CARDS.first()).toBeVisible();
 
             const prices = await shopActions.getAllProductPrices();
             expect(prices.length, 'Should have at least one product with a price').toBeGreaterThan(0);
@@ -182,6 +190,8 @@ test.describe('Shopping E2E', () => {
         });
 
         test('should clear filters and restore all products', async ({ page }) => {
+            // Wait for all products to load initially
+            await expect(shopElements.PRODUCT_CARDS.first()).toBeVisible();
             const initialCount = await shopActions.getProductCount();
 
             await shopActions.filterByCategory('Toys');
@@ -190,7 +200,9 @@ test.describe('Shopping E2E', () => {
             expect(filteredCount).toBeLessThanOrEqual(initialCount);
 
             await page.getByRole('button', { name: /clear all/i }).click();
-            await page.waitForLoadState('networkidle');
+            // Wait for the product grid to fully re-render with all products
+            await page.waitForLoadState('domcontentloaded');
+            await page.waitForTimeout(1000);
 
             const restoredCount = await shopActions.getProductCount();
             expect(restoredCount, 'All products should be restored after clearing filters').toBe(initialCount);
@@ -227,7 +239,7 @@ test.describe('Shopping E2E', () => {
 
         test('should add product to cart from homepage and verify in cart', async ({ page }) => {
             await loginActions.loginFunctions(config.validUser.email, config.validUser.password);
-            await expect(homeElements.HERO_CAROUSEL).toBeVisible();
+            await expect(homeElements.HERO_CAROUSEL).toBeVisible({ timeout: 15000 });
 
             // Pick a random "Add to cart" button from the homepage
             const addToCartButtons = homeElements.CAT_ADD_TO_CART_BUTTONS;
@@ -258,7 +270,7 @@ test.describe('Shopping E2E', () => {
 
         test('should add product to cart from product detail page', async ({ page }) => {
             await loginActions.loginFunctions(config.validUser.email, config.validUser.password);
-            await expect(homeElements.HERO_CAROUSEL).toBeVisible();
+            await expect(homeElements.HERO_CAROUSEL).toBeVisible({ timeout: 15000 });
 
             await navigateToRandomProductDetailViaShop({
                 page,

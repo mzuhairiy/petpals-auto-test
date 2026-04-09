@@ -16,7 +16,9 @@ export default class BaseAction {
     }
 
     async waitForNavigation(): Promise<void> {
-        await this.page.waitForLoadState('networkidle');
+        await this.page.waitForLoadState('domcontentloaded');
+        // Give the SPA framework time to re-render after route/state changes
+        await this.page.waitForTimeout(500);
     }
 
     async waitForUrlChange(urlPattern: RegExp, timeout: number = 10000): Promise<void> {

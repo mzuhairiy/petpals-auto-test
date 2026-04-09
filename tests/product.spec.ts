@@ -95,7 +95,7 @@ test.describe('Product E2E', () => {
 
         test('should add product to wishlist and verify it appears on wishlist page', async ({ page }) => {
             await loginActions.loginFunctions(config.validUser.email, config.validUser.password);
-            await expect(homeElements.HERO_CAROUSEL).toBeVisible();
+            await expect(homeElements.HERO_CAROUSEL).toBeVisible({ timeout: 15000 });
 
             await layoutElements.NAV_SHOP.click();
             await expect(page).toHaveURL(/\/shop/);

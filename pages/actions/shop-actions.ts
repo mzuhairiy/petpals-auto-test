@@ -41,6 +41,8 @@ export default class ShopActions extends BaseAction {
     }
 
     async getProductCount(): Promise<number> {
+        // Wait a moment for the product grid to stabilize after filter/sort
+        await this.page.waitForLoadState('domcontentloaded');
         return await this.shopElements.PRODUCT_CARDS.count();
     }
 

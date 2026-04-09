@@ -23,10 +23,16 @@ export default defineConfig({
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
+
+    /* Navigation timeout */
+    navigationTimeout: process.env.CI ? 30_000 : 15_000,
   },
 
+  /* Global timeout for each test (2 minutes on CI, default locally) */
+  timeout: process.env.CI ? 120_000 : 30_000,
+
   expect: {
-    timeout: 10000,
+    timeout: process.env.CI ? 15_000 : 10_000,
   },
 
   /* Configure projects for major browsers */

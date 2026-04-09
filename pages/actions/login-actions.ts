@@ -18,6 +18,8 @@ export default class LoginActions extends BaseAction {
         await this.authElements.SIGN_IN_EMAIL_FIELD.fill(email);
         await this.authElements.SIGN_IN_PASSWORD_FIELD.fill(password);
         await this.authElements.SIGN_IN_BUTTON.click();
+        // Wait for the page to settle after login attempt
+        await this.page.waitForLoadState('domcontentloaded');
     }
 
     async loginWithRememberMe(email: string, password: string): Promise<void> {
