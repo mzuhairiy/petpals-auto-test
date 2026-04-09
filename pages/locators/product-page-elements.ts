@@ -50,27 +50,27 @@ export default class ProductPageElements {
         this.page = page;
 
         // NAVIGATION
-        this.BACK_TO_SHOP_LINK = page.getByRole('link', { name: 'Back to Shop' });
+        this.BACK_TO_SHOP_LINK = page.locator('[data-testid="back-to-shop-link"]');
 
         // PRODUCT DETAILS
-        this.PRODUCT_TITLE = page.locator('main').getByRole('heading', { level: 1 });
-        this.PRODUCT_MAIN_IMAGE = page.locator('main img').first();
-        this.PRODUCT_THUMBNAIL_IMAGES = page.locator('main img[alt^="Product view"]');
+        this.PRODUCT_TITLE = page.locator('[data-testid^="product-title-"]');
+        this.PRODUCT_MAIN_IMAGE = page.locator('[data-testid^="product-image-"]');
+        this.PRODUCT_THUMBNAIL_IMAGES = page.locator('[data-testid^="product-thumb-"]');
         this.PRODUCT_RATING = page.locator('main').locator('text=/\\d\\.\\d/').first();
         this.PRODUCT_REVIEW_COUNT = page.locator('main').locator('text=/\\(\\d+ reviews\\)/');
-        this.PRODUCT_CURRENT_PRICE = page.locator('main').locator('text=/Rp \\d/').first();
-        this.PRODUCT_ORIGINAL_PRICE = page.locator('main').locator('text=/Rp \\d/').nth(1);
+        this.PRODUCT_CURRENT_PRICE = page.locator('[data-testid^="product-price-"]');
+        this.PRODUCT_ORIGINAL_PRICE = page.locator('[data-testid^="product-original-price-"]');
         this.PRODUCT_SAVE_AMOUNT = page.locator('main').getByText(/Save Rp/);
         this.PRODUCT_DESCRIPTION = page.locator('main p').first();
-        this.PRODUCT_STOCK_STATUS = page.locator('main').getByText(/Stock|left/);
+        this.PRODUCT_STOCK_STATUS = page.locator('[data-testid^="product-stock-"]');
         this.FREE_SHIPPING_INFO = page.getByText(/Free shipping on orders over/);
 
         // QUANTITY & CART
-        this.QUANTITY_INPUT = page.getByRole('spinbutton');
-        this.DECREASE_QUANTITY_BUTTON = page.getByRole('button', { name: 'Decrease quantity' });
-        this.INCREASE_QUANTITY_BUTTON = page.getByRole('button', { name: 'Increase quantity' });
-        this.ADD_TO_CART_BUTTON = page.getByRole('button', { name: 'Add to Cart' });
-        this.ADD_TO_WISHLIST_BUTTON = page.locator('main').getByRole('button', { name: 'Add to wishlist' }).first();
+        this.QUANTITY_INPUT = page.locator('[data-testid$="-qty-input"]');
+        this.DECREASE_QUANTITY_BUTTON = page.locator('[data-testid$="-qty-decrement"]');
+        this.INCREASE_QUANTITY_BUTTON = page.locator('[data-testid$="-qty-increment"]');
+        this.ADD_TO_CART_BUTTON = page.locator('[data-testid$="-add-to-cart"]');
+        this.ADD_TO_WISHLIST_BUTTON = page.locator('[data-testid^="wishlist-btn-"]');
 
         // PRODUCT INFO BADGES
         this.FREE_DELIVERY_INFO = page.getByText('Free Delivery');
@@ -78,9 +78,9 @@ export default class ProductPageElements {
         this.SECURE_CHECKOUT_INFO = page.getByText('Secure Checkout');
 
         // TABS
-        this.DESCRIPTION_TAB = page.getByRole('tab', { name: 'Description' });
-        this.NUTRITIONAL_DETAILS_TAB = page.getByRole('tab', { name: 'Nutritional Details' });
-        this.REVIEWS_TAB = page.getByRole('tab', { name: /Reviews/ });
+        this.DESCRIPTION_TAB = page.locator('[data-testid="product-tab-description"]');
+        this.NUTRITIONAL_DETAILS_TAB = page.locator('[data-testid="product-tab-details"]');
+        this.REVIEWS_TAB = page.locator('[data-testid="product-tab-reviews"]');
         this.TAB_CONTENT = page.getByRole('tabpanel');
 
         // DESCRIPTION TAB CONTENT
@@ -88,8 +88,8 @@ export default class ProductPageElements {
         this.DESCRIPTION_FEATURES = page.getByRole('tabpanel').locator('li');
 
         // RELATED PRODUCTS
-        this.RELATED_PRODUCTS_HEADING = page.getByRole('heading', { name: 'Related Products' });
-        this.RELATED_PRODUCT_CARDS = page.locator('main').getByRole('heading', { name: 'Related Products' }).locator('..').locator('a[href^="/product/"]');
-        this.RELATED_PRODUCT_TITLES = page.locator('main').getByRole('heading', { name: 'Related Products' }).locator('..').locator('a[href^="/product/"] h3');
+        this.RELATED_PRODUCTS_HEADING = page.locator('[data-testid="related-products-section"]');
+        this.RELATED_PRODUCT_CARDS = page.locator('[data-testid="related-products-grid"] a[data-testid^="product-card-link-"]');
+        this.RELATED_PRODUCT_TITLES = page.locator('[data-testid="related-products-grid"] [data-testid^="product-card-"] h3');
     }
 }

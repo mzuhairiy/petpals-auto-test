@@ -41,7 +41,15 @@ export default class ShopPageElements {
     // PRODUCT CARDS - using href pattern for product links
     readonly PRODUCT_CARDS: Locator;
     readonly PRODUCT_TITLES: Locator;
+    readonly PRODUCT_PRICES: Locator;
     readonly PRODUCT_DISCOUNT_BADGES: Locator;
+
+    // EMPTY STATE
+    readonly EMPTY_STATE_MESSAGE: Locator;
+
+    // TOAST NOTIFICATIONS - for validating real outcomes of filter/sort actions
+    readonly TOAST_VIEWPORT: Locator;
+    readonly TOAST_PRODUCT_ADDED: Locator;
 
     constructor(page: Page) {
         this.page = page;
@@ -49,7 +57,7 @@ export default class ShopPageElements {
         const main = page.getByRole('main');
 
         // PAGE HEADING
-        this.SHOP_HEADING = main.getByRole('heading', { level: 1 });
+        this.SHOP_HEADING = page.locator('[data-testid="shop-page-title"]');
 
         // FILTER BUTTONS
         this.CATEGORY_FILTER_BUTTON = main.getByRole('button', { name: 'Category' });
@@ -58,27 +66,35 @@ export default class ShopPageElements {
         this.SORT_BY_FILTER_BUTTON = main.getByRole('button', { name: 'Sort By' });
 
         // CATEGORY CHECKBOXES
-        this.CATEGORY_TOYS_CHECKBOX = main.getByRole('checkbox', { name: 'Toys' });
-        this.CATEGORY_FOOD_CHECKBOX = main.getByRole('checkbox', { name: 'Food' });
-        this.CATEGORY_SUPPLEMENTS_CHECKBOX = main.getByRole('checkbox', { name: 'Supplements' });
+        this.CATEGORY_TOYS_CHECKBOX = page.locator('[data-testid="filter-category-toys"]');
+        this.CATEGORY_FOOD_CHECKBOX = page.locator('[data-testid="filter-category-food"]');
+        this.CATEGORY_SUPPLEMENTS_CHECKBOX = page.locator('[data-testid="filter-category-supplements"]');
 
         // PET TYPE CHECKBOXES
-        this.PET_TYPE_CATS_CHECKBOX = main.getByRole('checkbox', { name: 'Cats' });
-        this.PET_TYPE_DOGS_CHECKBOX = main.getByRole('checkbox', { name: 'Dogs' });
+        this.PET_TYPE_CATS_CHECKBOX = page.locator('[data-testid="filter-pet-cat"]');
+        this.PET_TYPE_DOGS_CHECKBOX = page.locator('[data-testid="filter-pet-dog"]');
 
         // PRICE RANGE
         this.PRICE_MIN_INPUT = main.getByRole('spinbutton', { name: 'Min' });
         this.PRICE_MAX_INPUT = main.getByRole('spinbutton', { name: 'Max' });
 
         // SORT OPTIONS
-        this.SORT_PRICE_LOW_HIGH = main.getByRole('checkbox', { name: 'Price: Low to High' });
-        this.SORT_PRICE_HIGH_LOW = main.getByRole('checkbox', { name: 'Price: High to Low' });
-        this.SORT_HIGHEST_RATED = main.getByRole('checkbox', { name: 'Highest Rated' });
-        this.SORT_NEWEST_FIRST = main.getByRole('checkbox', { name: 'Newest First' });
+        this.SORT_PRICE_LOW_HIGH = page.locator('[data-testid="filter-sort-price-asc"]');
+        this.SORT_PRICE_HIGH_LOW = page.locator('[data-testid="filter-sort-price-desc"]');
+        this.SORT_HIGHEST_RATED = page.locator('[data-testid="filter-sort-rating"]');
+        this.SORT_NEWEST_FIRST = page.locator('[data-testid="filter-sort-newest"]');
 
         // PRODUCT CARDS - links with /product/ href pattern
-        this.PRODUCT_CARDS = main.locator('a[href^="/product/"]');
-        this.PRODUCT_TITLES = main.getByRole('heading', { level: 3 });
-        this.PRODUCT_DISCOUNT_BADGES = main.getByText(/\d+% OFF/);
+        this.PRODUCT_CARDS = page.locator('[data-testid="product-grid"] a[data-testid^="product-card-link-"]');
+        this.PRODUCT_TITLES = page.locator('[data-testid="product-grid"] [data-testid^="product-card-"] h3');
+        this.PRODUCT_PRICES = page.locator('[data-testid="product-grid"] [data-testid^="product-card-"] [data-testid^="product-price-"]');
+        this.PRODUCT_DISCOUNT_BADGES = page.locator('[data-testid^="badge-discount-"]');
+
+        // EMPTY STATE
+        this.EMPTY_STATE_MESSAGE = main.getByText(/no products found/i);
+
+        // TOAST NOTIFICATIONS - for validating real outcomes of filter/sort actions
+        this.TOAST_VIEWPORT = page.locator('[data-testid="toast-viewport"]');
+        this.TOAST_PRODUCT_ADDED = this.TOAST_VIEWPORT.getByText('Added to wishlist');
     }
 }

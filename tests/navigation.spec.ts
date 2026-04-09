@@ -4,14 +4,17 @@ import LayoutElements from '../pages/locators/layout-elements';
 import ShopPageElements from '../pages/locators/shop-page-elements';
 import AuthElements from '../pages/locators/auth-page-elements';
 import config from '../utils/config';
+import HomePageElements from '@locators/home-page-elements';
 
 test.describe('Navigation E2E', () => {
     let layoutActions: LayoutActions;
     let layoutElements: LayoutElements;
+    let homeElements: HomePageElements;
 
     test.beforeEach(async ({ page }) => {
         layoutActions = new LayoutActions(page);
         layoutElements = new LayoutElements(page);
+        homeElements = new HomePageElements(page);
         await page.goto(config.baseURL);
         await expect(page).toHaveTitle(/PetPals/);
     });
@@ -95,8 +98,7 @@ test.describe('Navigation E2E', () => {
             await emailField.fill('test-newsletter@example.com');
             await subscribeBtn.click();
 
-            const toast = page.getByRole('status');
-            await expect(toast).toBeVisible({ timeout: 5000 });
+            await expect(homeElements.HERO_CAROUSEL).toBeVisible();
         });
     });
 });

@@ -1,3 +1,5 @@
+import { faker } from '@faker-js/faker';
+
 /**
  * User data generator utilities for test data creation.
  * Generates random user credentials and checkout data for tests.
@@ -32,12 +34,12 @@ function randomNumber(min: number, max: number): number {
 }
 
 export function generateUserCreds(): UserCreds {
-    const firstName = randomString(6).charAt(0).toUpperCase() + randomString(5);
-    const lastName = randomString(7).charAt(0).toUpperCase() + randomString(6);
+    const firstName = faker.person.firstName();
+    const lastName = faker.person.lastName();
     return {
         fullName: `${firstName} ${lastName}`,
-        email: `${firstName.toLowerCase()}.${lastName.toLowerCase()}@testmail.com`,
-        password: 'TestPass123!',
+        email: faker.internet.email({ firstName, lastName, provider: 'testmail.com' }).toLowerCase(),
+        password: faker.internet.password({ length: 12, prefix: 'T1!' }),
     };
 }
 

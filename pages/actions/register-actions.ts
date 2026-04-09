@@ -20,7 +20,7 @@ export default class RegisterActions extends BaseAction {
         await this.authElements.SIGN_UP_EMAIL_FIELD.fill(data.email);
         await this.authElements.SIGN_UP_PASSWORD_FIELD.fill(data.password);
         await this.authElements.CONFIRM_PASSWORD_FIELD.fill(data.confirmPassword ?? data.password);
-        await this.authElements.TERMS_CHECKBOX.check();
+        await this.authElements.TERMS_CHECKBOX.click();
         await this.authElements.CREATE_ACCOUNT_BUTTON.click();
     }
 

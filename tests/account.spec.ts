@@ -2,93 +2,82 @@ import { test, expect } from '@playwright/test';
 import LoginActions from '../pages/actions/login-actions';
 import LayoutElements from '../pages/locators/layout-elements';
 import config from '../utils/config';
+import AuthElements from '@locators/auth-page-elements';
+import HomeElements from '@locators/home-page-elements';
+import ProductPageElements from '@locators/product-page-elements';
+import ShopPageElements from '@locators/shop-page-elements';
 
 test.describe('Account E2E', () => {
+    let loginActions: LoginActions;
+    let authElements: AuthElements;
+    let layoutElements: LayoutElements;
+    let homeElements: HomeElements;
+    let productElements: ProductPageElements;
+    let shopElements: ShopPageElements;
+
+    test.beforeEach(async ({ page }) => {
+            loginActions = new LoginActions(page); 
+            authElements = new AuthElements(page);
+            layoutElements = new LayoutElements(page);
+            homeElements = new HomeElements(page);
+            productElements = new ProductPageElements(page);
+            shopElements = new ShopPageElements(page);
+            await page.goto(config.baseURL);
+            await expect(homeElements.SIGN_IN_BUTTON).toBeVisible();
+        });
 
     test.describe('Account Navigation', () => {
 
         test('should navigate to account page after login', async ({ page }) => {
-            const loginActions = new LoginActions(page);
-            const layoutElements = new LayoutElements(page);
-
-            await page.goto(`${config.baseURL}/sign-in`);
             await loginActions.loginFunctions(config.validUser.email, config.validUser.password);
-            await expect(page).toHaveURL(config.baseURL + '/');
-
+            await expect(homeElements.HERO_CAROUSEL).toBeVisible();
             await layoutElements.ACCOUNT_BUTTON.click();
             await expect(page).toHaveURL(/\/account/);
-
-            const main = page.getByRole('main');
-            await expect(main).toBeVisible();
+            await expect(layoutElements.ACCOUNT_HEADING).toBeVisible();
         });
 
         test('should navigate to orders page after login', async ({ page }) => {
-            const loginActions = new LoginActions(page);
-            const layoutElements = new LayoutElements(page);
-
-            await page.goto(`${config.baseURL}/sign-in`);
             await loginActions.loginFunctions(config.validUser.email, config.validUser.password);
-            await expect(page).toHaveURL(config.baseURL + '/');
-
+            await expect(homeElements.HERO_CAROUSEL).toBeVisible();
             await layoutElements.ORDERS_BUTTON.click();
             await expect(page).toHaveURL(/\/orders/);
-
-            const main = page.getByRole('main');
-            await expect(main).toBeVisible();
+            await expect(layoutElements.ORDERS_HEADING).toBeVisible();
         });
     });
 
     test.describe('Wishlist Management', () => {
 
         test('should add product to wishlist from shop and see it on wishlist page', async ({ page }) => {
-            const loginActions = new LoginActions(page);
-            const layoutElements = new LayoutElements(page);
-
-            await page.goto(`${config.baseURL}/sign-in`);
             await loginActions.loginFunctions(config.validUser.email, config.validUser.password);
-            await expect(page).toHaveURL(config.baseURL + '/');
+            await expect(homeElements.HERO_CAROUSEL).toBeVisible();
+            await layoutElements.NAV_SHOP.click();
+            await expect(page).toHaveURL(/\/shop/);
+            await expect(shopElements.SHOP_HEADING).toBeVisible();
 
-            await page.goto(`${config.baseURL}/shop`);
-            const addWishlistBtn = page.getByRole('button', { name: 'Add to wishlist' }).first();
+            const productCards = shopElements.PRODUCT_CARDS;
+            const cardCount = await productCards.count();
+            expect(cardCount, 'Expected at least one product card on the shop page').toBeGreaterThan(0);
 
-            if (await addWishlistBtn.isVisible()) {
-                const productCard = addWishlistBtn.locator('xpath=ancestor::a[contains(@href, "/product/")]');
-                const productName = await productCard.getByRole('heading', { level: 3 }).textContent();
+            const randomIndex = Math.floor(Math.random() * cardCount);
+            test.info().annotations.push({ type: 'randomProductIndex', description: String(randomIndex) });
 
-                await addWishlistBtn.click();
-                await page.waitForTimeout(1000);
+            const selectedCard = productCards.nth(randomIndex);
+            await expect(selectedCard, `Product card at index ${randomIndex} should be visible`).toBeVisible();
 
-                await layoutElements.WISHLIST_BUTTON.click();
-                await expect(page).toHaveURL(/\/wishlist/);
+            const productName = (await selectedCard.getByRole('heading', { level: 3 }).textContent())?.trim();
+            expect(productName, 'Expected selected product to have a name').toBeTruthy();
 
-                if (productName) {
-                    const wishlistContent = page.getByRole('main');
-                    await expect(wishlistContent).toContainText(productName);
-                }
-            }
-        });
-    });
+            const wishlistButton = selectedCard.locator('[data-testid^="wishlist-btn-"]');
+            await expect(wishlistButton, 'Wishlist button should be visible inside selected product card').toBeVisible();
+            await wishlistButton.click();
+            await expect(shopElements.TOAST_PRODUCT_ADDED).toBeVisible();
 
-    test.describe('Unauthenticated Access', () => {
+            await layoutElements.WISHLIST_BUTTON.click();
+            await expect(page).toHaveURL(/\/wishlist/);
 
-        test('should redirect to sign-in when accessing account page without auth', async ({ page }) => {
-            await page.goto(`${config.baseURL}/account`);
-
-            const url = page.url();
-            const isOnAccountPage = url.includes('/account');
-            const isRedirected = url.includes('/sign-in');
-
-            expect(isOnAccountPage || isRedirected).toBeTruthy();
-        });
-
-        test('should redirect to sign-in when accessing orders page without auth', async ({ page }) => {
-            await page.goto(`${config.baseURL}/orders`);
-
-            const url = page.url();
-            const isOnOrdersPage = url.includes('/orders');
-            const isRedirected = url.includes('/sign-in');
-
-            expect(isOnOrdersPage || isRedirected).toBeTruthy();
+            const wishlistContent = page.getByRole('main');
+            await expect(wishlistContent).toContainText(productName!);
+            test.info().annotations.push({ type: 'productName', description: String(productName) });
         });
     });
 });

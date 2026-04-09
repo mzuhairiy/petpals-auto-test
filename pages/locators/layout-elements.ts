@@ -63,6 +63,12 @@ export default class LayoutElements {
     // FOOTER SOCIAL LINKS
     readonly FOOTER_SOCIAL_LINKS: Locator;
 
+    // ACCOUNT PAGE
+    readonly ACCOUNT_HEADING: Locator;
+
+    // ORDERS PAGE
+    readonly ORDERS_HEADING: Locator;
+
     constructor(page: Page) {
         this.page = page;
 
@@ -70,56 +76,62 @@ export default class LayoutElements {
         const footer = page.getByRole('contentinfo');
 
         // HEADER - using banner landmark scope
-        this.PETPALS_LOGO = header.getByRole('link', { name: 'PetPals' });
-        this.NAV_HOME = header.getByRole('link', { name: 'Home', exact: true });
-        this.NAV_SHOP = header.getByRole('link', { name: 'Shop', exact: true });
-        this.NAV_CATS = header.getByRole('link', { name: 'Cats', exact: true });
-        this.NAV_DOGS = header.getByRole('link', { name: 'Dogs', exact: true });
-        this.NAV_ABOUT = header.getByRole('link', { name: 'About Us', exact: true });
+        this.PETPALS_LOGO = page.locator('[data-testid="header-logo"]');
+        this.NAV_HOME = page.locator('[data-testid="nav-home-link"]');
+        this.NAV_SHOP = page.locator('[data-testid="nav-shop-link"]');
+        this.NAV_CATS = page.locator('[data-testid="nav-cats-link"]');
+        this.NAV_DOGS = page.locator('[data-testid="nav-dogs-link"]');
+        this.NAV_ABOUT = page.locator('[data-testid="nav-about-link"]');
         this.NAVBAR_LINKS = header.getByRole('navigation').getByRole('link');
 
         // HEADER ACTIONS - unauthenticated
-        this.SEARCH_BUTTON = header.getByRole('button', { name: 'Search' });
+        this.SEARCH_BUTTON = page.locator('[data-testid="header-search-open"]');
         this.SIGN_IN_BUTTON = header.getByRole('link', { name: 'Sign In' });
         this.SIGN_UP_BUTTON = header.getByRole('link', { name: 'Sign Up' });
-        this.CART_BUTTON = header.getByRole('link', { name: 'Cart' });
+        this.CART_BUTTON = page.locator('[data-testid="header-cart-link"]');
 
         // HEADER ACTIONS - authenticated (appear after login)
-        this.WISHLIST_BUTTON = header.getByRole('link', { name: 'Wishlist' });
-        this.ORDERS_BUTTON = header.getByRole('link', { name: 'Orders' });
-        this.ACCOUNT_BUTTON = header.getByRole('link', { name: /^[A-Z]/ }); // Matches user name like "Garaga Ra"
-        this.SIGN_OUT_BUTTON = header.getByRole('button', { name: 'Sign Out' });
+        this.WISHLIST_BUTTON = page.locator('[data-testid="header-wishlist-link"]');
+        this.ORDERS_BUTTON = page.locator('[data-testid="header-orders-link"]');
+        this.ACCOUNT_BUTTON = page.locator('[data-testid="header-account-link"]');
+        this.SIGN_OUT_BUTTON = page.locator('[data-testid="header-signout-btn"]');
 
         // FOOTER
-        this.FOOTER = footer;
+        this.FOOTER = page.locator('[data-testid="footer"]');
         this.FOOTER_COPYRIGHT = footer.getByText(/© \d{4} PetPals/);
 
         // FOOTER SHOP LINKS - scoped to Shop heading section
         this.FOOTER_SHOP_LINKS = footer.getByRole('list').first().getByRole('link');
-        this.FOOTER_PET_TOYS = footer.getByRole('link', { name: 'Pet Toys' });
-        this.FOOTER_PET_FOOD = footer.getByRole('link', { name: 'Pet Food' });
-        this.FOOTER_SUPPLEMENTS = footer.getByRole('link', { name: 'Supplements' });
-        this.FOOTER_CAT_PRODUCTS = footer.getByRole('link', { name: 'Cat Products' });
-        this.FOOTER_DOG_PRODUCTS = footer.getByRole('link', { name: 'Dog Products' });
+        this.FOOTER_PET_TOYS = page.locator('[data-testid="footer-link-toys"]');
+        this.FOOTER_PET_FOOD = page.locator('[data-testid="footer-link-food"]');
+        this.FOOTER_SUPPLEMENTS = page.locator('[data-testid="footer-link-supplements"]');
+        this.FOOTER_CAT_PRODUCTS = page.locator('[data-testid="footer-link-cat-products"]');
+        this.FOOTER_DOG_PRODUCTS = page.locator('[data-testid="footer-link-dog-products"]');
 
         // FOOTER COMPANY LINKS
         this.FOOTER_COMPANY_LINKS = footer.getByRole('list').nth(1).getByRole('link');
-        this.FOOTER_ABOUT_US = footer.getByRole('link', { name: 'About Us' });
-        this.FOOTER_CAREERS = footer.getByRole('link', { name: 'Careers' });
-        this.FOOTER_BLOG = footer.getByRole('link', { name: 'Blog' });
-        this.FOOTER_CONTACT = footer.getByRole('link', { name: 'Contact', exact: true });
+        this.FOOTER_ABOUT_US = page.locator('[data-testid="footer-link-about"]');
+        this.FOOTER_CAREERS = page.locator('[data-testid="footer-link-careers"]');
+        this.FOOTER_BLOG = page.locator('[data-testid="footer-link-blog"]');
+        this.FOOTER_CONTACT = page.locator('[data-testid="footer-link-contact"]');
 
         // FOOTER CUSTOMER SERVICE LINKS
         this.FOOTER_CUSTOMER_SERVICE_LINKS = footer.getByRole('list').nth(2).getByRole('link');
-        this.FOOTER_HELP_CENTER = footer.getByRole('link', { name: 'Help Center' });
-        this.FOOTER_SHIPPING = footer.getByRole('link', { name: 'Shipping & Delivery' });
-        this.FOOTER_RETURNS = footer.getByRole('link', { name: 'Returns & Refunds' });
-        this.FOOTER_CONTACT_US = footer.getByRole('link', { name: 'Contact Us' });
-        this.FOOTER_WISHLIST = footer.getByRole('link', { name: 'Wishlist' });
-        this.FOOTER_PRIVACY_POLICY = footer.getByRole('link', { name: 'Privacy Policy' });
-        this.FOOTER_TERMS = footer.getByRole('link', { name: 'Terms & Conditions' });
+        this.FOOTER_HELP_CENTER = page.locator('[data-testid="footer-link-help"]');
+        this.FOOTER_SHIPPING = page.locator('[data-testid="footer-link-shipping"]');
+        this.FOOTER_RETURNS = page.locator('[data-testid="footer-link-returns"]');
+        this.FOOTER_CONTACT_US = page.locator('[data-testid="footer-link-contact-us"]');
+        this.FOOTER_WISHLIST = page.locator('[data-testid="footer-link-wishlist"]');
+        this.FOOTER_PRIVACY_POLICY = page.locator('[data-testid="footer-link-privacy"]');
+        this.FOOTER_TERMS = page.locator('[data-testid="footer-link-terms"]');
 
         // FOOTER SOCIAL LINKS
         this.FOOTER_SOCIAL_LINKS = footer.getByRole('link', { name: /Facebook|Instagram|Twitter|YouTube/ });
+
+        // ACCOUNT PAGE
+        this.ACCOUNT_HEADING = page.locator('.tracking-tight.text-2xl.font-bold.flex.items-center.gap-2');
+
+        // ORDERS PAGE
+        this.ORDERS_HEADING = page.getByRole('heading', { name: 'Order History', level: 1 });
     }
 }

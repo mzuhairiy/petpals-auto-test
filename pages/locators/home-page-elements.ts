@@ -15,6 +15,7 @@ export default class HomePageElements {
     readonly CART_ICON: Locator;
     readonly SEARCH_ICON: Locator;
     readonly SEARCH_INPUT: Locator;
+    readonly ACCOUNT_BUTTON: Locator;
 
     // HERO CAROUSEL
     readonly HERO_CAROUSEL: Locator;
@@ -65,27 +66,28 @@ export default class HomePageElements {
         this.page = page;
 
         // NAVBAR
-        this.LOGO = page.locator(`div.flex > a.flex > svg`)
-        this.HOME_LINK = page.getByRole('link', { name: 'Home' });
-        this.SHOP_LINK = page.getByRole('link', { name: 'Shop' });
-        this.CATS_MENU = page.getByRole('link', { name: 'Cats' });
-        this.DOGS_MENU = page.getByRole('button', { name: 'Dogs' });
-        this.ABOUT_US_LINK = page.getByRole('link', { name: 'About Us' });
-        this.SIGN_IN_BUTTON = page.getByRole('link', { name: 'Sign In' });
-        this.SIGN_UP_BUTTON = page.getByRole('link', { name: 'Sign Up' });
-        this.CART_ICON = page.getByRole('button', { name: 'Cart' });
-        this.SEARCH_ICON = page.getByRole('button', { name: 'Search' });
-        this.SEARCH_INPUT = page.getByPlaceholder('Search products, brands, and more');
+        this.LOGO = page.locator('[data-testid="header-logo"]');
+        this.HOME_LINK = page.locator('[data-testid="nav-home-link"]');
+        this.SHOP_LINK = page.locator('[data-testid="nav-shop-link"]');
+        this.CATS_MENU = page.locator('[data-testid="nav-cats-link"]');
+        this.DOGS_MENU = page.locator('[data-testid="nav-dogs-link"]');
+        this.ABOUT_US_LINK = page.locator('[data-testid="nav-about-link"]');
+        this.SIGN_IN_BUTTON = page.locator('[data-testid="header-signin-btn"]');
+        this.SIGN_UP_BUTTON = page.locator('[data-testid="header-signup-btn"]');
+        this.CART_ICON = page.locator('[data-testid="header-cart-btn"]');
+        this.SEARCH_ICON = page.locator('[data-testid="header-search-open"]');
+        this.SEARCH_INPUT = page.locator('[data-testid="header-search-input"]');
+        this.ACCOUNT_BUTTON = page.locator('[data-testid="header-account-btn"]');
 
         // HERO CAROUSEL
-        this.HERO_CAROUSEL = page.locator('main').locator('div').first();
+        this.HERO_CAROUSEL = page.locator('[data-testid="hero-slider"]');
         this.HERO_HEADING = page.getByRole('heading', { name: 'What your pet needs, when they need it.' });
-        this.HERO_SHOP_NOW_LINK = page.getByRole('link', { name: 'Shop Now' });
-        this.HERO_EXPLORE_FOOD_LINK = page.getByRole('link', { name: 'Explore Food' });
-        this.HERO_VIEW_TOYS_LINK = page.getByRole('link', { name: 'View Toys' });
-        this.CAROUSEL_PREV_BUTTON = page.getByRole('button', { name: 'Previous slide' });
-        this.CAROUSEL_NEXT_BUTTON = page.getByRole('button', { name: 'Next slide' });
-        this.CAROUSEL_SLIDE_BUTTONS = page.getByRole('button', { name: /Go to slide/ });
+        this.HERO_SHOP_NOW_LINK = page.locator('[data-testid="hero-cta-0"]');
+        this.HERO_EXPLORE_FOOD_LINK = page.locator('[data-testid="hero-cta-1"]');
+        this.HERO_VIEW_TOYS_LINK = page.locator('[data-testid="hero-cta-2"]');
+        this.CAROUSEL_PREV_BUTTON = page.locator('[data-testid="hero-prev"]');
+        this.CAROUSEL_NEXT_BUTTON = page.locator('[data-testid="hero-next"]');
+        this.CAROUSEL_SLIDE_BUTTONS = page.locator('[data-testid^="hero-dot-"]');
 
         // SERVICE HIGHLIGHTS
         this.FREE_DELIVERY_HEADING = page.getByRole('heading', { name: 'Free Same-Day Delivery' });
@@ -94,32 +96,32 @@ export default class HomePageElements {
         this.SUPPORT_HEADING = page.getByRole('heading', { name: '24/7 Support' });
 
         // FEATURED PRODUCTS SECTION
-        this.FEATURED_PRODUCTS_H2 = page.getByRole('heading', { name: 'Featured Products' });
+        this.FEATURED_PRODUCTS_H2 = page.locator('[data-testid="featured-products-title"]');
         this.FEATURED_PRODUCTS_SUBTITLE = page.getByText('Handpicked products for your furry friends');
-        this.VIEW_ALL_PRODUCTS_LINK = page.getByRole('link', { name: 'View All Products' });
-        this.FEATURED_PRODUCT_CARDS = page.locator('main section, main > div > div').filter({ has: page.getByRole('heading', { name: 'Featured Products' }) }).locator('a[href^="/product/"]');
-        this.FEATURED_PRODUCT_TITLES = page.locator('main').getByRole('heading', { level: 3 });
-        this.FEATURED_PRODUCT_DESCRIPTIONS = page.locator('main a[href^="/product/"] p');
-        this.FEATURED_PRODUCT_PRICES = page.locator('main a[href^="/product/"]').locator('div:has-text("Rp")');
-        this.FEATURED_PRODUCT_RATINGS = page.locator('main a[href^="/product/"]').locator('text=/\\d\\.\\d/');
-        this.FEATURED_WISHLIST_BUTTONS = page.getByRole('button', { name: 'Add to wishlist' });
+        this.VIEW_ALL_PRODUCTS_LINK = page.locator('[data-testid="view-all-products-link"]');
+        this.FEATURED_PRODUCT_CARDS = page.locator('[data-testid="featured-products-grid"] a[data-testid^="product-card-link-"]');
+        this.FEATURED_PRODUCT_TITLES = page.locator('[data-testid="featured-products-grid"] [data-testid^="product-card-"] h3');
+        this.FEATURED_PRODUCT_DESCRIPTIONS = page.locator('[data-testid="featured-products-grid"] [data-testid^="product-card-"] p');
+        this.FEATURED_PRODUCT_PRICES = page.locator('[data-testid="featured-products-grid"] [data-testid^="product-card-"] div:has-text("Rp")');
+        this.FEATURED_PRODUCT_RATINGS = page.locator('[data-testid="featured-products-grid"] [data-testid^="product-card-"]');
+        this.FEATURED_WISHLIST_BUTTONS = page.locator('[data-testid^="wishlist-btn-"]');
 
         // CAT PRODUCTS SECTION
-        this.CAT_PRODUCTS_H2 = page.getByRole('heading', { name: 'Cat Products' });
-        this.CAT_PRODUCT_CARDS = page.locator('main').filter({ has: page.getByRole('heading', { name: 'Cat Products' }) }).locator('a[href^="/product/"]');
-        this.CAT_ADD_TO_CART_BUTTONS = page.locator('main').getByRole('heading', { name: 'Cat Products' }).locator('..').locator('..').getByRole('button', { name: 'Add to cart' });
-        this.VIEW_ALL_CAT_PRODUCTS_LINK = page.getByRole('link', { name: 'View All Cat Products' });
+        this.CAT_PRODUCTS_H2 = page.locator('[data-testid="cat-products-title"]');
+        this.CAT_PRODUCT_CARDS = page.locator('[data-testid="cat-products-grid"] a[data-testid^="product-card-link-"]');
+        this.CAT_ADD_TO_CART_BUTTONS = page.locator('[data-testid^="add-to-cart-"]');
+        this.VIEW_ALL_CAT_PRODUCTS_LINK = page.locator('[data-testid="view-all-cat-products-btn"]');
 
         // DOG PRODUCTS SECTION
-        this.DOG_PRODUCTS_H2 = page.getByRole('heading', { name: 'Dog Products' });
-        this.DOG_PRODUCT_CARDS = page.locator('main').filter({ has: page.getByRole('heading', { name: 'Dog Products' }) }).locator('a[href^="/product/"]');
-        this.DOG_ADD_TO_CART_BUTTONS = page.locator('main').getByRole('heading', { name: 'Dog Products' }).locator('..').locator('..').getByRole('button', { name: 'Add to cart' });
-        this.VIEW_ALL_DOG_PRODUCTS_LINK = page.getByRole('link', { name: 'View All Dog Products' });
+        this.DOG_PRODUCTS_H2 = page.locator('[data-testid="dog-products-title"]');
+        this.DOG_PRODUCT_CARDS = page.locator('[data-testid="dog-products-grid"] a[data-testid^="product-card-link-"]');
+        this.DOG_ADD_TO_CART_BUTTONS = page.locator('[data-testid^="add-to-cart-"]');
+        this.VIEW_ALL_DOG_PRODUCTS_LINK = page.locator('[data-testid="view-all-dog-products-btn"]');
 
         // NEWSLETTER SECTION
-        this.NEWSLETTER_HEADING = page.getByRole('heading', { name: 'Join Our Pack' });
+        this.NEWSLETTER_HEADING = page.locator('[data-testid="newsletter-title"]');
         this.NEWSLETTER_SUBTITLE = page.getByText('Subscribe to our newsletter for exclusive offers');
-        this.NEWSLETTER_EMAIL_FIELD = page.getByPlaceholder('Your email address');
-        this.NEWSLETTER_SUBSCRIBE_BUTTON = page.getByRole('button', { name: 'Subscribe' });
+        this.NEWSLETTER_EMAIL_FIELD = page.locator('[data-testid="newsletter-email-input"]');
+        this.NEWSLETTER_SUBSCRIBE_BUTTON = page.locator('[data-testid="newsletter-subscribe-btn"]');
     }
 }

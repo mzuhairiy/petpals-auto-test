@@ -21,6 +21,8 @@ export default class AuthElements {
     readonly REMEMBER_ME_CHECKBOX: Locator;
     // Role-based: unique link text
     readonly FORGOT_PASSWORD_LINK: Locator;
+    // Role-based: unique link text
+    readonly FORGOT_PASSWORD_HEADING: Locator;
     // Scoped to main to avoid header Sign In button conflict
     readonly SIGN_IN_BUTTON: Locator;
     // Role-based: unique button names
@@ -30,6 +32,10 @@ export default class AuthElements {
     readonly SIGN_UP_LINK_FROM_SIGN_IN: Locator;
     // Text-based: unique text on page
     readonly SECURE_CONNECTION_TEXT: Locator;
+
+    // SIGN IN VALIDATION
+    readonly SIGN_IN_EMAIL_ERROR: Locator;
+    readonly SIGN_IN_PASSWORD_ERROR: Locator;
 
     // SIGN UP PAGE
     // Text-based: unique heading on sign-up page
@@ -53,44 +59,71 @@ export default class AuthElements {
     // Text-based: unique text on page
     readonly ENCRYPTED_INFO_TEXT: Locator;
 
+    // SIGN UP VALIDATION
+    readonly SIGN_UP_NAME_ERROR: Locator;
+    readonly SIGN_UP_EMAIL_ERROR: Locator;
+    readonly SIGN_UP_PASSWORD_ERROR: Locator;
+    readonly SIGN_UP_TERMS_ERROR: Locator;
+    readonly CONFIRM_PASSWORD_ERROR: Locator;
+
     // TOAST NOTIFICATIONS - for validating real outcomes
-    readonly TOAST_CONTAINER: Locator;
-    readonly TOAST_TITLE: Locator;
-    readonly TOAST_DESCRIPTION: Locator;
+    readonly TOAST_VIEWPORT: Locator;
+
+    // TOAST MESSAGES (text-specific)
+    readonly TOAST_SIGNIN_SUCCESS: Locator;
+    readonly TOAST_SIGNIN_FAILED: Locator;
+    readonly TOAST_SIGNUP_SUCCESS: Locator;
+    readonly TOAST_EMAIL_REGISTERED: Locator;
+    readonly TOAST_INVALID_CREDENTIALS: Locator;
 
     constructor(page: Page) {
         this.page = page;
 
         // SIGN IN PAGE - scoped to main to avoid header conflicts
-        this.SIGN_IN_HEADING = page.getByText('Sign in to your account');
-        this.SIGN_IN_EMAIL_FIELD = page.getByRole('textbox', { name: 'Email' });
-        this.SIGN_IN_PASSWORD_FIELD = page.getByRole('textbox', { name: 'Password' });
-        this.REMEMBER_ME_CHECKBOX = page.getByRole('checkbox', { name: 'Remember me' });
-        this.FORGOT_PASSWORD_LINK = page.getByRole('link', { name: 'Forgot password?' });
-        this.SIGN_IN_BUTTON = page.getByRole('main').getByRole('button', { name: 'Sign In' });
-        this.SIGN_IN_GOOGLE_BUTTON = page.getByRole('button', { name: 'Google' });
-        this.SIGN_IN_FACEBOOK_BUTTON = page.getByRole('button', { name: 'Facebook' });
-        this.SIGN_UP_LINK_FROM_SIGN_IN = page.getByRole('link', { name: 'Sign up' });
+        this.SIGN_IN_HEADING = page.getByText('Sign in to your account', { exact: true });
+        this.SIGN_IN_EMAIL_FIELD = page.locator('[data-testid="signin-email-input"]');
+        this.SIGN_IN_PASSWORD_FIELD = page.locator('[data-testid="signin-password-input"]');
+        this.REMEMBER_ME_CHECKBOX = page.locator('[data-testid="signin-remember-checkbox"]');
+        this.FORGOT_PASSWORD_LINK = page.locator('[data-testid="signin-forgot-password-link"]');
+        this.FORGOT_PASSWORD_HEADING = page.getByText('Forgot your password?', { exact: true });
+        this.SIGN_IN_BUTTON = page.locator('[data-testid="signin-submit-btn"]');
+        this.SIGN_IN_GOOGLE_BUTTON = page.locator('[data-testid="signin-google-btn"]');
+        this.SIGN_IN_FACEBOOK_BUTTON = page.locator('[data-testid="signin-facebook-btn"]');
+        this.SIGN_UP_LINK_FROM_SIGN_IN = page.locator('[data-testid="signin-signup-link"]');
         this.SECURE_CONNECTION_TEXT = page.getByText('Secure, encrypted connection');
 
+        // SIGN IN VALIDATION
+        this.SIGN_IN_EMAIL_ERROR = page.locator('[data-testid="signin-email-error"]');
+        this.SIGN_IN_PASSWORD_ERROR = page.locator('[data-testid="signin-password-error"]');
+
         // SIGN UP PAGE
-        this.SIGN_UP_HEADING = page.getByText('Create an account');
-        this.FULL_NAME_FIELD = page.getByRole('textbox', { name: 'Full Name' });
-        this.SIGN_UP_EMAIL_FIELD = page.getByRole('textbox', { name: 'Email' });
-        this.SIGN_UP_PASSWORD_FIELD = page.getByRole('textbox', { name: 'Password', exact: true });
-        this.CONFIRM_PASSWORD_FIELD = page.getByRole('textbox', { name: 'Confirm Password' });
-        this.TERMS_CHECKBOX = page.getByRole('checkbox', { name: /Terms of Service/ });
-        this.TERMS_LINK = page.getByRole('link', { name: 'Terms of Service' });
-        this.PRIVACY_POLICY_LINK = page.getByRole('link', { name: 'Privacy Policy' });
-        this.CREATE_ACCOUNT_BUTTON = page.getByRole('button', { name: 'Create Account' });
-        this.SIGN_UP_GOOGLE_BUTTON = page.getByRole('button', { name: 'Google' });
-        this.SIGN_UP_FACEBOOK_BUTTON = page.getByRole('button', { name: 'Facebook' });
-        this.SIGN_IN_LINK_FROM_SIGN_UP = page.getByRole('link', { name: 'Sign in' });
+        this.SIGN_UP_HEADING = page.getByText('Create an account', { exact: true });
+        this.FULL_NAME_FIELD = page.locator('[data-testid="signup-name-input"]');
+        this.SIGN_UP_EMAIL_FIELD = page.locator('[data-testid="signup-email-input"]');
+        this.SIGN_UP_PASSWORD_FIELD = page.locator('[data-testid="signup-password-input"]');
+        this.CONFIRM_PASSWORD_FIELD = page.locator('[data-testid="signup-confirm-password-input"]');
+        this.TERMS_CHECKBOX = page.locator('[data-testid="signup-terms-checkbox"]');
+        this.TERMS_LINK = page.locator('[data-testid="signup-terms-link"]');
+        this.PRIVACY_POLICY_LINK = page.locator('[data-testid="signup-privacy-link"]');
+        this.CREATE_ACCOUNT_BUTTON = page.locator('[data-testid="signup-submit-btn"]');
+        this.SIGN_UP_GOOGLE_BUTTON = page.locator('[data-testid="signup-google-btn"]');
+        this.SIGN_UP_FACEBOOK_BUTTON = page.locator('[data-testid="signup-facebook-btn"]');
+        this.SIGN_IN_LINK_FROM_SIGN_UP = page.locator('[data-testid="signup-signin-link"]');
         this.ENCRYPTED_INFO_TEXT = page.getByText('Your information is securely encrypted');
 
+        // SIGN UP VALIDATION
+        this.SIGN_UP_NAME_ERROR = page.locator('[data-testid="signup-name-error"]');
+        this.SIGN_UP_EMAIL_ERROR = page.locator('[data-testid="signup-email-error"]');
+        this.SIGN_UP_PASSWORD_ERROR = page.locator('[data-testid="signup-password-error"]');
+        this.SIGN_UP_TERMS_ERROR = page.locator('[data-testid="signup-terms-error"]');
+        this.CONFIRM_PASSWORD_ERROR = page.locator('[data-testid="signup-confirm-password-error"]');
+
         // TOAST NOTIFICATIONS - used to validate real outcomes (success/error)
-        this.TOAST_CONTAINER = page.getByRole('status');
-        this.TOAST_TITLE = page.getByRole('status').locator('div').first();
-        this.TOAST_DESCRIPTION = page.getByRole('status').locator('div').nth(1);
+        this.TOAST_VIEWPORT = page.locator('[data-testid="toast-viewport"]');
+        this.TOAST_SIGNIN_SUCCESS = this.TOAST_VIEWPORT.getByText('Welcome back!');
+        this.TOAST_SIGNIN_FAILED = this.TOAST_VIEWPORT.getByText('Sign in failed');
+        this.TOAST_SIGNUP_SUCCESS = this.TOAST_VIEWPORT.getByText('Welcome to PetPals!');
+        this.TOAST_EMAIL_REGISTERED = this.TOAST_VIEWPORT.getByText('Email already registered');
+        this.TOAST_INVALID_CREDENTIALS = this.TOAST_VIEWPORT.getByText('Invalid credentials');
     }
 }

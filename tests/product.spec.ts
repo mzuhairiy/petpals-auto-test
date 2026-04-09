@@ -1,116 +1,129 @@
 import { test, expect } from '@playwright/test';
 import LoginActions from '../pages/actions/login-actions';
 import LayoutElements from '../pages/locators/layout-elements';
+import HomeElements from '@locators/home-page-elements';
+import ProductPageElements from '@locators/product-page-elements';
+import ShopPageElements from '@locators/shop-page-elements';
 import config from '../utils/config';
+import { navigateToRandomProductDetailViaShop } from '../utils/product-helpers';
 
 test.describe('Product E2E', () => {
+    let loginActions: LoginActions;
+    let layoutElements: LayoutElements;
+    let homeElements: HomeElements;
+    let productElements: ProductPageElements;
+    let shopElements: ShopPageElements;
+
+    test.beforeEach(async ({ page }) => {
+        loginActions = new LoginActions(page);
+        layoutElements = new LayoutElements(page);
+        homeElements = new HomeElements(page);
+        productElements = new ProductPageElements(page);
+        shopElements = new ShopPageElements(page);
+
+        await page.goto(config.baseURL);
+        await expect(homeElements.SIGN_IN_BUTTON).toBeVisible();
+    });
 
     test.describe('Product Detail Page', () => {
 
         test('should load product detail page with interactive elements', async ({ page }) => {
-            await page.goto(`${config.baseURL}/product/cat-water-fountain`);
+            await navigateToRandomProductDetailViaShop({
+                page,
+                layoutElements,
+                shopElements,
+                productElements,
+                testInfo: test.info(),
+            });
 
-            const main = page.getByRole('main');
-            const title = main.getByRole('heading', { level: 1 });
-            await expect(title).toBeVisible();
-            await expect(title).not.toHaveText('');
+            await expect(productElements.PRODUCT_TITLE).toBeVisible();
+            await expect(productElements.PRODUCT_TITLE).not.toHaveText('');
 
-            await expect(page.getByRole('button', { name: 'Add to Cart' })).toBeVisible();
-            await expect(main.getByText(/Rp\s[\d.]+/)).toBeVisible();
+            await expect(productElements.ADD_TO_CART_BUTTON).toBeVisible();
+            await expect(productElements.PRODUCT_CURRENT_PRICE).toBeVisible();
         });
 
         test('should increase product quantity using controls', async ({ page }) => {
-            await page.goto(`${config.baseURL}/product/cat-water-fountain`);
+            await navigateToRandomProductDetailViaShop({
+                page,
+                layoutElements,
+                shopElements,
+                productElements,
+                testInfo: test.info(),
+            });
 
-            const quantityInput = page.getByRole('spinbutton');
-            await expect(quantityInput).toHaveValue('1');
+            const beforeValueRaw = await productElements.QUANTITY_INPUT.inputValue();
+            const beforeValue = Number.parseInt(beforeValueRaw, 10);
+            expect(
+                Number.isFinite(beforeValue),
+                `Expected quantity input to be a number, got: "${beforeValueRaw}"`
+            ).toBeTruthy();
 
-            const increaseBtn = page.getByRole('button', { name: '+' }).or(
-                page.locator('button:has-text("+")')
-            );
-            if (await increaseBtn.isVisible()) {
-                await increaseBtn.click();
-                await expect(quantityInput).toHaveValue('2');
-            }
+            // Prefer the explicit increment control; if UI changes, this will fail loudly.
+            await productElements.INCREASE_QUANTITY_BUTTON.click();
+
+            const afterValueRaw = await productElements.QUANTITY_INPUT.inputValue();
+            const afterValue = Number.parseInt(afterValueRaw, 10);
+            expect(
+                Number.isFinite(afterValue),
+                `Expected quantity input to be a number, got: "${afterValueRaw}"`
+            ).toBeTruthy();
+
+            expect(afterValue, 'Expected quantity to increment by 1').toBe(beforeValue + 1);
         });
 
         test('should switch between product tabs', async ({ page }) => {
-            await page.goto(`${config.baseURL}/product/cat-water-fountain`);
-
-            const reviewsTab = page.getByRole('tab', { name: /Reviews/i }).or(
-                page.getByRole('button', { name: /Reviews/i })
-            );
-            if (await reviewsTab.isVisible()) {
-                await reviewsTab.click();
-                await page.waitForTimeout(500);
-            }
-
-            const descriptionTab = page.getByRole('tab', { name: /Description/i }).or(
-                page.getByRole('button', { name: /Description/i })
-            );
-            if (await descriptionTab.isVisible()) {
-                await descriptionTab.click();
-            }
-        });
-
-        test('should navigate to related product when clicked', async ({ page }) => {
-            await page.goto(`${config.baseURL}/product/cat-water-fountain`);
-
-            const originalUrl = page.url();
-
-            const relatedProducts = page.locator('a[href^="/product/"]').filter({
-                has: page.getByRole('heading', { level: 3 })
+            await navigateToRandomProductDetailViaShop({
+                page,
+                layoutElements,
+                shopElements,
+                productElements,
+                testInfo: test.info(),
             });
 
-            const relatedCount = await relatedProducts.count();
-            if (relatedCount > 0) {
-                await relatedProducts.first().click();
+            await expect(productElements.DESCRIPTION_TAB).toBeVisible();
 
-                await expect(page).toHaveURL(/\/product\//);
-                const newUrl = page.url();
-                expect(newUrl).not.toBe(originalUrl);
+            await productElements.REVIEWS_TAB.click();
+            await expect(productElements.TAB_CONTENT).toBeVisible();
 
-                const newTitle = page.getByRole('main').getByRole('heading', { level: 1 });
-                await expect(newTitle).toBeVisible();
-            }
+            await productElements.DESCRIPTION_TAB.click();
+            await expect(productElements.TAB_CONTENT).toBeVisible();
         });
     });
 
     test.describe('Wishlist Operations', () => {
 
-        test('should add product to wishlist and verify button state changes', async ({ page }) => {
-            const loginActions = new LoginActions(page);
-            await page.goto(`${config.baseURL}/sign-in`);
+        test('should add product to wishlist and verify it appears on wishlist page', async ({ page }) => {
             await loginActions.loginFunctions(config.validUser.email, config.validUser.password);
-            await expect(page).toHaveURL(config.baseURL + '/');
+            await expect(homeElements.HERO_CAROUSEL).toBeVisible();
 
-            await page.goto(`${config.baseURL}/shop`);
+            await layoutElements.NAV_SHOP.click();
+            await expect(page).toHaveURL(/\/shop/);
+            await expect(shopElements.SHOP_HEADING).toBeVisible();
 
-            const addWishlistBtn = page.getByRole('button', { name: 'Add to wishlist' }).first();
-            if (await addWishlistBtn.isVisible()) {
-                await addWishlistBtn.click();
+            const productCards = shopElements.PRODUCT_CARDS;
+            const cardCount = await productCards.count();
+            expect(cardCount, 'Expected at least one product card on the shop page').toBeGreaterThan(0);
 
-                const toast = page.getByRole('status');
-                const removeBtn = page.getByRole('button', { name: 'Remove from wishlist' });
+            const randomIndex = Math.floor(Math.random() * cardCount);
+            test.info().annotations.push({ type: 'randomProductIndex', description: String(randomIndex) });
 
-                const hasToast = await toast.isVisible().catch(() => false);
-                const hasRemoveBtn = await removeBtn.first().isVisible().catch(() => false);
-                expect(hasToast || hasRemoveBtn).toBeTruthy();
-            }
-        });
+            const selectedCard = productCards.nth(randomIndex);
+            await expect(selectedCard, `Product card at index ${randomIndex} should be visible`).toBeVisible();
 
-        test('should show wishlisted products on wishlist page', async ({ page }) => {
-            const loginActions = new LoginActions(page);
-            const layoutElements = new LayoutElements(page);
-            await page.goto(`${config.baseURL}/sign-in`);
-            await loginActions.loginFunctions(config.validUser.email, config.validUser.password);
-            await expect(page).toHaveURL(config.baseURL + '/');
+            const productName = (await selectedCard.getByRole('heading', { level: 3 }).textContent())?.trim();
+            expect(productName, 'Expected selected product to have a name').toBeTruthy();
+
+            // Scoped locator (wishlist button inside the selected product card)
+            const wishlistButton = selectedCard.locator('[data-testid^="wishlist-btn-"]');
+            await expect(wishlistButton).toBeVisible();
+            await wishlistButton.click();
 
             await layoutElements.WISHLIST_BUTTON.click();
             await expect(page).toHaveURL(/\/wishlist/);
 
-            const main = page.getByRole('main');
-            await expect(main).toBeVisible();
+            const wishlistContent = page.getByRole('main');
+            await expect(wishlistContent).toContainText(productName!);
         });
     });
 });

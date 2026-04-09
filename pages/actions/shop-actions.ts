@@ -59,4 +59,26 @@ export default class ShopActions extends BaseAction {
         await firstCard.click();
         return title ?? '';
     }
+
+    /**
+     * Extract all visible product prices as numbers.
+     * Strips currency symbols and thousand separators (e.g., "Rp 150.000" → 150000).
+     */
+    async getAllProductPrices(): Promise<number[]> {
+        const priceTexts = await this.shopElements.PRODUCT_PRICES.allTextContents();
+        return priceTexts.map(text => {
+            const cleaned = text.replace(/[^\d]/g, '');
+            return Number.parseInt(cleaned, 10);
+        }).filter(n => Number.isFinite(n));
+    }
+
+    /**
+     * Filter products by price range using the min/max inputs.
+     */
+    async filterByPriceRange(min: number, max: number): Promise<void> {
+        await this.shopElements.PRICE_MIN_INPUT.fill(String(min));
+        await this.shopElements.PRICE_MAX_INPUT.fill(String(max));
+        await this.shopElements.PRICE_MAX_INPUT.press('Enter');
+        await this.waitForNavigation();
+    }
 }
