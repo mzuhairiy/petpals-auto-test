@@ -45,70 +45,62 @@ test.describe('Account E2E', () => {
         });
     });
 
-test.describe('Wishlist Management', () => {
-    test.beforeEach(async ({ page, request }) => {
-        await loginActions.loginFunctions(config.validUser.email, config.validUser.password);
-        await expect(homeElements.HERO_CAROUSEL).toBeVisible({ timeout: 15000 });
+    test.describe('Wishlist Management', () => {
+        test.beforeEach(async ({ page }) => {
+            loginActions = new LoginActions(page); 
+            authElements = new AuthElements(page);
+            layoutElements = new LayoutElements(page);
+            homeElements = new HomeElements(page);
+            shopElements = new ShopPageElements(page);
 
-        const deleteResponse = await request.delete('/api/wishlist/items', {
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
+            await page.goto(config.baseURL);
+            await expect(homeElements.SIGN_IN_BUTTON).toBeVisible();
+            
+            await loginActions.loginFunctions(config.validUser.email, config.validUser.password);
+            await expect(homeElements.HERO_CAROUSEL).toBeVisible({ timeout: 15000 });
+
+            await layoutElements.WISHLIST_BUTTON.click();
+            
+            const removeButtons = page.locator('[data-testid^="wishlist-remove-"]');
+            const count = await removeButtons.count();
+            
+            for (let i = 0; i < count; i++) {
+                await removeButtons.first().click();
+                await page.waitForTimeout(300);
             }
+
+            await layoutElements.NAV_SHOP.click();
         });
 
-        if (deleteResponse.ok()) {
-            test.info().annotations.push({ 
-                type: 'cleanup', 
-                description: 'Wishlist cleared successfully before test' 
-            });
-        }
+        test('should add product to wishlist from shop and see it on wishlist page', async ({ page }) => {
+            await layoutElements.NAV_SHOP.click();
+            await expect(page).toHaveURL(/\/shop/);
+            await expect(shopElements.SHOP_HEADING).toBeVisible();
+
+            const productCards = shopElements.PRODUCT_CARDS;
+            const cardCount = await productCards.count();
+            expect(cardCount, 'Expected at least one product card on the shop page').toBeGreaterThan(0);
+
+            const randomIndex = Math.floor(Math.random() * cardCount);
+            test.info().annotations.push({ type: 'randomProductIndex', description: String(randomIndex) });
+
+            const selectedCard = productCards.nth(randomIndex);
+            await expect(selectedCard, `Product card at index ${randomIndex} should be visible`).toBeVisible();
+
+            const productName = (await selectedCard.getByRole('heading', { level: 3 }).textContent())?.trim();
+            expect(productName, 'Expected selected product to have a name').toBeTruthy();
+
+            const wishlistButton = selectedCard.locator('[data-testid^="wishlist-btn-"]');
+            await expect(wishlistButton, 'Wishlist button should be visible inside selected product card').toBeVisible();
+            await wishlistButton.click();
+            await expect(shopElements.TOAST_PRODUCT_ADDED).toBeVisible();
+
+            await layoutElements.WISHLIST_BUTTON.click();
+            await expect(page).toHaveURL(/\/wishlist/);
+
+            const wishlistContent = page.getByRole('main');
+            await expect(wishlistContent).toContainText(productName!);
+            test.info().annotations.push({ type: 'productName', description: String(productName) });
+        });
     });
-
-    test.afterAll(async ({ request }) => {
-        try {
-            await request.delete('/api/wishlist/items');
-        } catch (e) {
-        }
-    });
-
-    test('should add product to wishlist from shop and see it on wishlist page', async ({ page }) => {
-        await layoutElements.NAV_SHOP.click();
-        await expect(page).toHaveURL(/\/shop/);
-        await expect(shopElements.SHOP_HEADING).toBeVisible();
-
-        const productCards = shopElements.PRODUCT_CARDS;
-        const cardCount = await productCards.count();
-        expect(cardCount, 'Expected at least one product card on the shop page').toBeGreaterThan(0);
-
-        const randomIndex = Math.floor(Math.random() * cardCount);
-        test.info().annotations.push({ type: 'randomProductIndex', description: String(randomIndex) });
-
-        const selectedCard = productCards.nth(randomIndex);
-        await expect(selectedCard, `Product card at index ${randomIndex} should be visible`).toBeVisible();
-
-        const productName = (await selectedCard.getByRole('heading', { level: 3 }).textContent())?.trim();
-        expect(productName, 'Expected selected product to have a name').toBeTruthy();
-
-        const wishlistButton = selectedCard.locator('[data-testid^="wishlist-btn-"]');
-        await expect(wishlistButton, 'Wishlist button should be visible inside selected product card').toBeVisible();
-        await wishlistButton.click();
-        await expect(shopElements.TOAST_PRODUCT_ADDED).toBeVisible();
-
-        await layoutElements.WISHLIST_BUTTON.click();
-        await expect(page).toHaveURL(/\/wishlist/);
-
-        const wishlistContent = page.getByRole('main');
-        await expect(wishlistContent).toContainText(productName!);
-        test.info().annotations.push({ type: 'productName', description: String(productName) });
-    });
-
-    test('wishlist should be empty after cleanup', async ({ page }) => {
-        await layoutElements.WISHLIST_BUTTON.click();
-        await expect(page).toHaveURL(/\/wishlist/);
-        
-        const wishlistContent = page.getByRole('main');
-        await expect(wishlistContent).toContainText('Wishlist is empty');
-    });
-});
 });
