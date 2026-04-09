@@ -30,7 +30,7 @@ test.describe('Account E2E', () => {
 
         test('should navigate to account page after login', async ({ page }) => {
             await loginActions.loginFunctions(config.validUser.email, config.validUser.password);
-            await expect(homeElements.HERO_CAROUSEL).toBeVisible({ timeout: 15000 });
+            await homeElements.HERO_CAROUSEL.click();
             await layoutElements.ACCOUNT_BUTTON.click();
             await expect(page).toHaveURL(/\/account/);
             await expect(layoutElements.ACCOUNT_HEADING).toBeVisible();
