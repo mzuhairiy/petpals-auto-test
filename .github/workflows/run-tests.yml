@@ -171,11 +171,13 @@ jobs:
           fi
 
           # Extract stats from the JSON report if available
+          # The stats object contains: expected (passed), unexpected (failed), skipped, flaky
           if [ -f playwright-report/results.json ]; then
-            TOTAL=$(jq '[.suites[].specs | length] | add // 0' playwright-report/results.json)
-            PASSED=$(jq '[.suites[].specs[].tests[].results[] | select(.status == "passed")] | length' playwright-report/results.json)
-            FAILED=$(jq '[.suites[].specs[].tests[].results[] | select(.status == "failed")] | length' playwright-report/results.json)
-            SKIPPED=$(jq '[.suites[].specs[].tests[].results[] | select(.status == "skipped")] | length' playwright-report/results.json)
+            PASSED=$(jq '.stats.expected // 0' playwright-report/results.json)
+            FAILED=$(jq '.stats.unexpected // 0' playwright-report/results.json)
+            SKIPPED=$(jq '.stats.skipped // 0' playwright-report/results.json)
+            FLAKY=$(jq '.stats.flaky // 0' playwright-report/results.json)
+            TOTAL=$((PASSED + FAILED + SKIPPED + FLAKY))
             DURATION=$(jq '.stats.duration // 0' playwright-report/results.json)
             DURATION_SEC=$(echo "scale=1; $DURATION / 1000" | bc 2>/dev/null || echo "N/A")
           else
@@ -183,6 +185,7 @@ jobs:
             PASSED="N/A"
             FAILED="N/A"
             SKIPPED="N/A"
+            FLAKY="N/A"
             DURATION_SEC="N/A"
           fi
 

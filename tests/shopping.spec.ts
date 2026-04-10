@@ -78,7 +78,7 @@ test.describe('Shopping E2E', () => {
 
             await shopActions.filterByPetType('Cats');
 
-            await expect(page).toHaveURL(/pet=cat/i);
+            await expect(page).toHaveURL(/pet=cat/);
             const filteredCount = await shopActions.getProductCount();
             expect(filteredCount, 'Filtered results should not be empty').toBeGreaterThan(0);
             expect(filteredCount, 'Filtered count should be less than initial').toBeLessThanOrEqual(initialCount);
