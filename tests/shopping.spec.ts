@@ -6,7 +6,7 @@ import config from '../utils/config';
 import HomeElements from '@locators/home-page-elements';
 import ProductPageElements from '@locators/product-page-elements';
 import ShopPageElements from '@locators/shop-page-elements';
-import { navigateToRandomProductDetailViaShop } from '../utils/product-helpers';
+import { navigateToRandomProductDetailViaShop, addRandomProductToCartFromHomepage } from '../utils/product-helpers';
 
 test.describe('Shopping E2E', () => {
     let loginActions: LoginActions;
@@ -194,31 +194,16 @@ test.describe('Shopping E2E', () => {
             await loginActions.loginFunctions(config.validUser.email, config.validUser.password);
             await expect(homeElements.HERO_CAROUSEL).toBeVisible();
 
-            // Pick a random "Add to cart" button from the homepage
-            const addToCartButtons = homeElements.CAT_ADD_TO_CART_BUTTONS;
-            const buttonCount = await addToCartButtons.count();
-            expect(buttonCount, 'Expected at least one Add to cart button on homepage').toBeGreaterThan(0);
+            const { productName } = await addRandomProductToCartFromHomepage({
+                page, homeElements, testInfo: test.info(),
+            });
 
-            const randomIndex = Math.floor(Math.random() * buttonCount);
-            test.info().annotations.push({ type: 'randomCartButtonIndex', description: String(randomIndex) });
-
-            // Capture the product name from the parent product card
-            const selectedButton = addToCartButtons.nth(randomIndex);
-            const productCard = selectedButton.locator('xpath=ancestor::*[contains(@data-testid, "product-card-")]');
-            const productName = (await productCard.getByRole('heading', { level: 3 }).textContent())?.trim();
-            expect(productName, 'Expected product card to have a name').toBeTruthy();
-            test.info().annotations.push({ type: 'productName', description: String(productName) });
-
-            await expect(selectedButton).toBeVisible();
-            await selectedButton.click();
-
-            // Navigate to cart and verify the added product is present
             await layoutElements.CART_BUTTON.click();
             await expect(page).toHaveURL(/\/cart/);
 
             const cartContent = page.getByRole('main');
             await expect(cartContent).not.toContainText('Your cart is empty');
-            await expect(cartContent).toContainText(productName!);
+            await expect(cartContent).toContainText(productName);
         });
 
         test('should add product to cart from product detail page', async ({ page }) => {

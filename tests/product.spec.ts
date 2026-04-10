@@ -5,7 +5,7 @@ import HomeElements from '@locators/home-page-elements';
 import ProductPageElements from '@locators/product-page-elements';
 import ShopPageElements from '@locators/shop-page-elements';
 import config from '../utils/config';
-import { navigateToRandomProductDetailViaShop } from '../utils/product-helpers';
+import { navigateToRandomProductDetailViaShop, selectRandomProductCardFromShop } from '../utils/product-helpers';
 
 test.describe('Product E2E', () => {
     let loginActions: LoginActions;
@@ -97,33 +97,17 @@ test.describe('Product E2E', () => {
             await loginActions.loginFunctions(config.validUser.email, config.validUser.password);
             await expect(homeElements.HERO_CAROUSEL).toBeVisible();
 
-            await layoutElements.NAV_SHOP.click();
-            await expect(page).toHaveURL(/\/shop/);
-            await expect(shopElements.SHOP_HEADING).toBeVisible();
+            const { selectedCard, productName } = await selectRandomProductCardFromShop({
+                page, layoutElements, shopElements, testInfo: test.info(),
+            });
 
-            const productCards = shopElements.PRODUCT_CARDS;
-            const cardCount = await productCards.count();
-            expect(cardCount, 'Expected at least one product card on the shop page').toBeGreaterThan(0);
-
-            const randomIndex = Math.floor(Math.random() * cardCount);
-            test.info().annotations.push({ type: 'randomProductIndex', description: String(randomIndex) });
-
-            const selectedCard = productCards.nth(randomIndex);
-            await expect(selectedCard, `Product card at index ${randomIndex} should be visible`).toBeVisible();
-
-            const productName = (await selectedCard.getByRole('heading', { level: 3 }).textContent())?.trim();
-            expect(productName, 'Expected selected product to have a name').toBeTruthy();
-
-            // Scoped locator (wishlist button inside the selected product card)
             const wishlistButton = selectedCard.locator('[data-testid^="wishlist-btn-"]');
             await expect(wishlistButton).toBeVisible();
             await wishlistButton.click();
 
             await layoutElements.WISHLIST_BUTTON.click();
             await expect(page).toHaveURL(/\/wishlist/);
-
-            const wishlistContent = page.getByRole('main');
-            await expect(wishlistContent).toContainText(productName!);
+            await expect(page.getByRole('main')).toContainText(productName);
         });
     });
 });
