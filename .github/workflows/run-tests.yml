@@ -4,6 +4,11 @@ on:
   repository_dispatch:
     types: [run-e2e]
 
+# Required for GitHub Pages deployment
+permissions:
+  contents: write
+  statuses: write
+
 jobs:
   e2e-tests:
     timeout-minutes: 60
@@ -91,6 +96,137 @@ jobs:
           name: test-results
           path: test-results/
           retention-days: 30
+
+      # ── Deploy Playwright report to GitHub Pages ────────────────────
+      - name: Deploy Playwright report to GitHub Pages
+        if: ${{ always() }}
+        id: deploy-report
+        run: |
+          # Configure git
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          # Save the report to a temp location
+          cp -r playwright-report /tmp/playwright-report-${{ github.run_number }}
+
+          # Fetch and switch to gh-pages branch (create if it doesn't exist)
+          git fetch origin gh-pages || true
+          if git rev-parse --verify origin/gh-pages >/dev/null 2>&1; then
+            git checkout gh-pages
+          else
+            git checkout --orphan gh-pages
+            git rm -rf . || true
+            echo '<!DOCTYPE html><html><head><meta charset="utf-8"><title>PetPals E2E Reports</title></head><body><h1>PetPals E2E Test Reports</h1><p>Select a run from the list below:</p><ul id="runs"></ul></body></html>' > index.html
+            git add index.html
+            git commit -m "Initialize GitHub Pages"
+          fi
+
+          # Create a folder for this run
+          RUN_DIR="run-${{ github.run_number }}"
+          rm -rf "$RUN_DIR"
+          cp -r /tmp/playwright-report-${{ github.run_number }} "$RUN_DIR"
+
+          # Update the index page with a link to this run (most recent first)
+          TIMESTAMP=$(date -u '+%Y-%m-%d %H:%M UTC')
+          OUTCOME="${{ steps.playwright.outcome }}"
+          if [ "$OUTCOME" = "success" ]; then
+            STATUS="✅ PASSED"
+          else
+            STATUS="❌ FAILED"
+          fi
+
+          NEW_ENTRY="<li><a href=\"${RUN_DIR}/index.html\">Run #${{ github.run_number }}</a> — ${STATUS} — ${TIMESTAMP}</li>"
+
+          # Insert the new entry at the top of the list
+          if grep -q '<ul id="runs">' index.html; then
+            sed -i "s|<ul id=\"runs\">|<ul id=\"runs\">\n${NEW_ENTRY}|" index.html
+          fi
+
+          # Clean up old reports — keep only the last 20 runs
+          ls -d run-* 2>/dev/null | sort -t'-' -k2 -n | head -n -20 | xargs rm -rf || true
+
+          # Commit and push
+          git add -A
+          git commit -m "Deploy Playwright report for run #${{ github.run_number }}" || echo "No changes to commit"
+          git push origin gh-pages
+
+          # Output the report URL
+          REPORT_URL="https://mzuhairiy.github.io/petpals-auto-test/${RUN_DIR}/index.html"
+          echo "report_url=${REPORT_URL}" >> $GITHUB_OUTPUT
+          echo "📋 Report published at: ${REPORT_URL}"
+
+      # ── Send Playwright report to Discord ───────────────────────────
+      - name: Send test results to Discord
+        if: ${{ always() }}
+        run: |
+          OUTCOME="${{ steps.playwright.outcome }}"
+          if [ "$OUTCOME" = "success" ]; then
+            STATUS_EMOJI="✅"
+            STATUS_TEXT="PASSED"
+            COLOR=52269    # Green (#00CC2D)
+          else
+            STATUS_EMOJI="❌"
+            STATUS_TEXT="FAILED"
+            COLOR=16718116  # Red (#FF1744)
+          fi
+
+          # Extract stats from the JSON report if available
+          if [ -f playwright-report/results.json ]; then
+            TOTAL=$(jq '[.suites[].specs | length] | add // 0' playwright-report/results.json)
+            PASSED=$(jq '[.suites[].specs[].tests[].results[] | select(.status == "passed")] | length' playwright-report/results.json)
+            FAILED=$(jq '[.suites[].specs[].tests[].results[] | select(.status == "failed")] | length' playwright-report/results.json)
+            SKIPPED=$(jq '[.suites[].specs[].tests[].results[] | select(.status == "skipped")] | length' playwright-report/results.json)
+            DURATION=$(jq '.stats.duration // 0' playwright-report/results.json)
+            DURATION_SEC=$(echo "scale=1; $DURATION / 1000" | bc 2>/dev/null || echo "N/A")
+          else
+            TOTAL="N/A"
+            PASSED="N/A"
+            FAILED="N/A"
+            SKIPPED="N/A"
+            DURATION_SEC="N/A"
+          fi
+
+          RUN_URL="https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
+          REPORT_URL="${{ steps.deploy-report.outputs.report_url }}"
+
+          # Build Discord webhook payload with embed
+          cat > discord-payload.json << EOF
+          {
+            "embeds": [
+              {
+                "title": "${STATUS_EMOJI} PetPals E2E Tests ${STATUS_TEXT}",
+                "color": ${COLOR},
+                "fields": [
+                  { "name": "Total", "value": "${TOTAL}", "inline": true },
+                  { "name": "Passed ✅", "value": "${PASSED}", "inline": true },
+                  { "name": "Failed ❌", "value": "${FAILED}", "inline": true },
+                  { "name": "Skipped ⏭️", "value": "${SKIPPED}", "inline": true },
+                  { "name": "Duration", "value": "${DURATION_SEC}s", "inline": true },
+                  { "name": "Run #", "value": "${{ github.run_number }}", "inline": true },
+                  { "name": "📋 Playwright Report", "value": "[Open in Browser](${REPORT_URL})", "inline": false },
+                  { "name": "🔗 GitHub Actions", "value": "[View Run](${RUN_URL})", "inline": false }
+                ],
+                "footer": {
+                  "text": "PetPals E2E • Run #${{ github.run_number }}"
+                },
+                "timestamp": "$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+              }
+            ]
+          }
+          EOF
+
+          # Send to Discord via Webhook
+          HTTP_STATUS=$(curl -s -o /dev/null -w "%{http_code}" \
+            -H "Content-Type: application/json" \
+            -d @discord-payload.json \
+            "${{ secrets.DISCORD_WEBHOOK_URL }}")
+
+          if [ "$HTTP_STATUS" -ge 200 ] && [ "$HTTP_STATUS" -lt 300 ]; then
+            echo "✅ Discord notification sent successfully (HTTP ${HTTP_STATUS})"
+          else
+            echo "⚠️ Discord notification failed (HTTP ${HTTP_STATUS})"
+            cat discord-payload.json
+          fi
 
       # ── Report final status to PetPals commit ───────────────────────
       - name: "Set commit status: success/failure"
