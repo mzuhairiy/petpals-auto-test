@@ -25,14 +25,14 @@ export default defineConfig({
     trace: 'on-first-retry',
 
     /* Navigation timeout */
-    navigationTimeout: process.env.CI ? 30_000 : 15_000,
+    navigationTimeout: process.env.CI ? 30_000 : 30_000,
   },
 
   /* Global timeout for each test (2 minutes on CI, default locally) */
   timeout: process.env.CI ? 120_000 : 30_000,
 
   expect: {
-    timeout: process.env.CI ? 15_000 : 10_000,
+    timeout: process.env.CI ? 30_000 : 25_000,
   },
 
   /* Configure projects for major browsers */

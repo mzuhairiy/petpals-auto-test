@@ -27,14 +27,14 @@ test.describe('Authentication E2E', () => {
     test.describe('Login Flow', () => {
         test('should login with valid credentials', async ({ page }) => {
             await loginActions.loginFunctions(config.validUser.email, config.validUser.password);
-            await expect(authElements.TOAST_SIGNIN_SUCCESS).toBeVisible({ timeout: 15000 });
+            await expect(authElements.TOAST_SIGNIN_SUCCESS).toBeVisible();
             await expect(layoutElements.SIGN_OUT_BUTTON).toBeVisible();
         });
 
         test('should show error toast with invalid credentials', async ({ page }) => {
             await loginActions.loginFunctions(config.validUser.email, 'wrongpassword');
             await expect(page).toHaveURL(/sign-in/);
-            await expect(authElements.TOAST_SIGNIN_FAILED).toBeVisible({ timeout: 15000 });
+            await expect(authElements.TOAST_SIGNIN_FAILED).toBeVisible();
         });
 
         test('should not submit with empty credentials', async ({ page }) => {
@@ -76,7 +76,7 @@ test.describe('Authentication E2E', () => {
     test.describe('Logout Flow', () => {
         test('should logout and return to unauthenticated state', async ({ page }) => {
             await loginActions.loginFunctions(config.validUser.email, config.validUser.password);
-            await expect(authElements.TOAST_SIGNIN_SUCCESS).toBeVisible({ timeout: 15000 });
+            await expect(authElements.TOAST_SIGNIN_SUCCESS).toBeVisible();
             await expect(layoutElements.SIGN_OUT_BUTTON).toBeVisible();
             await layoutElements.SIGN_OUT_BUTTON.click();
             await expect(authElements.SIGN_IN_HEADING).toBeVisible();
@@ -103,7 +103,7 @@ test.describe('Authentication E2E', () => {
             if (redirected) {
                 expect(currentUrl).toMatch(/sign-in|\/$/);
             } else {
-                await expect(authElements.TOAST_SIGNUP_SUCCESS).toBeVisible({ timeout: 5000 });
+                await expect(authElements.TOAST_SIGNUP_SUCCESS).toBeVisible();
             }
         });
 

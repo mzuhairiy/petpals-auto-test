@@ -30,7 +30,7 @@ test.describe('Account E2E', () => {
 
         test('should navigate to account page after login', async ({ page }) => {
             await loginActions.loginFunctions(config.validUser.email, config.validUser.password);
-            await homeElements.HERO_CAROUSEL.click();
+            await expect(homeElements.HERO_CAROUSEL).toBeVisible();
             await layoutElements.ACCOUNT_BUTTON.click();
             await expect(page).toHaveURL(/\/account/);
             await expect(layoutElements.ACCOUNT_HEADING).toBeVisible();
@@ -38,7 +38,7 @@ test.describe('Account E2E', () => {
 
         test('should navigate to orders page after login', async ({ page }) => {
             await loginActions.loginFunctions(config.validUser.email, config.validUser.password);
-            await expect(homeElements.HERO_CAROUSEL).toBeVisible({ timeout: 15000 });
+            await expect(homeElements.HERO_CAROUSEL).toBeVisible();
             await layoutElements.ORDERS_BUTTON.click();
             await expect(page).toHaveURL(/\/orders/);
             await expect(layoutElements.ORDERS_HEADING).toBeVisible();
@@ -57,7 +57,7 @@ test.describe('Account E2E', () => {
             await expect(homeElements.SIGN_IN_BUTTON).toBeVisible();
             
             await loginActions.loginFunctions(config.validUser.email, config.validUser.password);
-            await expect(homeElements.HERO_CAROUSEL).toBeVisible({ timeout: 15000 });
+            await expect(homeElements.HERO_CAROUSEL).toBeVisible();
 
             await layoutElements.WISHLIST_BUTTON.click();
             

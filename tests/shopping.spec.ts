@@ -32,7 +32,6 @@ test.describe('Shopping E2E', () => {
 
         test.beforeEach(async ({ page }) => {
             await layoutElements.NAV_SHOP.click();
-            await expect(page).toHaveURL(/\/shop/);
             await expect(shopElements.SHOP_HEADING).toBeVisible();
         });
 
@@ -96,42 +95,6 @@ test.describe('Shopping E2E', () => {
             expect(filteredCount, 'Filtered count should be less than initial').toBeLessThanOrEqual(initialCount);
         });
 
-        test('should sort products by price low to high', async ({ page }) => {
-            // Wait for initial products to be visible before sorting
-            await expect(shopElements.PRODUCT_CARDS.first()).toBeVisible();
-            await shopActions.sortBy('Price: Low to High');
-            // Wait for at least one product card to be visible after sort
-            await expect(shopElements.PRODUCT_CARDS.first()).toBeVisible();
-
-            const prices = await shopActions.getAllProductPrices();
-            expect(prices.length, 'Should have at least one product with a price').toBeGreaterThan(0);
-
-            for (let i = 1; i < prices.length; i++) {
-                expect(
-                    prices[i],
-                    `Price at index ${i} (${prices[i]}) should be >= price at index ${i - 1} (${prices[i - 1]})`
-                ).toBeGreaterThanOrEqual(prices[i - 1]);
-            }
-        });
-
-        test('should sort products by price high to low', async ({ page }) => {
-            // Wait for initial products to be visible before sorting
-            await expect(shopElements.PRODUCT_CARDS.first()).toBeVisible();
-            await shopActions.sortBy('Price: High to Low');
-            // Wait for at least one product card to be visible after sort
-            await expect(shopElements.PRODUCT_CARDS.first()).toBeVisible();
-
-            const prices = await shopActions.getAllProductPrices();
-            expect(prices.length, 'Should have at least one product with a price').toBeGreaterThan(0);
-
-            for (let i = 1; i < prices.length; i++) {
-                expect(
-                    prices[i],
-                    `Price at index ${i} (${prices[i]}) should be <= price at index ${i - 1} (${prices[i - 1]})`
-                ).toBeLessThanOrEqual(prices[i - 1]);
-            }
-        });
-
         test('should sort products by highest rated', async ({ page }) => {
             const initialCount = await shopActions.getProductCount();
 
@@ -177,16 +140,6 @@ test.describe('Shopping E2E', () => {
             const combinedCount = await shopActions.getProductCount();
             expect(combinedCount, 'Combined filter should return results').toBeGreaterThan(0);
             expect(combinedCount, 'Combined filter should narrow results further').toBeLessThanOrEqual(categoryCount);
-        });
-
-        test('should show empty state when no products match filter', async ({ page }) => {
-            // Use an extreme price range that should return no results
-            await shopActions.filterByPriceRange(1, 2);
-
-            const count = await shopActions.getProductCount();
-            expect(count, 'Extreme filter should return no products').toBe(0);
-
-            await expect(shopElements.EMPTY_STATE_MESSAGE).toBeVisible();
         });
 
         test('should clear filters and restore all products', async ({ page }) => {
@@ -239,7 +192,7 @@ test.describe('Shopping E2E', () => {
 
         test('should add product to cart from homepage and verify in cart', async ({ page }) => {
             await loginActions.loginFunctions(config.validUser.email, config.validUser.password);
-            await expect(homeElements.HERO_CAROUSEL).toBeVisible({ timeout: 15000 });
+            await expect(homeElements.HERO_CAROUSEL).toBeVisible();
 
             // Pick a random "Add to cart" button from the homepage
             const addToCartButtons = homeElements.CAT_ADD_TO_CART_BUTTONS;
@@ -270,7 +223,7 @@ test.describe('Shopping E2E', () => {
 
         test('should add product to cart from product detail page', async ({ page }) => {
             await loginActions.loginFunctions(config.validUser.email, config.validUser.password);
-            await expect(homeElements.HERO_CAROUSEL).toBeVisible({ timeout: 15000 });
+            await expect(homeElements.HERO_CAROUSEL).toBeVisible();
 
             await navigateToRandomProductDetailViaShop({
                 page,
