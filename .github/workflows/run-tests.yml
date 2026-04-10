@@ -173,11 +173,11 @@ jobs:
           # Extract stats from the JSON report if available
           # The stats object contains: expected (passed), unexpected (failed), skipped, flaky
           if [ -f playwright-report/results.json ]; then
+            TOTAL=$(jq '[.. | .specs? // [] | length] | add // 0' playwright-report/results.json)
             PASSED=$(jq '.stats.expected // 0' playwright-report/results.json)
             FAILED=$(jq '.stats.unexpected // 0' playwright-report/results.json)
             SKIPPED=$(jq '.stats.skipped // 0' playwright-report/results.json)
             FLAKY=$(jq '.stats.flaky // 0' playwright-report/results.json)
-            TOTAL=$((PASSED + FAILED + SKIPPED + FLAKY))
             DURATION=$(jq '.stats.duration // 0' playwright-report/results.json)
             DURATION_SEC=$(echo "scale=1; $DURATION / 1000" | bc 2>/dev/null || echo "N/A")
           else
@@ -200,7 +200,7 @@ jobs:
                 "title": "${STATUS_EMOJI} PetPals E2E Tests ${STATUS_TEXT}",
                 "color": ${COLOR},
                 "fields": [
-                  { "name": "Total", "value": "${TOTAL}", "inline": true },
+                  { "name": "Total Test Cases", "value": "${TOTAL}", "inline": true },
                   { "name": "Passed ✅", "value": "${PASSED}", "inline": true },
                   { "name": "Failed ❌", "value": "${FAILED}", "inline": true },
                   { "name": "Skipped ⏭️", "value": "${SKIPPED}", "inline": true },
