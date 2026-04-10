@@ -3,6 +3,7 @@ import LayoutElements from '../pages/locators/layout-elements';
 import ShopPageElements from '../pages/locators/shop-page-elements';
 import ProductPageElements from '../pages/locators/product-page-elements';
 import HomePageElements from '../pages/locators/home-page-elements';
+import { V } from 'node_modules/@faker-js/faker/dist/airline-eVQV6kbz';
 
 /**
  * Removes all products from the wishlist page.
@@ -17,7 +18,8 @@ export async function clearWishlist(params: {
 
     await layoutElements.WISHLIST_BUTTON.click();
     await expect(page).toHaveURL(/\/wishlist/);
-
+    const continueShoppingBtn = page.locator('[data-testid="wishlist-continue-shopping-link"]');
+    await expect(continueShoppingBtn).toBeVisible();
     const removeButtons = page.locator('[data-testid^="wishlist-remove-"]');
     let count = await removeButtons.count();
 
