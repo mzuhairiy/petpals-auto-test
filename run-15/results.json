@@ -215,12 +215,12 @@
                           "workerIndex": 0,
                           "parallelIndex": 0,
                           "status": "passed",
-                          "duration": 4533,
+                          "duration": 4379,
                           "errors": [],
                           "stdout": [],
                           "stderr": [],
                           "retry": 0,
-                          "startTime": "2026-04-11T06:04:29.049Z",
+                          "startTime": "2026-04-11T13:53:04.644Z",
                           "annotations": [],
                           "attachments": []
                         }
@@ -249,12 +249,12 @@
                           "workerIndex": 1,
                           "parallelIndex": 1,
                           "status": "passed",
-                          "duration": 4561,
+                          "duration": 4864,
                           "errors": [],
                           "stdout": [],
                           "stderr": [],
                           "retry": 0,
-                          "startTime": "2026-04-11T06:04:29.059Z",
+                          "startTime": "2026-04-11T13:53:04.638Z",
                           "annotations": [],
                           "attachments": []
                         }
@@ -285,11 +285,11 @@
                       "annotations": [
                         {
                           "type": "randomProductIndex",
-                          "description": "9"
+                          "description": "7"
                         },
                         {
                           "type": "productName",
-                          "description": "Catnip Mice Toys (3-Pack)"
+                          "description": "Wet Cat Food Variety Pack"
                         }
                       ],
                       "expectedStatus": "passed",
@@ -300,20 +300,20 @@
                           "workerIndex": 0,
                           "parallelIndex": 0,
                           "status": "passed",
-                          "duration": 5519,
+                          "duration": 6814,
                           "errors": [],
                           "stdout": [],
                           "stderr": [],
                           "retry": 0,
-                          "startTime": "2026-04-11T06:04:33.866Z",
+                          "startTime": "2026-04-11T13:53:09.269Z",
                           "annotations": [
                             {
                               "type": "randomProductIndex",
-                              "description": "9"
+                              "description": "7"
                             },
                             {
                               "type": "productName",
-                              "description": "Catnip Mice Toys (3-Pack)"
+                              "description": "Wet Cat Food Variety Pack"
                             }
                           ],
                           "attachments": []
@@ -369,12 +369,12 @@
                           "workerIndex": 1,
                           "parallelIndex": 1,
                           "status": "passed",
-                          "duration": 2825,
+                          "duration": 3311,
                           "errors": [],
                           "stdout": [],
                           "stderr": [],
                           "retry": 0,
-                          "startTime": "2026-04-11T06:04:34.116Z",
+                          "startTime": "2026-04-11T13:53:09.945Z",
                           "annotations": [],
                           "attachments": []
                         }
@@ -403,12 +403,12 @@
                           "workerIndex": 1,
                           "parallelIndex": 1,
                           "status": "passed",
-                          "duration": 2861,
+                          "duration": 3319,
                           "errors": [],
                           "stdout": [],
                           "stderr": [],
                           "retry": 0,
-                          "startTime": "2026-04-11T06:04:36.957Z",
+                          "startTime": "2026-04-11T13:53:13.274Z",
                           "annotations": [],
                           "attachments": []
                         }
@@ -437,12 +437,12 @@
                           "workerIndex": 0,
                           "parallelIndex": 0,
                           "status": "passed",
-                          "duration": 2484,
+                          "duration": 2858,
                           "errors": [],
                           "stdout": [],
                           "stderr": [],
                           "retry": 0,
-                          "startTime": "2026-04-11T06:04:39.658Z",
+                          "startTime": "2026-04-11T13:53:16.397Z",
                           "annotations": [],
                           "attachments": []
                         }
@@ -471,12 +471,12 @@
                           "workerIndex": 1,
                           "parallelIndex": 1,
                           "status": "passed",
-                          "duration": 2471,
+                          "duration": 2945,
                           "errors": [],
                           "stdout": [],
                           "stderr": [],
                           "retry": 0,
-                          "startTime": "2026-04-11T06:04:39.837Z",
+                          "startTime": "2026-04-11T13:53:16.610Z",
                           "annotations": [],
                           "attachments": []
                         }
@@ -505,12 +505,12 @@
                           "workerIndex": 0,
                           "parallelIndex": 0,
                           "status": "passed",
-                          "duration": 2827,
+                          "duration": 3307,
                           "errors": [],
                           "stdout": [],
                           "stderr": [],
                           "retry": 0,
-                          "startTime": "2026-04-11T06:04:42.170Z",
+                          "startTime": "2026-04-11T13:53:19.283Z",
                           "annotations": [],
                           "attachments": []
                         }
@@ -539,12 +539,12 @@
                           "workerIndex": 1,
                           "parallelIndex": 1,
                           "status": "passed",
-                          "duration": 2556,
+                          "duration": 3067,
                           "errors": [],
                           "stdout": [],
                           "stderr": [],
                           "retry": 0,
-                          "startTime": "2026-04-11T06:04:42.324Z",
+                          "startTime": "2026-04-11T13:53:19.566Z",
                           "annotations": [],
                           "attachments": []
                         }
@@ -570,15 +570,15 @@
                       "projectName": "chromium",
                       "results": [
                         {
-                          "workerIndex": 1,
-                          "parallelIndex": 1,
+                          "workerIndex": 0,
+                          "parallelIndex": 0,
                           "status": "passed",
-                          "duration": 2832,
+                          "duration": 3368,
                           "errors": [],
                           "stdout": [],
                           "stderr": [],
                           "retry": 0,
-                          "startTime": "2026-04-11T06:04:44.901Z",
+                          "startTime": "2026-04-11T13:53:22.607Z",
                           "annotations": [],
                           "attachments": []
                         }
@@ -612,15 +612,15 @@
                       "projectName": "chromium",
                       "results": [
                         {
-                          "workerIndex": 0,
-                          "parallelIndex": 0,
+                          "workerIndex": 1,
+                          "parallelIndex": 1,
                           "status": "passed",
-                          "duration": 2905,
+                          "duration": 3399,
                           "errors": [],
                           "stdout": [],
                           "stderr": [],
                           "retry": 0,
-                          "startTime": "2026-04-11T06:04:45.013Z",
+                          "startTime": "2026-04-11T13:53:22.670Z",
                           "annotations": [],
                           "attachments": []
                         }
@@ -654,15 +654,15 @@
                       "projectName": "chromium",
                       "results": [
                         {
-                          "workerIndex": 1,
-                          "parallelIndex": 1,
+                          "workerIndex": 0,
+                          "parallelIndex": 0,
                           "status": "passed",
-                          "duration": 3421,
+                          "duration": 4148,
                           "errors": [],
                           "stdout": [],
                           "stderr": [],
                           "retry": 0,
-                          "startTime": "2026-04-11T06:04:47.749Z",
+                          "startTime": "2026-04-11T13:53:25.988Z",
                           "annotations": [],
                           "attachments": []
                         }
@@ -688,15 +688,15 @@
                       "projectName": "chromium",
                       "results": [
                         {
-                          "workerIndex": 0,
-                          "parallelIndex": 0,
+                          "workerIndex": 1,
+                          "parallelIndex": 1,
                           "status": "passed",
-                          "duration": 2554,
+                          "duration": 3188,
                           "errors": [],
                           "stdout": [],
                           "stderr": [],
                           "retry": 0,
-                          "startTime": "2026-04-11T06:04:47.933Z",
+                          "startTime": "2026-04-11T13:53:26.082Z",
                           "annotations": [],
                           "attachments": []
                         }
@@ -722,15 +722,15 @@
                       "projectName": "chromium",
                       "results": [
                         {
-                          "workerIndex": 0,
-                          "parallelIndex": 0,
+                          "workerIndex": 1,
+                          "parallelIndex": 1,
                           "status": "passed",
-                          "duration": 2634,
+                          "duration": 3182,
                           "errors": [],
                           "stdout": [],
                           "stderr": [],
                           "retry": 0,
-                          "startTime": "2026-04-11T06:04:50.503Z",
+                          "startTime": "2026-04-11T13:53:29.287Z",
                           "annotations": [],
                           "attachments": []
                         }
@@ -756,15 +756,15 @@
                       "projectName": "chromium",
                       "results": [
                         {
-                          "workerIndex": 1,
-                          "parallelIndex": 1,
+                          "workerIndex": 0,
+                          "parallelIndex": 0,
                           "status": "passed",
-                          "duration": 2657,
+                          "duration": 3238,
                           "errors": [],
                           "stdout": [],
                           "stderr": [],
                           "retry": 0,
-                          "startTime": "2026-04-11T06:04:51.185Z",
+                          "startTime": "2026-04-11T13:53:30.149Z",
                           "annotations": [],
                           "attachments": []
                         }
@@ -790,15 +790,15 @@
                       "projectName": "chromium",
                       "results": [
                         {
-                          "workerIndex": 0,
-                          "parallelIndex": 0,
+                          "workerIndex": 1,
+                          "parallelIndex": 1,
                           "status": "passed",
-                          "duration": 2617,
+                          "duration": 3177,
                           "errors": [],
                           "stdout": [],
                           "stderr": [],
                           "retry": 0,
-                          "startTime": "2026-04-11T06:04:53.153Z",
+                          "startTime": "2026-04-11T13:53:32.494Z",
                           "annotations": [],
                           "attachments": []
                         }
@@ -824,15 +824,15 @@
                       "projectName": "chromium",
                       "results": [
                         {
-                          "workerIndex": 1,
-                          "parallelIndex": 1,
+                          "workerIndex": 0,
+                          "parallelIndex": 0,
                           "status": "passed",
-                          "duration": 2860,
+                          "duration": 3563,
                           "errors": [],
                           "stdout": [],
                           "stderr": [],
                           "retry": 0,
-                          "startTime": "2026-04-11T06:04:53.874Z",
+                          "startTime": "2026-04-11T13:53:33.400Z",
                           "annotations": [],
                           "attachments": []
                         }
@@ -884,15 +884,15 @@
                       "projectName": "chromium",
                       "results": [
                         {
-                          "workerIndex": 0,
-                          "parallelIndex": 0,
+                          "workerIndex": 1,
+                          "parallelIndex": 1,
                           "status": "passed",
-                          "duration": 3069,
+                          "duration": 3479,
                           "errors": [],
                           "stdout": [],
                           "stderr": [],
                           "retry": 0,
-                          "startTime": "2026-04-11T06:04:55.796Z",
+                          "startTime": "2026-04-11T13:53:35.698Z",
                           "annotations": [],
                           "attachments": []
                         }
@@ -918,15 +918,15 @@
                       "projectName": "chromium",
                       "results": [
                         {
-                          "workerIndex": 1,
-                          "parallelIndex": 1,
+                          "workerIndex": 0,
+                          "parallelIndex": 0,
                           "status": "passed",
-                          "duration": 3207,
+                          "duration": 3499,
                           "errors": [],
                           "stdout": [],
                           "stderr": [],
                           "retry": 0,
-                          "startTime": "2026-04-11T06:04:56.771Z",
+                          "startTime": "2026-04-11T13:53:36.991Z",
                           "annotations": [],
                           "attachments": []
                         }
@@ -952,15 +952,15 @@
                       "projectName": "chromium",
                       "results": [
                         {
-                          "workerIndex": 0,
-                          "parallelIndex": 0,
+                          "workerIndex": 1,
+                          "parallelIndex": 1,
                           "status": "passed",
-                          "duration": 3125,
+                          "duration": 3439,
                           "errors": [],
                           "stdout": [],
                           "stderr": [],
                           "retry": 0,
-                          "startTime": "2026-04-11T06:04:58.881Z",
+                          "startTime": "2026-04-11T13:53:39.190Z",
                           "annotations": [],
                           "attachments": []
                         }
@@ -986,15 +986,15 @@
                       "projectName": "chromium",
                       "results": [
                         {
-                          "workerIndex": 1,
-                          "parallelIndex": 1,
+                          "workerIndex": 0,
+                          "parallelIndex": 0,
                           "status": "passed",
-                          "duration": 3493,
+                          "duration": 3848,
                           "errors": [],
                           "stdout": [],
                           "stderr": [],
                           "retry": 0,
-                          "startTime": "2026-04-11T06:04:59.994Z",
+                          "startTime": "2026-04-11T13:53:40.513Z",
                           "annotations": [],
                           "attachments": []
                         }
@@ -1020,15 +1020,15 @@
                       "projectName": "chromium",
                       "results": [
                         {
-                          "workerIndex": 0,
-                          "parallelIndex": 0,
+                          "workerIndex": 1,
+                          "parallelIndex": 1,
                           "status": "passed",
-                          "duration": 2794,
+                          "duration": 3035,
                           "errors": [],
                           "stdout": [],
                           "stderr": [],
                           "retry": 0,
-                          "startTime": "2026-04-11T06:05:02.022Z",
+                          "startTime": "2026-04-11T13:53:42.643Z",
                           "annotations": [],
                           "attachments": []
                         }
@@ -1054,15 +1054,15 @@
                       "projectName": "chromium",
                       "results": [
                         {
-                          "workerIndex": 1,
-                          "parallelIndex": 1,
+                          "workerIndex": 0,
+                          "parallelIndex": 0,
                           "status": "passed",
-                          "duration": 2498,
+                          "duration": 3063,
                           "errors": [],
                           "stdout": [],
                           "stderr": [],
                           "retry": 0,
-                          "startTime": "2026-04-11T06:05:03.503Z",
+                          "startTime": "2026-04-11T13:53:44.380Z",
                           "annotations": [],
                           "attachments": []
                         }
@@ -1088,15 +1088,15 @@
                       "projectName": "chromium",
                       "results": [
                         {
-                          "workerIndex": 0,
-                          "parallelIndex": 0,
+                          "workerIndex": 1,
+                          "parallelIndex": 1,
                           "status": "passed",
-                          "duration": 2661,
+                          "duration": 2979,
                           "errors": [],
                           "stdout": [],
                           "stderr": [],
                           "retry": 0,
-                          "startTime": "2026-04-11T06:05:04.847Z",
+                          "startTime": "2026-04-11T13:53:45.692Z",
                           "annotations": [],
                           "attachments": []
                         }
@@ -1130,15 +1130,15 @@
                       "projectName": "chromium",
                       "results": [
                         {
-                          "workerIndex": 1,
-                          "parallelIndex": 1,
+                          "workerIndex": 0,
+                          "parallelIndex": 0,
                           "status": "passed",
-                          "duration": 2575,
+                          "duration": 2720,
                           "errors": [],
                           "stdout": [],
                           "stderr": [],
                           "retry": 0,
-                          "startTime": "2026-04-11T06:05:06.022Z",
+                          "startTime": "2026-04-11T13:53:47.471Z",
                           "annotations": [],
                           "attachments": []
                         }
@@ -1164,15 +1164,15 @@
                       "projectName": "chromium",
                       "results": [
                         {
-                          "workerIndex": 0,
-                          "parallelIndex": 0,
+                          "workerIndex": 1,
+                          "parallelIndex": 1,
                           "status": "passed",
-                          "duration": 2288,
+                          "duration": 2638,
                           "errors": [],
                           "stdout": [],
                           "stderr": [],
                           "retry": 0,
-                          "startTime": "2026-04-11T06:05:07.526Z",
+                          "startTime": "2026-04-11T13:53:48.685Z",
                           "annotations": [],
                           "attachments": []
                         }
@@ -1198,15 +1198,15 @@
                       "projectName": "chromium",
                       "results": [
                         {
-                          "workerIndex": 1,
-                          "parallelIndex": 1,
+                          "workerIndex": 0,
+                          "parallelIndex": 0,
                           "status": "passed",
-                          "duration": 2357,
+                          "duration": 2647,
                           "errors": [],
                           "stdout": [],
                           "stderr": [],
                           "retry": 0,
-                          "startTime": "2026-04-11T06:05:08.616Z",
+                          "startTime": "2026-04-11T13:53:50.208Z",
                           "annotations": [],
                           "attachments": []
                         }
@@ -1232,15 +1232,15 @@
                       "projectName": "chromium",
                       "results": [
                         {
-                          "workerIndex": 0,
-                          "parallelIndex": 0,
+                          "workerIndex": 1,
+                          "parallelIndex": 1,
                           "status": "passed",
-                          "duration": 2416,
+                          "duration": 2809,
                           "errors": [],
                           "stdout": [],
                           "stderr": [],
                           "retry": 0,
-                          "startTime": "2026-04-11T06:05:09.838Z",
+                          "startTime": "2026-04-11T13:53:51.335Z",
                           "annotations": [],
                           "attachments": []
                         }
@@ -1274,15 +1274,15 @@
                       "projectName": "chromium",
                       "results": [
                         {
-                          "workerIndex": 1,
-                          "parallelIndex": 1,
+                          "workerIndex": 0,
+                          "parallelIndex": 0,
                           "status": "passed",
-                          "duration": 2109,
+                          "duration": 2263,
                           "errors": [],
                           "stdout": [],
                           "stderr": [],
                           "retry": 0,
-                          "startTime": "2026-04-11T06:05:11.001Z",
+                          "startTime": "2026-04-11T13:53:52.870Z",
                           "annotations": [],
                           "attachments": []
                         }
@@ -1331,11 +1331,11 @@
                       "annotations": [
                         {
                           "type": "randomProductIndex",
-                          "description": "8"
+                          "description": "0"
                         },
                         {
                           "type": "productName",
-                          "description": "Dog Tennis Ball Launcher"
+                          "description": "Dog Probiotic Supplements"
                         }
                       ],
                       "expectedStatus": "passed",
@@ -1343,23 +1343,23 @@
                       "projectName": "chromium",
                       "results": [
                         {
-                          "workerIndex": 0,
-                          "parallelIndex": 0,
+                          "workerIndex": 1,
+                          "parallelIndex": 1,
                           "status": "passed",
-                          "duration": 4193,
+                          "duration": 4450,
                           "errors": [],
                           "stdout": [],
                           "stderr": [],
                           "retry": 0,
-                          "startTime": "2026-04-11T06:05:12.270Z",
+                          "startTime": "2026-04-11T13:53:54.161Z",
                           "annotations": [
                             {
                               "type": "randomProductIndex",
-                              "description": "8"
+                              "description": "0"
                             },
                             {
                               "type": "productName",
-                              "description": "Dog Tennis Ball Launcher"
+                              "description": "Dog Probiotic Supplements"
                             }
                           ],
                           "attachments": []
@@ -1383,11 +1383,11 @@
                       "annotations": [
                         {
                           "type": "randomProductIndex",
-                          "description": "11"
+                          "description": "8"
                         },
                         {
                           "type": "productName",
-                          "description": "Cat Immune Support Supplements"
+                          "description": "Dog Tennis Ball Launcher"
                         }
                       ],
                       "expectedStatus": "passed",
@@ -1395,23 +1395,23 @@
                       "projectName": "chromium",
                       "results": [
                         {
-                          "workerIndex": 1,
-                          "parallelIndex": 1,
+                          "workerIndex": 0,
+                          "parallelIndex": 0,
                           "status": "passed",
-                          "duration": 4117,
+                          "duration": 4437,
                           "errors": [],
                           "stdout": [],
                           "stderr": [],
                           "retry": 0,
-                          "startTime": "2026-04-11T06:05:13.137Z",
+                          "startTime": "2026-04-11T13:53:55.148Z",
                           "annotations": [
                             {
                               "type": "randomProductIndex",
-                              "description": "11"
+                              "description": "8"
                             },
                             {
                               "type": "productName",
-                              "description": "Cat Immune Support Supplements"
+                              "description": "Dog Tennis Ball Launcher"
                             }
                           ],
                           "attachments": []
@@ -1435,11 +1435,11 @@
                       "annotations": [
                         {
                           "type": "randomProductIndex",
-                          "description": "1"
+                          "description": "9"
                         },
                         {
                           "type": "productName",
-                          "description": "Cat Water Fountain"
+                          "description": "Catnip Mice Toys (3-Pack)"
                         }
                       ],
                       "expectedStatus": "passed",
@@ -1447,23 +1447,23 @@
                       "projectName": "chromium",
                       "results": [
                         {
-                          "workerIndex": 0,
-                          "parallelIndex": 0,
+                          "workerIndex": 1,
+                          "parallelIndex": 1,
                           "status": "passed",
-                          "duration": 4168,
+                          "duration": 4554,
                           "errors": [],
                           "stdout": [],
                           "stderr": [],
                           "retry": 0,
-                          "startTime": "2026-04-11T06:05:16.477Z",
+                          "startTime": "2026-04-11T13:53:58.633Z",
                           "annotations": [
                             {
                               "type": "randomProductIndex",
-                              "description": "1"
+                              "description": "9"
                             },
                             {
                               "type": "productName",
-                              "description": "Cat Water Fountain"
+                              "description": "Catnip Mice Toys (3-Pack)"
                             }
                           ],
                           "attachments": []
@@ -1495,11 +1495,11 @@
                       "annotations": [
                         {
                           "type": "randomProductIndex",
-                          "description": "0"
+                          "description": "12"
                         },
                         {
                           "type": "productName",
-                          "description": "Dog Probiotic Supplements"
+                          "description": "Durable Dog Chew Toy"
                         }
                       ],
                       "expectedStatus": "passed",
@@ -1507,23 +1507,23 @@
                       "projectName": "chromium",
                       "results": [
                         {
-                          "workerIndex": 1,
-                          "parallelIndex": 1,
+                          "workerIndex": 0,
+                          "parallelIndex": 0,
                           "status": "passed",
-                          "duration": 4496,
+                          "duration": 5809,
                           "errors": [],
                           "stdout": [],
                           "stderr": [],
                           "retry": 0,
-                          "startTime": "2026-04-11T06:05:17.267Z",
+                          "startTime": "2026-04-11T13:53:59.595Z",
                           "annotations": [
                             {
                               "type": "randomProductIndex",
-                              "description": "0"
+                              "description": "12"
                             },
                             {
                               "type": "productName",
-                              "description": "Dog Probiotic Supplements"
+                              "description": "Durable Dog Chew Toy"
                             }
                           ],
                           "attachments": []
@@ -1576,15 +1576,15 @@
                       "projectName": "chromium",
                       "results": [
                         {
-                          "workerIndex": 0,
-                          "parallelIndex": 0,
+                          "workerIndex": 1,
+                          "parallelIndex": 1,
                           "status": "passed",
-                          "duration": 3233,
+                          "duration": 3582,
                           "errors": [],
                           "stdout": [],
                           "stderr": [],
                           "retry": 0,
-                          "startTime": "2026-04-11T06:05:20.666Z",
+                          "startTime": "2026-04-11T13:54:03.205Z",
                           "annotations": [],
                           "attachments": []
                         }
@@ -1610,15 +1610,15 @@
                       "projectName": "chromium",
                       "results": [
                         {
-                          "workerIndex": 1,
-                          "parallelIndex": 1,
+                          "workerIndex": 0,
+                          "parallelIndex": 0,
                           "status": "passed",
-                          "duration": 4051,
+                          "duration": 4519,
                           "errors": [],
                           "stdout": [],
                           "stderr": [],
                           "retry": 0,
-                          "startTime": "2026-04-11T06:05:21.785Z",
+                          "startTime": "2026-04-11T13:54:05.430Z",
                           "annotations": [],
                           "attachments": []
                         }
@@ -1644,15 +1644,15 @@
                       "projectName": "chromium",
                       "results": [
                         {
-                          "workerIndex": 0,
-                          "parallelIndex": 0,
+                          "workerIndex": 1,
+                          "parallelIndex": 1,
                           "status": "passed",
-                          "duration": 4043,
+                          "duration": 4403,
                           "errors": [],
                           "stdout": [],
                           "stderr": [],
                           "retry": 0,
-                          "startTime": "2026-04-11T06:05:23.912Z",
+                          "startTime": "2026-04-11T13:54:06.804Z",
                           "annotations": [],
                           "attachments": []
                         }
@@ -1678,15 +1678,15 @@
                       "projectName": "chromium",
                       "results": [
                         {
-                          "workerIndex": 1,
-                          "parallelIndex": 1,
+                          "workerIndex": 0,
+                          "parallelIndex": 0,
                           "status": "passed",
-                          "duration": 4134,
+                          "duration": 4429,
                           "errors": [],
                           "stdout": [],
                           "stderr": [],
                           "retry": 0,
-                          "startTime": "2026-04-11T06:05:25.850Z",
+                          "startTime": "2026-04-11T13:54:09.967Z",
                           "annotations": [],
                           "attachments": []
                         }
@@ -1712,20 +1712,69 @@
                       "projectName": "chromium",
                       "results": [
                         {
-                          "workerIndex": 0,
-                          "parallelIndex": 0,
-                          "status": "passed",
-                          "duration": 4037,
-                          "errors": [],
+                          "workerIndex": 1,
+                          "parallelIndex": 1,
+                          "status": "failed",
+                          "duration": 34096,
+                          "error": {
+                            "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).\u001b[22mtoHaveURL\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected pattern: \u001b[32m/pet=cat/\u001b[39m\nReceived string:  \u001b[31m\"https://staging.petpals-demo.shop/shop\"\u001b[39m\nTimeout: 30000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveURL\" with timeout 30000ms\u001b[22m\n\u001b[2m    34 × unexpected value \"https://staging.petpals-demo.shop/shop\"\u001b[22m\n",
+                            "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).\u001b[22mtoHaveURL\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected pattern: \u001b[32m/pet=cat/\u001b[39m\nReceived string:  \u001b[31m\"https://staging.petpals-demo.shop/shop\"\u001b[39m\nTimeout: 30000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveURL\" with timeout 30000ms\u001b[22m\n\u001b[2m    34 × unexpected value \"https://staging.petpals-demo.shop/shop\"\u001b[22m\n\n    at /home/runner/work/petpals-auto-test/petpals-auto-test/tests/shopping.spec.ts:81:32",
+                            "location": {
+                              "file": "/home/runner/work/petpals-auto-test/petpals-auto-test/tests/shopping.spec.ts",
+                              "column": 32,
+                              "line": 81
+                            },
+                            "snippet": "\u001b[0m \u001b[90m 79 |\u001b[39m             \u001b[36mawait\u001b[39m shopActions\u001b[33m.\u001b[39mfilterByPetType(\u001b[32m'Cats'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 80 |\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 81 |\u001b[39m             \u001b[36mawait\u001b[39m expect(page)\u001b[33m.\u001b[39mtoHaveURL(\u001b[35m/pet=cat/\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 82 |\u001b[39m             \u001b[36mconst\u001b[39m filteredCount \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m shopActions\u001b[33m.\u001b[39mgetProductCount()\u001b[33m;\u001b[39m\n \u001b[90m 83 |\u001b[39m             expect(filteredCount\u001b[33m,\u001b[39m \u001b[32m'Filtered results should not be empty'\u001b[39m)\u001b[33m.\u001b[39mtoBeGreaterThan(\u001b[35m0\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 84 |\u001b[39m             expect(filteredCount\u001b[33m,\u001b[39m \u001b[32m'Filtered count should be less than initial'\u001b[39m)\u001b[33m.\u001b[39mtoBeLessThanOrEqual(initialCount)\u001b[33m;\u001b[39m\u001b[0m"
+                          },
+                          "errors": [
+                            {
+                              "location": {
+                                "file": "/home/runner/work/petpals-auto-test/petpals-auto-test/tests/shopping.spec.ts",
+                                "column": 32,
+                                "line": 81
+                              },
+                              "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).\u001b[22mtoHaveURL\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected pattern: \u001b[32m/pet=cat/\u001b[39m\nReceived string:  \u001b[31m\"https://staging.petpals-demo.shop/shop\"\u001b[39m\nTimeout: 30000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveURL\" with timeout 30000ms\u001b[22m\n\u001b[2m    34 × unexpected value \"https://staging.petpals-demo.shop/shop\"\u001b[22m\n\n\n  79 |             await shopActions.filterByPetType('Cats');\n  80 |\n> 81 |             await expect(page).toHaveURL(/pet=cat/);\n     |                                ^\n  82 |             const filteredCount = await shopActions.getProductCount();\n  83 |             expect(filteredCount, 'Filtered results should not be empty').toBeGreaterThan(0);\n  84 |             expect(filteredCount, 'Filtered count should be less than initial').toBeLessThanOrEqual(initialCount);\n    at /home/runner/work/petpals-auto-test/petpals-auto-test/tests/shopping.spec.ts:81:32"
+                            }
+                          ],
                           "stdout": [],
                           "stderr": [],
                           "retry": 0,
-                          "startTime": "2026-04-11T06:05:27.967Z",
+                          "startTime": "2026-04-11T13:54:11.226Z",
                           "annotations": [],
-                          "attachments": []
+                          "attachments": [
+                            {
+                              "name": "error-context",
+                              "contentType": "text/markdown",
+                              "path": "/home/runner/work/petpals-auto-test/petpals-auto-test/test-results/shopping-Shopping-E2E-Prod-40aad-r-products-by-Cats-pet-type-chromium/error-context.md"
+                            }
+                          ],
+                          "errorLocation": {
+                            "file": "/home/runner/work/petpals-auto-test/petpals-auto-test/tests/shopping.spec.ts",
+                            "column": 32,
+                            "line": 81
+                          }
+                        },
+                        {
+                          "workerIndex": 2,
+                          "parallelIndex": 1,
+                          "status": "passed",
+                          "duration": 4907,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 1,
+                          "startTime": "2026-04-11T13:54:46.456Z",
+                          "annotations": [],
+                          "attachments": [
+                            {
+                              "name": "trace",
+                              "contentType": "application/zip",
+                              "path": "/home/runner/work/petpals-auto-test/petpals-auto-test/test-results/shopping-Shopping-E2E-Prod-40aad-r-products-by-Cats-pet-type-chromium-retry1/trace.zip"
+                            }
+                          ]
                         }
                       ],
-                      "status": "expected"
+                      "status": "flaky"
                     }
                   ],
                   "id": "f177f4eaa9abb9f5894f-14aae9acde8d9ebd923e",
@@ -1746,15 +1795,15 @@
                       "projectName": "chromium",
                       "results": [
                         {
-                          "workerIndex": 1,
-                          "parallelIndex": 1,
+                          "workerIndex": 0,
+                          "parallelIndex": 0,
                           "status": "passed",
-                          "duration": 4036,
+                          "duration": 4369,
                           "errors": [],
                           "stdout": [],
                           "stderr": [],
                           "retry": 0,
-                          "startTime": "2026-04-11T06:05:29.998Z",
+                          "startTime": "2026-04-11T13:54:14.410Z",
                           "annotations": [],
                           "attachments": []
                         }
@@ -1783,12 +1832,12 @@
                           "workerIndex": 0,
                           "parallelIndex": 0,
                           "status": "passed",
-                          "duration": 3670,
+                          "duration": 4032,
                           "errors": [],
                           "stdout": [],
                           "stderr": [],
                           "retry": 0,
-                          "startTime": "2026-04-11T06:05:32.014Z",
+                          "startTime": "2026-04-11T13:54:18.791Z",
                           "annotations": [],
                           "attachments": []
                         }
@@ -1814,15 +1863,15 @@
                       "projectName": "chromium",
                       "results": [
                         {
-                          "workerIndex": 1,
-                          "parallelIndex": 1,
+                          "workerIndex": 0,
+                          "parallelIndex": 0,
                           "status": "passed",
-                          "duration": 3730,
+                          "duration": 4074,
                           "errors": [],
                           "stdout": [],
                           "stderr": [],
                           "retry": 0,
-                          "startTime": "2026-04-11T06:05:34.051Z",
+                          "startTime": "2026-04-11T13:54:22.833Z",
                           "annotations": [],
                           "attachments": []
                         }
@@ -1851,12 +1900,12 @@
                           "workerIndex": 0,
                           "parallelIndex": 0,
                           "status": "passed",
-                          "duration": 3752,
+                          "duration": 4055,
                           "errors": [],
                           "stdout": [],
                           "stderr": [],
                           "retry": 0,
-                          "startTime": "2026-04-11T06:05:35.698Z",
+                          "startTime": "2026-04-11T13:54:26.919Z",
                           "annotations": [],
                           "attachments": []
                         }
@@ -1882,15 +1931,15 @@
                       "projectName": "chromium",
                       "results": [
                         {
-                          "workerIndex": 1,
-                          "parallelIndex": 1,
+                          "workerIndex": 0,
+                          "parallelIndex": 0,
                           "status": "passed",
-                          "duration": 4217,
+                          "duration": 4602,
                           "errors": [],
                           "stdout": [],
                           "stderr": [],
                           "retry": 0,
-                          "startTime": "2026-04-11T06:05:37.794Z",
+                          "startTime": "2026-04-11T13:54:30.986Z",
                           "annotations": [],
                           "attachments": []
                         }
@@ -1919,12 +1968,12 @@
                           "workerIndex": 0,
                           "parallelIndex": 0,
                           "status": "passed",
-                          "duration": 4712,
+                          "duration": 5091,
                           "errors": [],
                           "stdout": [],
                           "stderr": [],
                           "retry": 0,
-                          "startTime": "2026-04-11T06:05:39.465Z",
+                          "startTime": "2026-04-11T13:54:35.600Z",
                           "annotations": [],
                           "attachments": []
                         }
@@ -1950,15 +1999,15 @@
                       "projectName": "chromium",
                       "results": [
                         {
-                          "workerIndex": 1,
-                          "parallelIndex": 1,
+                          "workerIndex": 0,
+                          "parallelIndex": 0,
                           "status": "passed",
-                          "duration": 4381,
+                          "duration": 4786,
                           "errors": [],
                           "stdout": [],
                           "stderr": [],
                           "retry": 0,
-                          "startTime": "2026-04-11T06:05:42.025Z",
+                          "startTime": "2026-04-11T13:54:40.703Z",
                           "annotations": [],
                           "attachments": []
                         }
@@ -1987,12 +2036,12 @@
                           "workerIndex": 0,
                           "parallelIndex": 0,
                           "status": "passed",
-                          "duration": 4012,
+                          "duration": 4397,
                           "errors": [],
                           "stdout": [],
                           "stderr": [],
                           "retry": 0,
-                          "startTime": "2026-04-11T06:05:44.191Z",
+                          "startTime": "2026-04-11T13:54:45.499Z",
                           "annotations": [],
                           "attachments": []
                         }
@@ -2023,11 +2072,11 @@
                       "annotations": [
                         {
                           "type": "randomCartButtonIndex",
-                          "description": "4"
+                          "description": "5"
                         },
                         {
                           "type": "productName",
-                          "description": "Cat Immune Support Supplements"
+                          "description": "Durable Dog Chew Toy"
                         }
                       ],
                       "expectedStatus": "passed",
@@ -2035,23 +2084,23 @@
                       "projectName": "chromium",
                       "results": [
                         {
-                          "workerIndex": 1,
-                          "parallelIndex": 1,
+                          "workerIndex": 0,
+                          "parallelIndex": 0,
                           "status": "passed",
-                          "duration": 3563,
+                          "duration": 4175,
                           "errors": [],
                           "stdout": [],
                           "stderr": [],
                           "retry": 0,
-                          "startTime": "2026-04-11T06:05:46.420Z",
+                          "startTime": "2026-04-11T13:54:49.914Z",
                           "annotations": [
                             {
                               "type": "randomCartButtonIndex",
-                              "description": "4"
+                              "description": "5"
                             },
                             {
                               "type": "productName",
-                              "description": "Cat Immune Support Supplements"
+                              "description": "Durable Dog Chew Toy"
                             }
                           ],
                           "attachments": []
@@ -2075,11 +2124,11 @@
                       "annotations": [
                         {
                           "type": "randomProductIndex",
-                          "description": "13"
+                          "description": "0"
                         },
                         {
                           "type": "productName",
-                          "description": "Premium Dog Kibble"
+                          "description": "Dog Probiotic Supplements"
                         }
                       ],
                       "expectedStatus": "passed",
@@ -2087,23 +2136,23 @@
                       "projectName": "chromium",
                       "results": [
                         {
-                          "workerIndex": 0,
-                          "parallelIndex": 0,
+                          "workerIndex": 2,
+                          "parallelIndex": 1,
                           "status": "passed",
-                          "duration": 5176,
+                          "duration": 5962,
                           "errors": [],
                           "stdout": [],
                           "stderr": [],
                           "retry": 0,
-                          "startTime": "2026-04-11T06:05:48.216Z",
+                          "startTime": "2026-04-11T13:54:51.695Z",
                           "annotations": [
                             {
                               "type": "randomProductIndex",
-                              "description": "13"
+                              "description": "0"
                             },
                             {
                               "type": "productName",
-                              "description": "Premium Dog Kibble"
+                              "description": "Dog Probiotic Supplements"
                             }
                           ],
                           "attachments": []
@@ -2155,7 +2204,7 @@
                           "stdout": [],
                           "stderr": [],
                           "retry": 0,
-                          "startTime": "2026-04-11T06:05:49.996Z",
+                          "startTime": "2026-04-11T13:54:54.104Z",
                           "annotations": [
                             {
                               "type": "skip",
@@ -2207,7 +2256,7 @@
                           "stdout": [],
                           "stderr": [],
                           "retry": 0,
-                          "startTime": "2026-04-11T06:05:49.996Z",
+                          "startTime": "2026-04-11T13:54:54.104Z",
                           "annotations": [
                             {
                               "type": "skip",
@@ -2238,11 +2287,11 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2026-04-11T06:04:27.430Z",
-    "duration": 86050.48700000001,
-    "expected": 48,
+    "startTime": "2026-04-11T13:53:03.063Z",
+    "duration": 114699.287,
+    "expected": 47,
     "skipped": 2,
     "unexpected": 0,
-    "flaky": 0
+    "flaky": 1
   }
 }
