@@ -171,13 +171,13 @@ jobs:
           fi
 
           # Extract stats from the JSON report if available
-          # The stats object contains: expected (passed), unexpected (failed), skipped, flaky
+          # Count specs by their "ok" field and test "status" to match the HTML report
           if [ -f playwright-report/results.json ]; then
-            TOTAL=$(jq '[.. | .specs? // [] | length] | add // 0' playwright-report/results.json)
-            PASSED=$(jq '.stats.expected // 0' playwright-report/results.json)
-            FAILED=$(jq '.stats.unexpected // 0' playwright-report/results.json)
+            TOTAL=$(jq '[.. | objects | select(has("ok")) | select(has("tests"))] | length' playwright-report/results.json)
+            FAILED=$(jq '[.. | objects | select(has("ok")) | select(has("tests")) | select(.ok == false) | .tests[] | select(.status == "unexpected")] | length' playwright-report/results.json)
+            FLAKY=$(jq '[.. | objects | select(has("ok")) | select(has("tests")) | select(.ok == false) | .tests[] | select(.status == "flaky")] | length' playwright-report/results.json)
             SKIPPED=$(jq '.stats.skipped // 0' playwright-report/results.json)
-            FLAKY=$(jq '.stats.flaky // 0' playwright-report/results.json)
+            PASSED=$((TOTAL - FAILED - FLAKY - SKIPPED))
             DURATION=$(jq '.stats.duration // 0' playwright-report/results.json)
             DURATION_SEC=$(echo "scale=1; $DURATION / 1000" | bc 2>/dev/null || echo "N/A")
           else
