@@ -45,7 +45,7 @@ test.describe('Shopping E2E', () => {
 
             await shopActions.filterByCategory('Toys');
 
-            await expect(page).toHaveURL(/category=toys/i);
+            await expect(page).toHaveURL(/category=toys/);
             const filteredCount = await shopActions.getProductCount();
             expect(filteredCount, 'Filtered results should not be empty').toBeGreaterThan(0);
             expect(filteredCount, 'Filtered count should be less than initial').toBeLessThanOrEqual(initialCount);
@@ -56,7 +56,7 @@ test.describe('Shopping E2E', () => {
 
             await shopActions.filterByCategory('Food');
 
-            await expect(page).toHaveURL(/category=food/i);
+            await expect(page).toHaveURL(/category=food/);
             const filteredCount = await shopActions.getProductCount();
             expect(filteredCount, 'Filtered results should not be empty').toBeGreaterThan(0);
             expect(filteredCount, 'Filtered count should be less than initial').toBeLessThanOrEqual(initialCount);
@@ -67,7 +67,7 @@ test.describe('Shopping E2E', () => {
 
             await shopActions.filterByCategory('Supplements');
 
-            await expect(page).toHaveURL(/category=supplements/i);
+            await expect(page).toHaveURL(/category=supplements/);
             const filteredCount = await shopActions.getProductCount();
             expect(filteredCount, 'Filtered results should not be empty').toBeGreaterThan(0);
             expect(filteredCount, 'Filtered count should be less than initial').toBeLessThanOrEqual(initialCount);
@@ -89,7 +89,7 @@ test.describe('Shopping E2E', () => {
 
             await shopActions.filterByPetType('Dogs');
 
-            await expect(page).toHaveURL(/pet=dog/i);
+            await expect(page).toHaveURL(/pet=dog/);
             const filteredCount = await shopActions.getProductCount();
             expect(filteredCount, 'Filtered results should not be empty').toBeGreaterThan(0);
             expect(filteredCount, 'Filtered count should be less than initial').toBeLessThanOrEqual(initialCount);
@@ -152,7 +152,7 @@ test.describe('Shopping E2E', () => {
             expect(filteredCount).toBeGreaterThan(0);
             expect(filteredCount).toBeLessThanOrEqual(initialCount);
 
-            await page.getByRole('button', { name: /clear all/i }).click();
+            await page.locator('[data-testid="shop-filters-clear-all-btn"]').click();
             // Wait for the product grid to fully re-render with all products
             await page.waitForLoadState('domcontentloaded');
             await page.waitForTimeout(1000);
@@ -163,13 +163,13 @@ test.describe('Shopping E2E', () => {
 
         test('should persist filters on page reload', async ({ page }) => {
             await shopActions.filterByCategory('Toys');
-            await expect(page).toHaveURL(/category=toys/i);
+            await expect(page).toHaveURL(/category=toys/);
             const filteredCount = await shopActions.getProductCount();
 
             await page.reload();
             await expect(shopElements.SHOP_HEADING).toBeVisible();
 
-            await expect(page).toHaveURL(/category=toys/i);
+            await expect(page).toHaveURL(/category=toys/);
             const reloadedCount = await shopActions.getProductCount();
             expect(reloadedCount, 'Product count should be the same after reload').toBe(filteredCount);
         });
