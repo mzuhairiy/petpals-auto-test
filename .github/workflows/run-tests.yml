@@ -4,17 +4,13 @@ on:
   repository_dispatch:
     types: [run-e2e]
 
-# Required for GitHub Pages deployment
 permissions:
   contents: write
   statuses: write
 
 jobs:
-  # ══════════════════════════════════════════════════════════════════
-  # SMOKE TESTS — Gate for deployment. If this fails, pipeline stops.
-  # ══════════════════════════════════════════════════════════════════
-  smoke-tests:
-    timeout-minutes: 30
+  e2e-tests:
+    timeout-minutes: 60
     runs-on: ubuntu-latest
 
     env:
@@ -56,11 +52,9 @@ jobs:
               sha,
               state: 'pending',
               context: process.env.STATUS_CONTEXT,
-              description: 'E2E smoke tests running',
+              description: 'E2E tests running',
               target_url: `https://github.com/${process.env.GITHUB_REPOSITORY}/actions/runs/${process.env.GITHUB_RUN_ID}`
             });
-
-            core.info(`Commit status "pending" set on ${owner}/${repo}@${sha}`);
 
       - name: Checkout E2E repository
         uses: actions/checkout@v4
@@ -76,11 +70,32 @@ jobs:
       - name: Install Playwright browsers
         run: npx playwright install --with-deps
 
+      # ── Run smoke tests first ───────────────────────────────────────
       - name: Run Smoke Tests
         id: smoke
         run: npx playwright test --grep @smoke --project=chromium
 
-      - name: "Set commit status: smoke result"
+      # ── Run full suite (all tests) ──────────────────────────────────
+      # Runs even if smoke failed so we get a complete report.
+      # Does NOT affect deployment gate — only smoke result matters.
+      - name: Run All Tests
+        id: alltests
+        if: ${{ always() }}
+        run: npx playwright test --project=chromium
+        continue-on-error: true
+
+      - name: Upload test artifacts
+        uses: actions/upload-artifact@v4
+        if: ${{ !cancelled() }}
+        with:
+          name: playwright-report
+          path: |
+            playwright-report/
+            test-results/
+          retention-days: 30
+
+      # ── Commit status based on SMOKE result only ────────────────────
+      - name: "Set commit status: result"
         if: ${{ always() && github.event.client_payload.commit_sha != '' }}
         uses: actions/github-script@v7
         with:
@@ -95,6 +110,7 @@ jobs:
               return;
             }
 
+            // Deployment gate is based on SMOKE tests only
             const smokeOutcome = '${{ steps.smoke.outcome }}';
             const state = smokeOutcome === 'success' ? 'success' : 'failure';
             const description = state === 'success'
@@ -113,53 +129,7 @@ jobs:
 
             core.info(`Commit status "${state}" set on ${owner}/${repo}@${sha}`);
 
-  # ══════════════════════════════════════════════════════════════════
-  # FULL TEST SUITE — Runs all tests after smoke passes.
-  #                    Does NOT block deployment.
-  # ══════════════════════════════════════════════════════════════════
-  full-tests:
-    timeout-minutes: 60
-    runs-on: ubuntu-latest
-    needs: smoke-tests
-    if: always() && needs.smoke-tests.result == 'success'
-    continue-on-error: true
-
-    env:
-      E2E_BASE_URL: ${{ github.event.client_payload.target_url }}
-      COMMIT_SHA: ${{ github.event.client_payload.commit_sha }}
-      SOURCE_REPO: ${{ github.event.client_payload.source_repo }}
-      BASE_URL: ${{ github.event.client_payload.target_url }}
-      CI: true
-
-    steps:
-      - name: Checkout E2E repository
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: lts/*
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Install Playwright browsers
-        run: npx playwright install --with-deps
-
-      - name: Run All Tests
-        id: alltests
-        run: npx playwright test --project=chromium
-
-      - name: Upload test artifacts
-        uses: actions/upload-artifact@v4
-        if: ${{ !cancelled() }}
-        with:
-          name: playwright-report
-          path: |
-            playwright-report/
-            test-results/
-          retention-days: 30
-
+      # ── Deploy report to GitHub Pages ───────────────────────────────
       - name: Deploy Playwright report to GitHub Pages
         if: ${{ always() }}
         id: deploy-report
@@ -185,11 +155,15 @@ jobs:
           cp -r /tmp/playwright-report-${{ github.run_number }} "$RUN_DIR"
 
           TIMESTAMP=$(date -u '+%Y-%m-%d %H:%M UTC')
-          OUTCOME="${{ steps.alltests.outcome }}"
-          if [ "$OUTCOME" = "success" ]; then
-            STATUS="✅ PASSED"
+          SMOKE_OUTCOME="${{ steps.smoke.outcome }}"
+          ALL_OUTCOME="${{ steps.alltests.outcome }}"
+
+          if [ "$SMOKE_OUTCOME" = "success" ] && [ "$ALL_OUTCOME" = "success" ]; then
+            STATUS="✅ ALL PASSED"
+          elif [ "$SMOKE_OUTCOME" = "success" ]; then
+            STATUS="⚠️ SMOKE PASSED / SOME TESTS FAILED"
           else
-            STATUS="❌ FAILED"
+            STATUS="❌ SMOKE FAILED"
           fi
 
           NEW_ENTRY="<li><a href=\"${RUN_DIR}/index.html\">Run #${{ github.run_number }}</a> — ${STATUS} — ${TIMESTAMP}</li>"
@@ -208,23 +182,24 @@ jobs:
           echo "report_url=${REPORT_URL}" >> $GITHUB_OUTPUT
           echo "📋 Report published at: ${REPORT_URL}"
 
+      # ── Send results to Discord ─────────────────────────────────────
       - name: Send test results to Discord
         if: ${{ always() }}
         run: |
-          OUTCOME="${{ steps.alltests.outcome }}"
-          SMOKE_RESULT="${{ needs.smoke-tests.result }}"
+          SMOKE_OUTCOME="${{ steps.smoke.outcome }}"
+          ALL_OUTCOME="${{ steps.alltests.outcome }}"
 
-          if [ "$OUTCOME" = "success" ]; then
+          if [ "$SMOKE_OUTCOME" = "success" ] && [ "$ALL_OUTCOME" = "success" ]; then
             STATUS_EMOJI="✅"
             STATUS_TEXT="ALL PASSED"
             COLOR=52269
-          elif [ "$SMOKE_RESULT" = "success" ]; then
+          elif [ "$SMOKE_OUTCOME" = "success" ]; then
             STATUS_EMOJI="⚠️"
             STATUS_TEXT="SMOKE PASSED / SOME TESTS FAILED"
             COLOR=16760576
           else
             STATUS_EMOJI="❌"
-            STATUS_TEXT="FAILED"
+            STATUS_TEXT="SMOKE FAILED — DEPLOYMENT BLOCKED"
             COLOR=16718116
           fi
 
@@ -250,7 +225,7 @@ jobs:
                 "title": "${STATUS_EMOJI} PetPals E2E Tests ${STATUS_TEXT}",
                 "color": ${COLOR},
                 "fields": [
-                  { "name": "Smoke Test", "value": "${SMOKE_RESULT}", "inline": true },
+                  { "name": "Smoke Test", "value": "${SMOKE_OUTCOME}", "inline": true },
                   { "name": "\u200b", "value": "\u200b", "inline": true },
                   { "name": "Total", "value": "${TOTAL}", "inline": true },
                   { "name": "Passed", "value": "${PASSED}", "inline": true },
