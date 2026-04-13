@@ -66,7 +66,7 @@ export class ToastComponent extends BaseComponent {
     }
 
     async assertAddedToWishlist(): Promise<void> {
-        await this.assertToastMessage('Added to wishlist');
+        await this.assertToastMessage('has been added to your wishlist');
     }
 
     async assertAddedToCart(): Promise<void> {
