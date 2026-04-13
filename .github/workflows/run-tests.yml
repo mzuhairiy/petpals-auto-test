@@ -206,13 +206,12 @@ jobs:
           if [ -f playwright-report/results.json ]; then
             TOTAL=$(jq '[.. | objects | select(has("ok")) | select(has("tests"))] | length' playwright-report/results.json)
             FAILED=$(jq '[.. | objects | select(has("ok")) | select(has("tests")) | select(.ok == false) | .tests[] | select(.status == "unexpected")] | length' playwright-report/results.json)
-            FLAKY=$(jq '[.. | objects | select(has("ok")) | select(has("tests")) | select(.ok == false) | .tests[] | select(.status == "flaky")] | length' playwright-report/results.json)
             SKIPPED=$(jq '.stats.skipped // 0' playwright-report/results.json)
-            PASSED=$((TOTAL - FAILED - FLAKY - SKIPPED))
+            PASSED=$((TOTAL - FAILED - SKIPPED))
             DURATION=$(jq '.stats.duration // 0' playwright-report/results.json)
             DURATION_SEC=$(echo "scale=1; $DURATION / 1000" | bc 2>/dev/null || echo "N/A")
           else
-            TOTAL="N/A"; PASSED="N/A"; FAILED="N/A"; SKIPPED="N/A"; FLAKY="N/A"; DURATION_SEC="N/A"
+            TOTAL="N/A"; PASSED="N/A"; FAILED="N/A"; SKIPPED="N/A"; DURATION_SEC="N/A"
           fi
 
           RUN_URL="https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
@@ -225,13 +224,10 @@ jobs:
                 "title": "${STATUS_EMOJI} PetPals E2E Tests ${STATUS_TEXT}",
                 "color": ${COLOR},
                 "fields": [
-                  { "name": "Smoke Test", "value": "${SMOKE_OUTCOME}", "inline": true },
-                  { "name": "\u200b", "value": "\u200b", "inline": true },
                   { "name": "Total", "value": "${TOTAL}", "inline": true },
                   { "name": "Passed", "value": "${PASSED}", "inline": true },
                   { "name": "Failed", "value": "${FAILED}", "inline": true },
                   { "name": "Skipped", "value": "${SKIPPED}", "inline": true },
-                  { "name": "Flaky", "value": "${FLAKY}", "inline": true },
                   { "name": "Duration", "value": "${DURATION_SEC}s", "inline": true },
                   { "name": "📋 Playwright Report", "value": "[Open in Browser](${REPORT_URL})", "inline": false },
                   { "name": "🔗 GitHub Actions", "value": "[View Run](${RUN_URL})", "inline": false }
