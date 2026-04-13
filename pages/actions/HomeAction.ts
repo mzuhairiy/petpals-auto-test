@@ -1,7 +1,7 @@
 import { type Page } from '@playwright/test';
-import HomePageElements from '../locators/home-page-elements';
-import BaseAction from './base-action';
-import { logger } from '../../utils/logger/logger';
+import HomePageElements from '../locators/HomePageElements';
+import BaseAction from './BaseAction';
+import { logger } from '../../src/utils/Logger';
 
 export default class HomeActions extends BaseAction {
     readonly homeElements: HomePageElements;

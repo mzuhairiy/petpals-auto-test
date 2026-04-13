@@ -15,13 +15,17 @@
     "paths": {
       "@actions/*": ["pages/actions/*"],
       "@locators/*": ["pages/locators/*"],
-      "@utils/*": ["utils/*"]
+      "@utils/*": ["utils/*"],
+      "@components/*": ["src/components/*"],
+      "@helpers/*": ["src/helpers/*"],
+      "@config/*": ["src/config/*"]
     }
   },
   "include": [
     "tests/**/*.ts",
     "pages/**/*.ts",
     "utils/**/*.ts",
+    "src/**/*.ts",
     "playwright.config.ts"
   ],
   "exclude": [

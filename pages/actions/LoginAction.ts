@@ -1,7 +1,7 @@
 import { type Page } from '@playwright/test';
-import AuthElements from '../locators/auth-page-elements';
-import HomePageElements from '@locators/home-page-elements';
-import BaseAction from './base-action';
+import AuthElements from '../locators/AuthPageElements';
+import HomePageElements from '../locators/HomePageElements';
+import BaseAction from './BaseAction';
 
 export default class LoginActions extends BaseAction {
     readonly authElements: AuthElements;
@@ -18,7 +18,6 @@ export default class LoginActions extends BaseAction {
         await this.authElements.SIGN_IN_EMAIL_FIELD.fill(email);
         await this.authElements.SIGN_IN_PASSWORD_FIELD.fill(password);
         await this.authElements.SIGN_IN_BUTTON.click();
-        // Wait for the page to settle after login attempt
         await this.page.waitForLoadState('domcontentloaded');
     }
 

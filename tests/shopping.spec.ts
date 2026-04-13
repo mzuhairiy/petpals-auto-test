@@ -1,46 +1,27 @@
-import { test, expect } from '@playwright/test';
-import LoginActions from '../pages/actions/login-actions';
-import ShopActions from '../pages/actions/shop-actions';
-import LayoutElements from '../pages/locators/layout-elements';
-import config from '../utils/config';
-import HomeElements from '@locators/home-page-elements';
-import ProductPageElements from '@locators/product-page-elements';
-import ShopPageElements from '@locators/shop-page-elements';
-import { navigateToRandomProductDetailViaShop, addRandomProductToCartFromHomepage } from '../utils/product-helpers';
+import { test, expect } from './fixtures/testFixtures';
+import config from '../src/config/environment';
+import { navigateToRandomProductDetailViaShop, addRandomProductToCartFromHomepage } from '../src/helpers/ProductHelper';
 
 test.describe('Shopping E2E', () => {
-    let loginActions: LoginActions;
-    let shopActions: ShopActions;
-    let layoutElements: LayoutElements;
-    let homeElements: HomeElements;
-    let shopElements: ShopPageElements;
-    let productElements: ProductPageElements;
 
-    test.beforeEach(async ({ page }) => {
-        loginActions = new LoginActions(page);
-        shopActions = new ShopActions(page);
-        layoutElements = new LayoutElements(page);
-        homeElements = new HomeElements(page);
-        shopElements = new ShopPageElements(page);
-        productElements = new ProductPageElements(page);
-
-        await page.goto(config.baseURL);
+    test.beforeEach(async ({ page, homeElements }) => {
+        await page.goto(config.baseUrl);
         await expect(homeElements.SIGN_IN_BUTTON).toBeVisible();
     });
 
     test.describe('Product Browsing & Filtering', () => {
 
-        test.beforeEach(async ({ page }) => {
+        test.beforeEach(async ({ layoutElements, shopElements }) => {
             await layoutElements.NAV_SHOP.click();
             await expect(shopElements.SHOP_HEADING).toBeVisible();
         });
 
-        test('should display all products on shop page', async ({ page }) => {
+        test('should display all products on shop page @smoke @shop', async ({ shopActions }) => {
             const count = await shopActions.getProductCount();
             expect(count, 'Shop page should have at least one product').toBeGreaterThan(0);
         });
 
-        test('should filter products by Toys category and update URL', async ({ page }) => {
+        test('should filter products by Toys category and update URL @shop', async ({ page, shopActions }) => {
             const initialCount = await shopActions.getProductCount();
 
             await shopActions.filterByCategory('Toys');
@@ -51,7 +32,7 @@ test.describe('Shopping E2E', () => {
             expect(filteredCount, 'Filtered count should be less than initial').toBeLessThanOrEqual(initialCount);
         });
 
-        test('should filter products by Food category and update URL', async ({ page }) => {
+        test('should filter products by Food category and update URL @shop', async ({ page, shopActions }) => {
             const initialCount = await shopActions.getProductCount();
 
             await shopActions.filterByCategory('Food');
@@ -62,7 +43,7 @@ test.describe('Shopping E2E', () => {
             expect(filteredCount, 'Filtered count should be less than initial').toBeLessThanOrEqual(initialCount);
         });
 
-        test('should filter products by Supplements category and update URL', async ({ page }) => {
+        test('should filter products by Supplements category and update URL @shop', async ({ page, shopActions }) => {
             const initialCount = await shopActions.getProductCount();
 
             await shopActions.filterByCategory('Supplements');
@@ -73,7 +54,7 @@ test.describe('Shopping E2E', () => {
             expect(filteredCount, 'Filtered count should be less than initial').toBeLessThanOrEqual(initialCount);
         });
 
-        test('should filter products by Cats pet type', async ({ page }) => {
+        test('should filter products by Cats pet type @shop', async ({ page, shopActions }) => {
             const initialCount = await shopActions.getProductCount();
 
             await shopActions.filterByPetType('Cats');
@@ -84,7 +65,7 @@ test.describe('Shopping E2E', () => {
             expect(filteredCount, 'Filtered count should be less than initial').toBeLessThanOrEqual(initialCount);
         });
 
-        test('should filter products by Dogs pet type', async ({ page }) => {
+        test('should filter products by Dogs pet type @shop', async ({ page, shopActions }) => {
             const initialCount = await shopActions.getProductCount();
 
             await shopActions.filterByPetType('Dogs');
@@ -95,7 +76,7 @@ test.describe('Shopping E2E', () => {
             expect(filteredCount, 'Filtered count should be less than initial').toBeLessThanOrEqual(initialCount);
         });
 
-        test('should sort products by highest rated', async ({ page }) => {
+        test('should sort products by highest rated @shop', async ({ shopActions }) => {
             const initialCount = await shopActions.getProductCount();
 
             await shopActions.sortBy('Highest Rated');
@@ -104,7 +85,7 @@ test.describe('Shopping E2E', () => {
             expect(count, 'Sorting should not change product count').toBe(initialCount);
         });
 
-        test('should sort products by newest first', async ({ page }) => {
+        test('should sort products by newest first @shop', async ({ shopActions }) => {
             const initialCount = await shopActions.getProductCount();
 
             await shopActions.sortBy('Newest First');
@@ -113,7 +94,7 @@ test.describe('Shopping E2E', () => {
             expect(count, 'Sorting should not change product count').toBe(initialCount);
         });
 
-        test('should filter products by price range', async ({ page }) => {
+        test('should filter products by price range @shop', async ({ page, shopActions }) => {
             const initialCount = await shopActions.getProductCount();
 
             const minPrice = 50000;
@@ -131,7 +112,7 @@ test.describe('Shopping E2E', () => {
             }
         });
 
-        test('should combine category and pet type filters', async ({ page }) => {
+        test('should combine category and pet type filters @shop', async ({ shopActions }) => {
             await shopActions.filterByCategory('Toys');
             const categoryCount = await shopActions.getProductCount();
             expect(categoryCount, 'Category filter should return results').toBeGreaterThan(0);
@@ -142,8 +123,7 @@ test.describe('Shopping E2E', () => {
             expect(combinedCount, 'Combined filter should narrow results further').toBeLessThanOrEqual(categoryCount);
         });
 
-        test('should clear filters and restore all products', async ({ page }) => {
-            // Wait for all products to load initially
+        test('should clear filters and restore all products @shop', async ({ page, shopActions, shopElements }) => {
             await expect(shopElements.PRODUCT_CARDS.first()).toBeVisible();
             const initialCount = await shopActions.getProductCount();
 
@@ -153,7 +133,6 @@ test.describe('Shopping E2E', () => {
             expect(filteredCount).toBeLessThanOrEqual(initialCount);
 
             await page.locator('[data-testid="shop-filters-clear-all-btn"]').click();
-            // Wait for the product grid to fully re-render with all products
             await page.waitForLoadState('domcontentloaded');
             await page.waitForTimeout(1000);
 
@@ -161,7 +140,7 @@ test.describe('Shopping E2E', () => {
             expect(restoredCount, 'All products should be restored after clearing filters').toBe(initialCount);
         });
 
-        test('should persist filters on page reload', async ({ page }) => {
+        test('should persist filters on page reload @shop', async ({ page, shopActions, shopElements }) => {
             await shopActions.filterByCategory('Toys');
             await expect(page).toHaveURL(/category=toys/);
             const filteredCount = await shopActions.getProductCount();
@@ -174,7 +153,7 @@ test.describe('Shopping E2E', () => {
             expect(reloadedCount, 'Product count should be the same after reload').toBe(filteredCount);
         });
 
-        test('should navigate to correct product detail page when clicking a product', async ({ page }) => {
+        test('should navigate to correct product detail page when clicking a product @smoke @shop @product', async ({ page, shopActions, productElements }) => {
             const clickedProductName = await shopActions.clickFirstProduct();
 
             await expect(page).toHaveURL(/\/product\//);
@@ -190,8 +169,8 @@ test.describe('Shopping E2E', () => {
 
     test.describe('Cart Operations', () => {
 
-        test('should add product to cart from homepage and verify in cart', async ({ page }) => {
-            await loginActions.loginFunctions(config.validUser.email, config.validUser.password);
+        test('should add product to cart from homepage and verify in cart @smoke @cart', async ({ page, loginActions, homeElements, layoutElements }) => {
+            await loginActions.loginFunctions(config.profiles.validUser.email, config.profiles.validUser.password);
             await expect(homeElements.HERO_CAROUSEL).toBeVisible();
 
             const { productName } = await addRandomProductToCartFromHomepage({
@@ -206,8 +185,8 @@ test.describe('Shopping E2E', () => {
             await expect(cartContent).toContainText(productName);
         });
 
-        test('should add product to cart from product detail page', async ({ page }) => {
-            await loginActions.loginFunctions(config.validUser.email, config.validUser.password);
+        test('should add product to cart from product detail page @cart', async ({ page, loginActions, homeElements, layoutElements, shopElements, productElements }) => {
+            await loginActions.loginFunctions(config.profiles.validUser.email, config.profiles.validUser.password);
             await expect(homeElements.HERO_CAROUSEL).toBeVisible();
 
             await navigateToRandomProductDetailViaShop({
@@ -221,7 +200,6 @@ test.describe('Shopping E2E', () => {
             await expect(productElements.ADD_TO_CART_BUTTON).toBeVisible();
             await productElements.ADD_TO_CART_BUTTON.click();
 
-            // Navigate to cart and verify not empty
             await layoutElements.CART_BUTTON.click();
             await expect(page).toHaveURL(/\/cart/);
 

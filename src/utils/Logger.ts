@@ -24,7 +24,7 @@ class Logger {
     private currentLevel: number;
 
     constructor() {
-        this.logDir = path.join(__dirname, '../../logs');
+        this.logDir = path.join(process.cwd(), 'logs');
         this.currentLevel = levels.debug;
 
         if (!fs.existsSync(this.logDir)) {
@@ -47,41 +47,19 @@ class Logger {
 
         const formatted = this.formatMessage(level, message);
 
-        // Console output with color
         console.log(`${colors[level]}${formatted}${RESET}`);
 
-        // Write to combined log
         this.writeToFile('combined.log', formatted);
 
-        // Write errors to separate file
         if (level === 'error') {
             this.writeToFile('error.log', formatted);
         }
     }
 
-    error(message: string): void {
-        this.log('error', message);
-    }
-
-    warn(message: string): void {
-        this.log('warn', message);
-    }
-
-    info(message: string): void {
-        this.log('info', message);
-    }
-
-    debug(message: string): void {
-        this.log('debug', message);
-    }
+    error(message: string): void { this.log('error', message); }
+    warn(message: string): void { this.log('warn', message); }
+    info(message: string): void { this.log('info', message); }
+    debug(message: string): void { this.log('debug', message); }
 }
 
-const logger = new Logger();
-
-const addTestInfo = (testInfo: { title: string }) => {
-    return (message: string): string => {
-        return `[${testInfo.title}] ${message}`;
-    };
-};
-
-export { logger, addTestInfo };
+export const logger = new Logger();

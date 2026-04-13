@@ -1,6 +1,6 @@
 import { type Page } from '@playwright/test';
-import LayoutElements from '../locators/layout-elements';
-import BaseAction from './base-action';
+import LayoutElements from '../locators/LayoutElements';
+import BaseAction from './BaseAction';
 
 export default class LayoutActions extends BaseAction {
     readonly layoutElements: LayoutElements;

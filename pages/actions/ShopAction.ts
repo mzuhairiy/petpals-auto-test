@@ -1,6 +1,6 @@
 import { type Page } from '@playwright/test';
-import ShopPageElements from '../locators/shop-page-elements';
-import BaseAction from './base-action';
+import ShopPageElements from '../locators/ShopPageElements';
+import BaseAction from './BaseAction';
 
 export default class ShopActions extends BaseAction {
     readonly shopElements: ShopPageElements;
@@ -41,7 +41,6 @@ export default class ShopActions extends BaseAction {
     }
 
     async getProductCount(): Promise<number> {
-        // Wait a moment for the product grid to stabilize after filter/sort
         await this.page.waitForLoadState('domcontentloaded');
         return await this.shopElements.PRODUCT_CARDS.count();
     }
@@ -62,10 +61,6 @@ export default class ShopActions extends BaseAction {
         return title ?? '';
     }
 
-    /**
-     * Extract all visible product prices as numbers.
-     * Strips currency symbols and thousand separators (e.g., "Rp 150.000" → 150000).
-     */
     async getAllProductPrices(): Promise<number[]> {
         const priceTexts = await this.shopElements.PRODUCT_PRICES.allTextContents();
         return priceTexts.map(text => {
@@ -74,9 +69,6 @@ export default class ShopActions extends BaseAction {
         }).filter(n => Number.isFinite(n));
     }
 
-    /**
-     * Filter products by price range using the min/max inputs.
-     */
     async filterByPriceRange(min: number, max: number): Promise<void> {
         await this.shopElements.PRICE_MIN_INPUT.fill(String(min));
         await this.shopElements.PRICE_MAX_INPUT.fill(String(max));

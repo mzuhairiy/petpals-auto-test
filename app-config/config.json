@@ -1,7 +1,0 @@
-{
-  "baseURL": "https://staging.petpals-demo.shop/",
-  "validUser": {
-    "email": "garaga@petpals.com",
-    "password": "@admin123"
-  }
-}

@@ -1,9 +1,8 @@
 import { expect, type Page, type Locator, type TestInfo } from '@playwright/test';
-import LayoutElements from '../pages/locators/layout-elements';
-import ShopPageElements from '../pages/locators/shop-page-elements';
-import ProductPageElements from '../pages/locators/product-page-elements';
-import HomePageElements from '../pages/locators/home-page-elements';
-import { V } from 'node_modules/@faker-js/faker/dist/airline-eVQV6kbz';
+import LayoutElements from '../../pages/locators/LayoutElements';
+import ShopPageElements from '../../pages/locators/ShopPageElements';
+import ProductPageElements from '../../pages/locators/ProductPageElements';
+import HomePageElements from '../../pages/locators/HomePageElements';
 
 /**
  * Removes all products from the wishlist page.
@@ -89,6 +88,28 @@ export async function navigateToRandomProductDetailViaShop(params: {
     await expect(productElements.PRODUCT_TITLE).toBeVisible();
 
     return { randomIndex, productName: productName || undefined };
+}
+
+/**
+ * Selects a random product from the shop page and adds it to the wishlist.
+ * Returns the product name for assertion in the test.
+ *
+ * This is an ACTION helper — it performs the click but does NOT assert the outcome.
+ * The test should handle toast/page assertions after calling this.
+ */
+export async function addProductToWishlistFromShop(params: {
+    page: Page;
+    layoutElements: LayoutElements;
+    shopElements: ShopPageElements;
+    testInfo?: TestInfo;
+}): Promise<{ productName: string; randomIndex: number }> {
+    const { selectedCard, productName, randomIndex } = await selectRandomProductCardFromShop(params);
+
+    const wishlistButton = selectedCard.locator('[data-testid^="wishlist-btn-"]');
+    await expect(wishlistButton).toBeVisible();
+    await wishlistButton.click();
+
+    return { productName, randomIndex };
 }
 
 /**

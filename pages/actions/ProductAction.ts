@@ -1,7 +1,7 @@
 import { type Page } from '@playwright/test';
-import ProductPageElements from '../locators/product-page-elements';
-import BaseAction from './base-action';
-import { logger } from '../../utils/logger/logger';
+import ProductPageElements from '../locators/ProductPageElements';
+import BaseAction from './BaseAction';
+import { logger } from '../../src/utils/Logger';
 
 export default class ProductActions extends BaseAction {
     readonly productElements: ProductPageElements;

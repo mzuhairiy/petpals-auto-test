@@ -1,33 +1,17 @@
-import { test, expect } from '@playwright/test';
-import LoginActions from '../pages/actions/login-actions';
-import LayoutElements from '../pages/locators/layout-elements';
-import HomeElements from '@locators/home-page-elements';
-import ProductPageElements from '@locators/product-page-elements';
-import ShopPageElements from '@locators/shop-page-elements';
-import config from '../utils/config';
-import { navigateToRandomProductDetailViaShop, selectRandomProductCardFromShop } from '../utils/product-helpers';
+import { test, expect } from './fixtures/testFixtures';
+import config from '../src/config/environment';
+import { navigateToRandomProductDetailViaShop, addProductToWishlistFromShop } from '../src/helpers/ProductHelper';
 
 test.describe('Product E2E', () => {
-    let loginActions: LoginActions;
-    let layoutElements: LayoutElements;
-    let homeElements: HomeElements;
-    let productElements: ProductPageElements;
-    let shopElements: ShopPageElements;
 
-    test.beforeEach(async ({ page }) => {
-        loginActions = new LoginActions(page);
-        layoutElements = new LayoutElements(page);
-        homeElements = new HomeElements(page);
-        productElements = new ProductPageElements(page);
-        shopElements = new ShopPageElements(page);
-
-        await page.goto(config.baseURL);
+    test.beforeEach(async ({ page, homeElements }) => {
+        await page.goto(config.baseUrl);
         await expect(homeElements.SIGN_IN_BUTTON).toBeVisible();
     });
 
     test.describe('Product Detail Page', () => {
 
-        test('should load product detail page with interactive elements', async ({ page }) => {
+        test('should load product detail page with interactive elements @smoke @product', async ({ page, layoutElements, shopElements, productElements }) => {
             await navigateToRandomProductDetailViaShop({
                 page,
                 layoutElements,
@@ -43,7 +27,7 @@ test.describe('Product E2E', () => {
             await expect(productElements.PRODUCT_CURRENT_PRICE).toBeVisible();
         });
 
-        test('should increase product quantity using controls', async ({ page }) => {
+        test('should increase product quantity using controls @product', async ({ page, layoutElements, shopElements, productElements }) => {
             await navigateToRandomProductDetailViaShop({
                 page,
                 layoutElements,
@@ -59,7 +43,6 @@ test.describe('Product E2E', () => {
                 `Expected quantity input to be a number, got: "${beforeValueRaw}"`
             ).toBeTruthy();
 
-            // Prefer the explicit increment control; if UI changes, this will fail loudly.
             await productElements.INCREASE_QUANTITY_BUTTON.click();
 
             const afterValueRaw = await productElements.QUANTITY_INPUT.inputValue();
@@ -72,7 +55,7 @@ test.describe('Product E2E', () => {
             expect(afterValue, 'Expected quantity to increment by 1').toBe(beforeValue + 1);
         });
 
-        test('should switch between product tabs', async ({ page }) => {
+        test('should switch between product tabs @product', async ({ page, layoutElements, shopElements, productElements }) => {
             await navigateToRandomProductDetailViaShop({
                 page,
                 layoutElements,
@@ -93,21 +76,23 @@ test.describe('Product E2E', () => {
 
     test.describe('Wishlist Operations', () => {
 
-        test('should add product to wishlist and verify it appears on wishlist page', async ({ page }) => {
-            await loginActions.loginFunctions(config.validUser.email, config.validUser.password);
+        test('should add product to wishlist and verify it appears on wishlist page @smoke @wishlist', async ({ page, loginActions, homeElements, layoutElements, shopElements, toast }) => {
+            await loginActions.loginFunctions(config.profiles.validUser.email, config.profiles.validUser.password);
             await expect(homeElements.HERO_CAROUSEL).toBeVisible();
 
-            const { selectedCard, productName } = await selectRandomProductCardFromShop({
+            // Action: add random product to wishlist
+            const { productName } = await addProductToWishlistFromShop({
                 page, layoutElements, shopElements, testInfo: test.info(),
             });
 
-            const wishlistButton = selectedCard.locator('[data-testid^="wishlist-btn-"]');
-            await expect(wishlistButton).toBeVisible();
-            await wishlistButton.click();
+            // Assert: toast confirmation
+            await toast.assertAddedToWishlist();
 
+            // Assert: product appears on wishlist page
             await layoutElements.WISHLIST_BUTTON.click();
             await expect(page).toHaveURL(/\/wishlist/);
-            await expect(page.getByRole('main')).toContainText(productName);
+            await page.waitForLoadState('domcontentloaded');
+            await expect(page.locator('[data-testid^="wishlist-item-"]', { hasText: productName }).first()).toBeVisible();
         });
     });
 });

@@ -1,6 +1,6 @@
 import { type Page } from '@playwright/test';
-import AuthElements from '../locators/auth-page-elements';
-import BaseAction from './base-action';
+import AuthElements from '../locators/AuthPageElements';
+import BaseAction from './BaseAction';
 
 export default class RegisterActions extends BaseAction {
     readonly authElements: AuthElements;

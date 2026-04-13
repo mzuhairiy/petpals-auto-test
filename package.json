@@ -5,6 +5,8 @@
   "main": "index.ts",
   "scripts": {
     "test": "npx playwright test",
+    "test:local": "cross-env TEST_ENV=local npx playwright test",
+    "test:staging": "cross-env TEST_ENV=staging npx playwright test",
     "test:headed": "npx playwright test --headed",
     "test:chromium": "npx playwright test --project=chromium",
     "test:firefox": "npx playwright test --project=firefox",
@@ -20,6 +22,7 @@
   "devDependencies": {
     "@faker-js/faker": "^10.4.0",
     "@playwright/test": "^1.58.2",
-    "@types/node": "^25.4.0"
+    "@types/node": "^25.4.0",
+    "cross-env": "^10.1.0"
   }
 }
