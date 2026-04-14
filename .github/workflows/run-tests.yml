@@ -77,13 +77,67 @@ jobs:
         continue-on-error: true
 
       # ── Run full suite (all tests) ──────────────────────────────────
-      # Runs even if smoke failed so we get a complete report.
-      # Does NOT affect deployment gate — only smoke result matters.
+      # Capture stdout to parse the summary for Discord/report stats.
       - name: Run All Tests
         id: alltests
         if: ${{ always() }}
-        run: npx playwright test --project=chromium
+        run: |
+          set +e
+          npx playwright test --project=chromium 2>&1 | tee /tmp/playwright-output.txt
+          TEST_EXIT_CODE=${PIPESTATUS[0]}
+          echo "exit_code=${TEST_EXIT_CODE}" >> $GITHUB_OUTPUT
+          exit 0
         continue-on-error: true
+
+      # ── Parse test summary from Playwright CLI output ───────────────
+      # Playwright prints lines like: "48 passed", "1 flaky", "0 failed", "2 skipped"
+      # and a duration in parentheses like "(2.2m)" or "(45.3s)"
+      - name: Parse test results from CLI output
+        id: stats
+        if: ${{ always() }}
+        run: |
+          OUTPUT_FILE="/tmp/playwright-output.txt"
+          if [ ! -f "$OUTPUT_FILE" ]; then
+            echo "passed=0" >> $GITHUB_OUTPUT
+            echo "failed=0" >> $GITHUB_OUTPUT
+            echo "flaky=0" >> $GITHUB_OUTPUT
+            echo "skipped=0" >> $GITHUB_OUTPUT
+            echo "total=0" >> $GITHUB_OUTPUT
+            echo "duration=N/A" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+
+          # Extract numbers from Playwright summary (last lines of output)
+          PASSED=$(grep -oP '\d+(?= passed)' "$OUTPUT_FILE" | tail -1 || echo "0")
+          FAILED=$(grep -oP '\d+(?= failed)' "$OUTPUT_FILE" | tail -1 || echo "0")
+          FLAKY=$(grep -oP '\d+(?= flaky)' "$OUTPUT_FILE" | tail -1 || echo "0")
+          SKIPPED=$(grep -oP '\d+(?= skipped)' "$OUTPUT_FILE" | tail -1 || echo "0")
+          DURATION=$(grep -oP '\(\K[^)]+(?=\))' "$OUTPUT_FILE" | tail -1 || echo "N/A")
+
+          # Default to 0 if empty
+          PASSED=${PASSED:-0}
+          FAILED=${FAILED:-0}
+          FLAKY=${FLAKY:-0}
+          SKIPPED=${SKIPPED:-0}
+          DURATION=${DURATION:-N/A}
+
+          TOTAL=$((PASSED + FAILED + FLAKY + SKIPPED))
+
+          echo "passed=${PASSED}" >> $GITHUB_OUTPUT
+          echo "failed=${FAILED}" >> $GITHUB_OUTPUT
+          echo "flaky=${FLAKY}" >> $GITHUB_OUTPUT
+          echo "skipped=${SKIPPED}" >> $GITHUB_OUTPUT
+          echo "total=${TOTAL}" >> $GITHUB_OUTPUT
+          echo "duration=${DURATION}" >> $GITHUB_OUTPUT
+
+          echo "=== Parsed Test Stats ==="
+          echo "Passed:   ${PASSED}"
+          echo "Failed:   ${FAILED}"
+          echo "Flaky:    ${FLAKY}"
+          echo "Skipped:  ${SKIPPED}"
+          echo "Total:    ${TOTAL}"
+          echo "Duration: ${DURATION}"
+          echo "========================="
 
       - name: Upload test artifacts
         uses: actions/upload-artifact@v4
@@ -113,11 +167,11 @@ jobs:
 
             // Smoke failure no longer blocks deployment — always report success
             const smokeOutcome = '${{ steps.smoke.outcome }}';
-            const allOutcome   = '${{ steps.alltests.outcome }}';
+            const allExitCode  = '${{ steps.alltests.outputs.exit_code }}';
             const state = 'success';
 
             let description;
-            if (smokeOutcome === 'success' && allOutcome === 'success') {
+            if (smokeOutcome === 'success' && allExitCode === '0') {
               description = 'E2E tests all passed';
             } else if (smokeOutcome === 'success') {
               description = 'E2E smoke passed, some tests failed';
@@ -164,26 +218,20 @@ jobs:
 
           TIMESTAMP=$(date -u '+%Y-%m-%d %H:%M UTC')
           SMOKE_OUTCOME="${{ steps.smoke.outcome }}"
-          ALL_OUTCOME="${{ steps.alltests.outcome }}"
+          ALL_EXIT_CODE="${{ steps.alltests.outputs.exit_code }}"
+          FLAKY="${{ steps.stats.outputs.flaky }}"
 
-          # Count flaky tests from Playwright JSON report stats
-          FLAKY=0
-          if [ -f /tmp/playwright-report-${{ github.run_number }}/results.json ]; then
-            FLAKY=$(jq '.stats.flaky // 0' /tmp/playwright-report-${{ github.run_number }}/results.json 2>/dev/null || echo "0")
-          fi
-
-          if [ "$SMOKE_OUTCOME" = "success" ] && [ "$ALL_OUTCOME" = "success" ] && [ "$FLAKY" = "0" ]; then
-            STATUS="✅ ALL PASSED"
-          elif [ "$SMOKE_OUTCOME" = "success" ] && [ "$ALL_OUTCOME" = "success" ] && [ "$FLAKY" != "0" ]; then
+          if [ "$SMOKE_OUTCOME" = "success" ] && [ "$ALL_EXIT_CODE" = "0" ]; then
             STATUS="✅ ALL PASSED"
           elif [ "$SMOKE_OUTCOME" = "success" ]; then
-            FLAKY_TAG=""
-            [ "$FLAKY" != "0" ] && FLAKY_TAG=" (🔄 ${FLAKY} flaky)"
-            STATUS="⚠️ SMOKE PASSED / SOME TESTS FAILED${FLAKY_TAG}"
+            STATUS="⚠️ SMOKE PASSED / SOME TESTS FAILED"
           else
-            FLAKY_TAG=""
-            [ "$FLAKY" != "0" ] && FLAKY_TAG=" (🔄 ${FLAKY} flaky)"
-            STATUS="❌ SMOKE FAILED${FLAKY_TAG}"
+            STATUS="❌ SMOKE FAILED"
+          fi
+
+          # Append flaky tag if any
+          if [ "$FLAKY" != "0" ] && [ -n "$FLAKY" ]; then
+            STATUS="${STATUS} (🔄 ${FLAKY} flaky)"
           fi
 
           NEW_ENTRY="<li><a href=\"${RUN_DIR}/index.html\">Run #${{ github.run_number }}</a> — ${STATUS} — ${TIMESTAMP}</li>"
@@ -207,9 +255,17 @@ jobs:
         if: ${{ always() }}
         run: |
           SMOKE_OUTCOME="${{ steps.smoke.outcome }}"
-          ALL_OUTCOME="${{ steps.alltests.outcome }}"
+          ALL_EXIT_CODE="${{ steps.alltests.outputs.exit_code }}"
 
-          if [ "$SMOKE_OUTCOME" = "success" ] && [ "$ALL_OUTCOME" = "success" ]; then
+          # Stats parsed from Playwright CLI output (same source as HTML report)
+          PASSED="${{ steps.stats.outputs.passed }}"
+          FAILED="${{ steps.stats.outputs.failed }}"
+          FLAKY="${{ steps.stats.outputs.flaky }}"
+          SKIPPED="${{ steps.stats.outputs.skipped }}"
+          TOTAL="${{ steps.stats.outputs.total }}"
+          DURATION="${{ steps.stats.outputs.duration }}"
+
+          if [ "$SMOKE_OUTCOME" = "success" ] && [ "$ALL_EXIT_CODE" = "0" ]; then
             STATUS_EMOJI="✅"
             STATUS_TEXT="ALL PASSED"
             COLOR=52269
@@ -223,22 +279,8 @@ jobs:
             COLOR=16718116
           fi
 
-          FLAKY=0
-          if [ -f playwright-report/results.json ]; then
-            # Read directly from Playwright's stats object for accurate numbers
-            PASSED=$(jq '.stats.expected // 0' playwright-report/results.json)
-            FAILED=$(jq '.stats.unexpected // 0' playwright-report/results.json)
-            FLAKY=$(jq '.stats.flaky // 0' playwright-report/results.json)
-            SKIPPED=$(jq '.stats.skipped // 0' playwright-report/results.json)
-            TOTAL=$((PASSED + FAILED + FLAKY + SKIPPED))
-            DURATION=$(jq '.stats.duration // 0' playwright-report/results.json)
-            DURATION_SEC=$(echo "scale=1; $DURATION / 1000" | bc 2>/dev/null || echo "N/A")
-          else
-            TOTAL="N/A"; PASSED="N/A"; FAILED="N/A"; FLAKY="0"; SKIPPED="N/A"; DURATION_SEC="N/A"
-          fi
-
           # Append flaky info to status text if any
-          if [ "$FLAKY" != "0" ] && [ "$FLAKY" != "" ]; then
+          if [ "$FLAKY" != "0" ] && [ -n "$FLAKY" ]; then
             STATUS_TEXT="${STATUS_TEXT} (🔄 ${FLAKY} flaky)"
           fi
 
@@ -257,7 +299,7 @@ jobs:
                   { "name": "Failed", "value": "${FAILED}", "inline": true },
                   { "name": "Flaky", "value": "${FLAKY}", "inline": true },
                   { "name": "Skipped", "value": "${SKIPPED}", "inline": true },
-                  { "name": "Duration", "value": "${DURATION_SEC}s", "inline": true },
+                  { "name": "Duration", "value": "${DURATION}", "inline": true },
                   { "name": "📋 Playwright Report", "value": "[Open in Browser](${REPORT_URL})", "inline": false },
                   { "name": "🔗 GitHub Actions", "value": "[View Run](${RUN_URL})", "inline": false }
                 ],
