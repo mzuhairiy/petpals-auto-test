@@ -32,7 +32,11 @@ export default class CheckoutAction extends BaseAction {
 
     /**
      * Complete payment via Midtrans Snap with test credit card.
-     * Clicks Pay Now, waits for Snap iframe, fills card details, and waits for success redirect.
+     *
+     * Handles two scenarios:
+     * 1. Snap popup appears as iframe → interact inside iframe
+     * 2. Snap popup fails to load → app shows "Payment popup could not load"
+     *    warning with "Open Payment Page" button → redirects to Midtrans in new tab
      */
     async payWithTestCreditCard(options?: {
         cardNumber?: string;
@@ -43,29 +47,76 @@ export default class CheckoutAction extends BaseAction {
         const expiry = options?.expiry ?? '02/27';
         const cvv = options?.cvv ?? '123';
 
-        // Click Pay Now and wait for Midtrans Snap iframe to appear
+        // Click Pay Now
         await this.cartElements.PAYMENT_PAY_NOW_BUTTON.click();
-        await this.page.waitForFunction(
-            () => document.querySelector('iframe[name^="popup_"]') !== null,
-            { timeout: 30_000 }
-        );
 
-        // Interact with Snap iframe
-        const snapFrame = this.cartElements.SNAP_IFRAME.contentFrame();
+        // Race: either Snap iframe appears OR fallback warning appears
+        const snapIframe = this.page.locator('iframe[name^="popup_"]');
+        const fallbackWarning = this.page.getByText('Payment popup could not load');
 
-        // Select Credit/debit card payment method
+        const winner = await Promise.race([
+            snapIframe.waitFor({ state: 'attached', timeout: 20_000 }).then(() => 'iframe' as const),
+            fallbackWarning.waitFor({ state: 'visible', timeout: 20_000 }).then(() => 'fallback' as const),
+        ]);
+
+        if (winner === 'iframe') {
+            await this.payViaSnapIframe(snapIframe, cardNumber, expiry, cvv);
+        } else {
+            await this.payViaRedirect(cardNumber, expiry, cvv);
+        }
+    }
+
+    /**
+     * Pay via Snap iframe (happy path — popup appeared inline).
+     */
+    private async payViaSnapIframe(
+        snapIframe: ReturnType<Page['locator']>,
+        cardNumber: string, expiry: string, cvv: string,
+    ): Promise<void> {
+        const snapFrame = snapIframe.contentFrame();
+
         await snapFrame.getByRole('link', { name: /Credit\/debit card/ }).click();
 
-        // Fill card details
         await snapFrame.getByRole('textbox', { name: /1234 1234 1234/ }).fill(cardNumber);
         await snapFrame.getByRole('textbox', { name: 'MM/YY' }).fill(expiry);
         await snapFrame.locator('#card-cvv').fill(cvv);
 
-        // Submit payment
+        await this.page.waitForTimeout(5000); // Small delay to ensure fields are processed before submitting
         await snapFrame.getByRole('button', { name: 'Pay now' }).click();
 
-        // Wait for Midtrans success screen, then app redirect
         await expect(snapFrame.getByText('Payment successful')).toBeVisible({ timeout: 30_000 });
+        await expect(this.cartElements.ORDER_SUCCESS_HEADING).toBeVisible({ timeout: 30_000 });
+    }
+
+    /**
+     * Pay via redirect (fallback — popup failed, "Open Payment Page" opens new tab).
+     */
+    private async payViaRedirect(
+        cardNumber: string, expiry: string, cvv: string,
+    ): Promise<void> {
+        // Click "Open Payment Page" → opens Midtrans in a new tab
+        const [newPage] = await Promise.all([
+            this.page.context().waitForEvent('page'),
+            this.page.getByTestId('payment-redirect-link').click(),
+        ]);
+
+        await newPage.waitForLoadState('domcontentloaded');
+
+        // Midtrans payment page in new tab — select Credit/debit card
+        await newPage.getByRole('link', { name: /Credit\/debit card/ }).click();
+
+        // Fill card details
+        await newPage.getByRole('textbox', { name: /1234 1234 1234/ }).fill(cardNumber);
+        await newPage.getByRole('textbox', { name: 'MM/YY' }).fill(expiry);
+        await newPage.locator('#card-cvv').fill(cvv);
+
+        // Submit payment
+        await newPage.getByRole('button', { name: 'Pay now' }).click();
+
+        // Wait for success in new tab
+        await expect(newPage.getByText('Payment successful')).toBeVisible({ timeout: 30_000 });
+
+        // Midtrans redirects back to app — success page loads in original tab
         await expect(this.cartElements.ORDER_SUCCESS_HEADING).toBeVisible({ timeout: 30_000 });
     }
 }

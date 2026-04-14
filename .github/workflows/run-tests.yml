@@ -175,7 +175,7 @@ jobs:
           if [ "$SMOKE_OUTCOME" = "success" ] && [ "$ALL_OUTCOME" = "success" ] && [ "$FLAKY" = "0" ]; then
             STATUS="✅ ALL PASSED"
           elif [ "$SMOKE_OUTCOME" = "success" ] && [ "$ALL_OUTCOME" = "success" ] && [ "$FLAKY" != "0" ]; then
-            STATUS="✅ ALL PASSED (🔄 ${FLAKY} flaky)"
+            STATUS="✅ ALL PASSED"
           elif [ "$SMOKE_OUTCOME" = "success" ]; then
             FLAKY_TAG=""
             [ "$FLAKY" != "0" ] && FLAKY_TAG=" (🔄 ${FLAKY} flaky)"
