@@ -166,10 +166,10 @@ jobs:
           SMOKE_OUTCOME="${{ steps.smoke.outcome }}"
           ALL_OUTCOME="${{ steps.alltests.outcome }}"
 
-          # Count flaky tests from Playwright JSON report
+          # Count flaky tests from Playwright JSON report stats
           FLAKY=0
           if [ -f /tmp/playwright-report-${{ github.run_number }}/results.json ]; then
-            FLAKY=$(jq '[.. | objects | select(.status == "flaky")] | length' /tmp/playwright-report-${{ github.run_number }}/results.json 2>/dev/null || echo "0")
+            FLAKY=$(jq '.stats.flaky // 0' /tmp/playwright-report-${{ github.run_number }}/results.json 2>/dev/null || echo "0")
           fi
 
           if [ "$SMOKE_OUTCOME" = "success" ] && [ "$ALL_OUTCOME" = "success" ] && [ "$FLAKY" = "0" ]; then
@@ -225,15 +225,16 @@ jobs:
 
           FLAKY=0
           if [ -f playwright-report/results.json ]; then
-            TOTAL=$(jq '[.. | objects | select(has("ok")) | select(has("tests"))] | length' playwright-report/results.json)
-            FAILED=$(jq '[.. | objects | select(has("ok")) | select(has("tests")) | select(.ok == false) | .tests[] | select(.status == "unexpected")] | length' playwright-report/results.json)
-            FLAKY=$(jq '[.. | objects | select(.status == "flaky")] | length' playwright-report/results.json 2>/dev/null || echo "0")
+            # Read directly from Playwright's stats object for accurate numbers
+            PASSED=$(jq '.stats.expected // 0' playwright-report/results.json)
+            FAILED=$(jq '.stats.unexpected // 0' playwright-report/results.json)
+            FLAKY=$(jq '.stats.flaky // 0' playwright-report/results.json)
             SKIPPED=$(jq '.stats.skipped // 0' playwright-report/results.json)
-            PASSED=$((TOTAL - FAILED - SKIPPED))
+            TOTAL=$((PASSED + FAILED + FLAKY + SKIPPED))
             DURATION=$(jq '.stats.duration // 0' playwright-report/results.json)
             DURATION_SEC=$(echo "scale=1; $DURATION / 1000" | bc 2>/dev/null || echo "N/A")
           else
-            TOTAL="N/A"; PASSED="N/A"; FAILED="N/A"; SKIPPED="N/A"; DURATION_SEC="N/A"
+            TOTAL="N/A"; PASSED="N/A"; FAILED="N/A"; FLAKY="0"; SKIPPED="N/A"; DURATION_SEC="N/A"
           fi
 
           # Append flaky info to status text if any
