@@ -5,6 +5,7 @@ import HomeActions from '../../pages/actions/HomeAction';
 import ShopActions from '../../pages/actions/ShopAction';
 import ProductActions from '../../pages/actions/ProductAction';
 import LayoutActions from '../../pages/actions/LayoutAction';
+import CheckoutActions from '../../pages/actions/CheckoutAction';
 import AuthElements from '../../pages/locators/AuthPageElements';
 import HomePageElements from '../../pages/locators/HomePageElements';
 import LayoutElements from '../../pages/locators/LayoutElements';
@@ -21,6 +22,7 @@ type TestFixtures = {
     shopActions: ShopActions;
     productActions: ProductActions;
     layoutActions: LayoutActions;
+    checkoutActions: CheckoutActions;
 
     // Locators
     authElements: AuthElements;
@@ -42,6 +44,7 @@ export const test = base.extend<TestFixtures>({
     shopActions: async ({ page }, use) => { await use(new ShopActions(page)); },
     productActions: async ({ page }, use) => { await use(new ProductActions(page)); },
     layoutActions: async ({ page }, use) => { await use(new LayoutActions(page)); },
+    checkoutActions: async ({ page }, use) => { await use(new CheckoutActions(page)); },
 
     // Locators
     authElements: async ({ page }, use) => { await use(new AuthElements(page)); },

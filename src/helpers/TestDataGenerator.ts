@@ -39,7 +39,7 @@ export class TestDataGenerator {
             email: creds.email,
             address: `${streetNum} ${streetName}`,
             city: faker.location.city(),
-            postcode: `${faker.number.int({ min: 10000, max: 99999 })}`,
+            postcode: '12720',
             phone: `+62${faker.number.int({ min: 800000000, max: 899999999 })}`,
         };
     }

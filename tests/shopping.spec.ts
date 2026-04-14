@@ -208,12 +208,41 @@ test.describe('Shopping E2E', () => {
         });
     });
 
-    test.describe('Checkout Flow (Phase 2 Placeholder)', () => {
+    test.describe('Checkout', () => {
 
-        // TODO Phase 2: Payment gateway integration test
-        test.skip('should complete checkout with valid payment', async () => {});
+        test('should complete full checkout flow with Midtrans credit card payment @smoke @checkout', async ({ page, loginActions, homeElements, layoutElements, cartElements, checkoutActions, toast }) => {
+            // Login & add product to cart
+            await loginActions.loginFunctions(config.profiles.validUser.email, config.profiles.validUser.password);
+            await expect(homeElements.HERO_CAROUSEL).toBeVisible();
 
-        // TODO Phase 2: Shipment tracking integration test
-        test.skip('should track shipment after order placement', async () => {});
+            const { productName } = await addRandomProductToCartFromHomepage({
+                page, homeElements, testInfo: test.info(),
+            });
+
+            // Assert add-to-cart success
+            await toast.assertToastMessage('added to cart');
+            await expect(layoutElements.CART_BUTTON).toContainText(/\d+/);
+
+            // Navigate to cart and verify product
+            await layoutElements.CART_BUTTON.click();
+            await expect(page).toHaveURL(/\/cart/);
+            await expect(page.getByRole('main')).toContainText(productName);
+
+            // Proceed to checkout and fill form
+            await cartElements.CHECKOUT_BUTTON.click();
+            await expect(cartElements.CHECKOUT_HEADING).toBeVisible();
+            await checkoutActions.fillCheckoutForm();
+
+            // Submit checkout and complete payment
+            await cartElements.CHECKOUT_SUBMIT_BUTTON.click();
+            await expect(cartElements.PAYMENT_HEADING).toBeVisible();
+            await checkoutActions.payWithTestCreditCard();
+
+            // Verify order success
+            await expect(cartElements.ORDER_SUCCESS_MESSAGE).toBeVisible();
+            await expect(layoutElements.CART_BUTTON).not.toContainText(/\d+/);
+            await expect(cartElements.ORDER_CONTINUE_SHOPPING).toBeVisible();
+            await expect(cartElements.ORDER_VIEW_HISTORY).toBeVisible();
+        });
     });
 });
