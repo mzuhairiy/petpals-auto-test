@@ -1,6 +1,6 @@
 import { test, expect } from './fixtures/testFixtures';
 import config from '../src/config/environment';
-import { navigateToRandomProductDetailViaShop, addProductToWishlistFromShop } from '../src/helpers/ProductHelper';
+import { navigateToRandomProductDetailViaShop, addProductToWishlistFromShop, clearWishlist } from '../src/helpers/ProductHelper';
 
 test.describe('Product E2E', () => {
 
@@ -80,6 +80,7 @@ test.describe('Product E2E', () => {
             await loginActions.loginFunctions(config.profiles.validUser.email, config.profiles.validUser.password);
             await expect(homeElements.HERO_CAROUSEL).toBeVisible();
 
+            await clearWishlist({ page, layoutElements });
             // Action: add random product to wishlist
             const { productName } = await addProductToWishlistFromShop({
                 page, layoutElements, shopElements, testInfo: test.info(),
