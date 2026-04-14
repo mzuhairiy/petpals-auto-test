@@ -1,0 +1,542 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - banner [ref=e3]:
+      - generic [ref=e4]:
+        - link "PetPals" [ref=e6] [cursor=pointer]:
+          - /url: /
+          - img [ref=e7]
+          - generic [ref=e12]: PetPals
+        - navigation [ref=e13]
+    - main [ref=e28]:
+      - generic [ref=e29]:
+        - generic [ref=e30]:
+          - generic [ref=e31]:
+            - img "What your pet needs, when they need it." [ref=e35]
+            - generic [ref=e37]:
+              - heading "What your pet needs, when they need it." [level=1] [ref=e38]
+              - paragraph [ref=e39]: Premium products for cats and dogs with same-day delivery.
+              - link "Shop Now" [ref=e41] [cursor=pointer]:
+                - /url: /shop
+          - generic [ref=e42]:
+            - img "Quality Pet Food & Supplements" [ref=e46]
+            - generic [ref=e48]:
+              - heading "Quality Pet Food & Supplements" [level=1] [ref=e49]
+              - paragraph [ref=e50]: Nutritious options for your furry friends' health and happiness.
+              - link "Explore Food" [ref=e52] [cursor=pointer]:
+                - /url: /shop?category=food
+          - generic [ref=e53]:
+            - img "Fun & Engaging Pet Toys" [ref=e57]
+            - generic [ref=e59]:
+              - heading "Fun & Engaging Pet Toys" [level=1] [ref=e60]
+              - paragraph [ref=e61]: Keep your pets active and entertained with our toy collection.
+              - link "View Toys" [ref=e63] [cursor=pointer]:
+                - /url: /shop?category=toys
+          - button "Previous slide" [ref=e64] [cursor=pointer]:
+            - img [ref=e65]
+          - button "Next slide" [ref=e67] [cursor=pointer]:
+            - img [ref=e68]
+          - generic [ref=e70]:
+            - button "Go to slide 1" [ref=e71] [cursor=pointer]
+            - button "Go to slide 2" [ref=e72] [cursor=pointer]
+            - button "Go to slide 3" [ref=e73] [cursor=pointer]
+        - generic [ref=e76]:
+          - generic [ref=e78]:
+            - img [ref=e80]
+            - heading "Free Same-Day Delivery" [level=3] [ref=e85]
+            - paragraph [ref=e86]: Order before 2pm for same-day delivery
+          - generic [ref=e88]:
+            - img [ref=e90]
+            - heading "30-Day Return" [level=3] [ref=e93]
+            - paragraph [ref=e94]: No questions asked return policy
+          - generic [ref=e96]:
+            - img [ref=e98]
+            - heading "Secure Payment" [level=3] [ref=e101]
+            - paragraph [ref=e102]: 100% secure payment processing
+          - generic [ref=e104]:
+            - img [ref=e106]
+            - heading "24/7 Support" [level=3] [ref=e108]
+            - paragraph [ref=e109]: Customer support available anytime
+        - generic [ref=e111]:
+          - generic [ref=e112]:
+            - generic [ref=e113]:
+              - heading "Featured Products" [level=2] [ref=e114]
+              - paragraph [ref=e115]: Handpicked products for your furry friends
+            - link "View All Products" [ref=e116] [cursor=pointer]:
+              - /url: /shop
+          - generic [ref=e117]:
+            - link "Cat Water Fountain 15% OFF Cat Water Fountain Flowing water fountain that encourages cats to drink more water. 4.5 (103 Reviews) Rp 479.840 Rp 559.840 Add to wishlist" [ref=e118] [cursor=pointer]:
+              - /url: /product/cat-water-fountain
+              - generic [ref=e119]:
+                - generic [ref=e120]:
+                  - img "Cat Water Fountain" [ref=e121]
+                  - generic [ref=e122]: 15% OFF
+                  - button [ref=e124]:
+                    - img
+                - generic [ref=e125]:
+                  - heading "Cat Water Fountain" [level=3] [ref=e126]
+                  - paragraph [ref=e127]: Flowing water fountain that encourages cats to drink more water.
+                  - generic [ref=e128]:
+                    - generic [ref=e129]:
+                      - img [ref=e130]
+                      - img [ref=e132]
+                      - img [ref=e134]
+                      - img [ref=e136]
+                      - img [ref=e138]
+                    - generic [ref=e140]: "4.5"
+                    - generic [ref=e141]: (103 Reviews)
+                - generic [ref=e142]:
+                  - generic [ref=e144]:
+                    - generic [ref=e145]: Rp 479.840
+                    - generic [ref=e146]: Rp 559.840
+                  - button "Add to wishlist" [ref=e147]:
+                    - img
+            - link "Cat Scratching Post 20% OFF Cat Scratching Post Durable sisal scratching post with a plush top perch for lounging. 4.7 (118 Reviews) Rp 639.840 Rp 799.840 Add to wishlist" [ref=e148] [cursor=pointer]:
+              - /url: /product/cat-scratching-post
+              - generic [ref=e149]:
+                - generic [ref=e150]:
+                  - img "Cat Scratching Post" [ref=e151]
+                  - generic [ref=e152]: 20% OFF
+                  - button [ref=e154]:
+                    - img
+                - generic [ref=e155]:
+                  - heading "Cat Scratching Post" [level=3] [ref=e156]
+                  - paragraph [ref=e157]: Durable sisal scratching post with a plush top perch for lounging.
+                  - generic [ref=e158]:
+                    - generic [ref=e159]:
+                      - img [ref=e160]
+                      - img [ref=e162]
+                      - img [ref=e164]
+                      - img [ref=e166]
+                      - img [ref=e168]
+                    - generic [ref=e170]: "4.7"
+                    - generic [ref=e171]: (118 Reviews)
+                - generic [ref=e172]:
+                  - generic [ref=e174]:
+                    - generic [ref=e175]: Rp 639.840
+                    - generic [ref=e176]: Rp 799.840
+                  - button "Add to wishlist" [ref=e177]:
+                    - img
+            - link "Dog Tennis Ball Launcher 15% OFF Dog Tennis Ball Launcher Interactive toy that launches tennis balls for your dog to fetch. 4.4 (89 Reviews) Rp 399.840 Rp 479.840 Add to wishlist" [ref=e178] [cursor=pointer]:
+              - /url: /product/dog-tennis-ball-launcher
+              - generic [ref=e179]:
+                - generic [ref=e180]:
+                  - img "Dog Tennis Ball Launcher" [ref=e181]
+                  - generic [ref=e182]: 15% OFF
+                  - button [ref=e184]:
+                    - img
+                - generic [ref=e185]:
+                  - heading "Dog Tennis Ball Launcher" [level=3] [ref=e186]
+                  - paragraph [ref=e187]: Interactive toy that launches tennis balls for your dog to fetch.
+                  - generic [ref=e188]:
+                    - generic [ref=e189]:
+                      - img [ref=e190]
+                      - img [ref=e192]
+                      - img [ref=e194]
+                      - img [ref=e196]
+                      - img [ref=e198]
+                    - generic [ref=e200]: "4.4"
+                    - generic [ref=e201]: (89 Reviews)
+                - generic [ref=e202]:
+                  - generic [ref=e204]:
+                    - generic [ref=e205]: Rp 399.840
+                    - generic [ref=e206]: Rp 479.840
+                  - button "Add to wishlist" [ref=e207]:
+                    - img
+            - link "Dog Joint Health Supplements Dog Joint Health Supplements Support your dog's joint health and mobility with these tasty chewable tablets. 4.5 (112 Reviews) Rp 527.840 Add to wishlist" [ref=e208] [cursor=pointer]:
+              - /url: /product/dog-joint-health-supplements
+              - generic [ref=e209]:
+                - generic [ref=e210]:
+                  - img "Dog Joint Health Supplements" [ref=e211]
+                  - button [ref=e213]:
+                    - img
+                - generic [ref=e214]:
+                  - heading "Dog Joint Health Supplements" [level=3] [ref=e215]
+                  - paragraph [ref=e216]: Support your dog's joint health and mobility with these tasty chewable tablets.
+                  - generic [ref=e217]:
+                    - generic [ref=e218]:
+                      - img [ref=e219]
+                      - img [ref=e221]
+                      - img [ref=e223]
+                      - img [ref=e225]
+                      - img [ref=e227]
+                    - generic [ref=e229]: "4.5"
+                    - generic [ref=e230]: (112 Reviews)
+                - generic [ref=e231]:
+                  - generic [ref=e232]: Rp 527.840
+                  - button "Add to wishlist" [ref=e233]:
+                    - img
+            - link "Cat Immune Support Supplements New Cat Immune Support Supplements Daily supplements to boost your cat's immune system and overall health. 4.3 (78 Reviews) Rp 479.840 Add to wishlist" [ref=e234] [cursor=pointer]:
+              - /url: /product/cat-immune-support-supplements
+              - generic [ref=e235]:
+                - generic [ref=e236]:
+                  - img "Cat Immune Support Supplements" [ref=e237]
+                  - generic [ref=e238]: New
+                  - button [ref=e240]:
+                    - img
+                - generic [ref=e241]:
+                  - heading "Cat Immune Support Supplements" [level=3] [ref=e242]
+                  - paragraph [ref=e243]: Daily supplements to boost your cat's immune system and overall health.
+                  - generic [ref=e244]:
+                    - generic [ref=e245]:
+                      - img [ref=e246]
+                      - img [ref=e248]
+                      - img [ref=e250]
+                      - img [ref=e252]
+                      - img [ref=e254]
+                    - generic [ref=e256]: "4.3"
+                    - generic [ref=e257]: (78 Reviews)
+                - generic [ref=e258]:
+                  - generic [ref=e259]: Rp 479.840
+                  - button "Add to wishlist" [ref=e260]:
+                    - img
+            - link "Durable Dog Chew Toy 15% OFF Durable Dog Chew Toy Long-lasting chew toy designed for aggressive chewers. 4.6 (167 Reviews) Rp 303.840 Rp 367.840 Add to wishlist" [ref=e261] [cursor=pointer]:
+              - /url: /product/durable-dog-chew-toy
+              - generic [ref=e262]:
+                - generic [ref=e263]:
+                  - img "Durable Dog Chew Toy" [ref=e264]
+                  - generic [ref=e265]: 15% OFF
+                  - button [ref=e267]:
+                    - img
+                - generic [ref=e268]:
+                  - heading "Durable Dog Chew Toy" [level=3] [ref=e269]
+                  - paragraph [ref=e270]: Long-lasting chew toy designed for aggressive chewers.
+                  - generic [ref=e271]:
+                    - generic [ref=e272]:
+                      - img [ref=e273]
+                      - img [ref=e275]
+                      - img [ref=e277]
+                      - img [ref=e279]
+                      - img [ref=e281]
+                    - generic [ref=e283]: "4.6"
+                    - generic [ref=e284]: (167 Reviews)
+                - generic [ref=e285]:
+                  - generic [ref=e287]:
+                    - generic [ref=e288]: Rp 303.840
+                    - generic [ref=e289]: Rp 367.840
+                  - button "Add to wishlist" [ref=e290]:
+                    - img
+            - link "Premium Dog Kibble Premium Dog Kibble Complete and balanced nutrition for adult dogs of all breeds. 4.7 (203 Reviews) Rp 559.840 Add to wishlist" [ref=e291] [cursor=pointer]:
+              - /url: /product/premium-dog-kibble
+              - generic [ref=e292]:
+                - generic [ref=e293]:
+                  - img "Premium Dog Kibble" [ref=e294]
+                  - button [ref=e296]:
+                    - img
+                - generic [ref=e297]:
+                  - heading "Premium Dog Kibble" [level=3] [ref=e298]
+                  - paragraph [ref=e299]: Complete and balanced nutrition for adult dogs of all breeds.
+                  - generic [ref=e300]:
+                    - generic [ref=e301]:
+                      - img [ref=e302]
+                      - img [ref=e304]
+                      - img [ref=e306]
+                      - img [ref=e308]
+                      - img [ref=e310]
+                    - generic [ref=e312]: "4.7"
+                    - generic [ref=e313]: (203 Reviews)
+                - generic [ref=e314]:
+                  - generic [ref=e315]: Rp 559.840
+                  - button "Add to wishlist" [ref=e316]:
+                    - img
+            - link "Interactive Cat Toy New 20% OFF Interactive Cat Toy Engaging toy that stimulates your cat's hunting instincts and provides hours of entertainment. 4.8 (95 Reviews) Rp 207.840 Rp 271.840 Add to wishlist" [ref=e317] [cursor=pointer]:
+              - /url: /product/interactive-cat-toy
+              - generic [ref=e318]:
+                - generic [ref=e319]:
+                  - img "Interactive Cat Toy" [ref=e320]
+                  - generic [ref=e321]: New
+                  - generic [ref=e322]: 20% OFF
+                  - button [ref=e324]:
+                    - img
+                - generic [ref=e325]:
+                  - heading "Interactive Cat Toy" [level=3] [ref=e326]
+                  - paragraph [ref=e327]: Engaging toy that stimulates your cat's hunting instincts and provides hours of entertainment.
+                  - generic [ref=e328]:
+                    - generic [ref=e329]:
+                      - img [ref=e330]
+                      - img [ref=e332]
+                      - img [ref=e334]
+                      - img [ref=e336]
+                      - img [ref=e338]
+                    - generic [ref=e340]: "4.8"
+                    - generic [ref=e341]: (95 Reviews)
+                - generic [ref=e342]:
+                  - generic [ref=e344]:
+                    - generic [ref=e345]: Rp 207.840
+                    - generic [ref=e346]: Rp 271.840
+                  - button "Add to wishlist" [ref=e347]:
+                    - img
+        - generic [ref=e350]:
+          - generic [ref=e351]:
+            - generic [ref=e352]:
+              - img [ref=e353]
+              - heading "Cat Products" [level=2] [ref=e356]
+            - generic [ref=e357]:
+              - link "Cat Water Fountain 15% OFF Cat Water Fountain 4.5 Rp 479.840 Rp 559.840 Add to cart" [ref=e358] [cursor=pointer]:
+                - /url: /product/cat-water-fountain
+                - generic [ref=e359]:
+                  - generic [ref=e360]:
+                    - img "Cat Water Fountain" [ref=e361]
+                    - generic [ref=e362]: 15% OFF
+                  - generic [ref=e363]:
+                    - heading "Cat Water Fountain" [level=3] [ref=e364]
+                    - generic [ref=e365]:
+                      - generic [ref=e366]:
+                        - img [ref=e367]
+                        - img [ref=e369]
+                        - img [ref=e371]
+                        - img [ref=e373]
+                        - img [ref=e375]
+                      - generic [ref=e377]: "4.5"
+                  - generic [ref=e378]:
+                    - generic [ref=e380]:
+                      - generic [ref=e381]: Rp 479.840
+                      - generic [ref=e382]: Rp 559.840
+                    - button "Add to cart" [ref=e383]:
+                      - img
+                      - generic [ref=e384]: Add to cart
+              - link "Cat Hairball Control Treats Cat Hairball Control Treats 4.4 Rp 191.840 Add to cart" [ref=e385] [cursor=pointer]:
+                - /url: /product/cat-hairball-control-treats
+                - generic [ref=e386]:
+                  - img "Cat Hairball Control Treats" [ref=e388]
+                  - generic [ref=e389]:
+                    - heading "Cat Hairball Control Treats" [level=3] [ref=e390]
+                    - generic [ref=e391]:
+                      - generic [ref=e392]:
+                        - img [ref=e393]
+                        - img [ref=e395]
+                        - img [ref=e397]
+                        - img [ref=e399]
+                        - img [ref=e401]
+                      - generic [ref=e403]: "4.4"
+                  - generic [ref=e404]:
+                    - generic [ref=e405]: Rp 191.840
+                    - button "Add to cart" [ref=e406]:
+                      - img
+                      - generic [ref=e407]: Add to cart
+              - link "Cat Scratching Post 20% OFF Cat Scratching Post 4.7 Rp 639.840 Rp 799.840 Add to cart" [ref=e408] [cursor=pointer]:
+                - /url: /product/cat-scratching-post
+                - generic [ref=e409]:
+                  - generic [ref=e410]:
+                    - img "Cat Scratching Post" [ref=e411]
+                    - generic [ref=e412]: 20% OFF
+                  - generic [ref=e413]:
+                    - heading "Cat Scratching Post" [level=3] [ref=e414]
+                    - generic [ref=e415]:
+                      - generic [ref=e416]:
+                        - img [ref=e417]
+                        - img [ref=e419]
+                        - img [ref=e421]
+                        - img [ref=e423]
+                        - img [ref=e425]
+                      - generic [ref=e427]: "4.7"
+                  - generic [ref=e428]:
+                    - generic [ref=e430]:
+                      - generic [ref=e431]: Rp 639.840
+                      - generic [ref=e432]: Rp 799.840
+                    - button "Add to cart" [ref=e433]:
+                      - img
+                      - generic [ref=e434]: Add to cart
+              - link "Wet Cat Food Variety Pack Wet Cat Food Variety Pack 4.6 Rp 303.840 Add to cart" [ref=e435] [cursor=pointer]:
+                - /url: /product/wet-cat-food-variety-pack
+                - generic [ref=e436]:
+                  - img "Wet Cat Food Variety Pack" [ref=e438]
+                  - generic [ref=e439]:
+                    - heading "Wet Cat Food Variety Pack" [level=3] [ref=e440]
+                    - generic [ref=e441]:
+                      - generic [ref=e442]:
+                        - img [ref=e443]
+                        - img [ref=e445]
+                        - img [ref=e447]
+                        - img [ref=e449]
+                        - img [ref=e451]
+                      - generic [ref=e453]: "4.6"
+                  - generic [ref=e454]:
+                    - generic [ref=e455]: Rp 303.840
+                    - button "Add to cart" [ref=e456]:
+                      - img
+                      - generic [ref=e457]: Add to cart
+            - link "View All Cat Products" [ref=e459] [cursor=pointer]:
+              - /url: /shop?category=cat
+          - generic [ref=e460]:
+            - generic [ref=e461]:
+              - img [ref=e462]
+              - heading "Dog Products" [level=2] [ref=e466]
+            - generic [ref=e467]:
+              - link "Dog Probiotic Supplements New Dog Probiotic Supplements 4.6 Rp 447.840 Add to cart" [ref=e468] [cursor=pointer]:
+                - /url: /product/dog-probiotic-supplements
+                - generic [ref=e469]:
+                  - generic [ref=e470]:
+                    - img "Dog Probiotic Supplements" [ref=e471]
+                    - generic [ref=e472]: New
+                  - generic [ref=e473]:
+                    - heading "Dog Probiotic Supplements" [level=3] [ref=e474]
+                    - generic [ref=e475]:
+                      - generic [ref=e476]:
+                        - img [ref=e477]
+                        - img [ref=e479]
+                        - img [ref=e481]
+                        - img [ref=e483]
+                        - img [ref=e485]
+                      - generic [ref=e487]: "4.6"
+                  - generic [ref=e488]:
+                    - generic [ref=e489]: Rp 447.840
+                    - button "Add to cart" [ref=e490]:
+                      - img
+                      - generic [ref=e491]: Add to cart
+              - link "Dog Training Treats Pouch Dog Training Treats Pouch 4.2 Rp 271.840 Add to cart" [ref=e492] [cursor=pointer]:
+                - /url: /product/dog-training-treats-pouch
+                - generic [ref=e493]:
+                  - img "Dog Training Treats Pouch" [ref=e495]
+                  - generic [ref=e496]:
+                    - heading "Dog Training Treats Pouch" [level=3] [ref=e497]
+                    - generic [ref=e498]:
+                      - generic [ref=e499]:
+                        - img [ref=e500]
+                        - img [ref=e502]
+                        - img [ref=e504]
+                        - img [ref=e506]
+                        - img [ref=e508]
+                      - generic [ref=e510]: "4.2"
+                  - generic [ref=e511]:
+                    - generic [ref=e512]: Rp 271.840
+                    - button "Add to cart" [ref=e513]:
+                      - img
+                      - generic [ref=e514]: Add to cart
+              - link "Dog Anxiety Calming Vest New Dog Anxiety Calming Vest 4.1 Rp 719.840 Add to cart" [ref=e515] [cursor=pointer]:
+                - /url: /product/dog-anxiety-calming-vest
+                - generic [ref=e516]:
+                  - generic [ref=e517]:
+                    - img "Dog Anxiety Calming Vest" [ref=e518]
+                    - generic [ref=e519]: New
+                  - generic [ref=e520]:
+                    - heading "Dog Anxiety Calming Vest" [level=3] [ref=e521]
+                    - generic [ref=e522]:
+                      - generic [ref=e523]:
+                        - img [ref=e524]
+                        - img [ref=e526]
+                        - img [ref=e528]
+                        - img [ref=e530]
+                        - img [ref=e532]
+                      - generic [ref=e534]: "4.1"
+                  - generic [ref=e535]:
+                    - generic [ref=e536]: Rp 719.840
+                    - button "Add to cart" [ref=e537]:
+                      - img
+                      - generic [ref=e538]: Add to cart
+              - link "Dog Dental Chews Dog Dental Chews 4.3 Rp 239.840 Add to cart" [ref=e539] [cursor=pointer]:
+                - /url: /product/dog-dental-chews
+                - generic [ref=e540]:
+                  - img "Dog Dental Chews" [ref=e542]
+                  - generic [ref=e543]:
+                    - heading "Dog Dental Chews" [level=3] [ref=e544]
+                    - generic [ref=e545]:
+                      - generic [ref=e546]:
+                        - img [ref=e547]
+                        - img [ref=e549]
+                        - img [ref=e551]
+                        - img [ref=e553]
+                        - img [ref=e555]
+                      - generic [ref=e557]: "4.3"
+                  - generic [ref=e558]:
+                    - generic [ref=e559]: Rp 239.840
+                    - button "Add to cart" [ref=e560]:
+                      - img
+                      - generic [ref=e561]: Add to cart
+            - link "View All Dog Products" [ref=e563] [cursor=pointer]:
+              - /url: /shop?category=dog
+        - generic [ref=e566]:
+          - img [ref=e567]
+          - heading "Join Our Pack" [level=2] [ref=e572]
+          - paragraph [ref=e573]: Subscribe to our newsletter for exclusive offers, pet care tips, and new product alerts.
+          - generic [ref=e574]:
+            - textbox "Your email address" [ref=e575]
+            - button "Subscribe" [ref=e576] [cursor=pointer]
+    - contentinfo [ref=e577]:
+      - generic [ref=e578]:
+        - generic [ref=e579]:
+          - generic [ref=e580]:
+            - generic [ref=e581]:
+              - img [ref=e582]
+              - generic [ref=e587]: PetPals
+            - paragraph [ref=e588]: What your pet needs, when they need it. Premium products for cats and dogs with same-day delivery.
+            - generic [ref=e589]:
+              - link "Facebook" [ref=e590] [cursor=pointer]:
+                - /url: "#"
+                - img [ref=e591]
+                - generic [ref=e593]: Facebook
+              - link "Instagram" [ref=e594] [cursor=pointer]:
+                - /url: "#"
+                - img [ref=e595]
+                - generic [ref=e598]: Instagram
+              - link "Twitter" [ref=e599] [cursor=pointer]:
+                - /url: "#"
+                - img [ref=e600]
+                - generic [ref=e602]: Twitter
+              - link "YouTube" [ref=e603] [cursor=pointer]:
+                - /url: "#"
+                - img [ref=e604]
+                - generic [ref=e607]: YouTube
+          - generic [ref=e608]:
+            - heading "Shop" [level=3] [ref=e609]
+            - list [ref=e610]:
+              - listitem [ref=e611]:
+                - link "Pet Toys" [ref=e612] [cursor=pointer]:
+                  - /url: /shop?category=toys
+              - listitem [ref=e613]:
+                - link "Pet Food" [ref=e614] [cursor=pointer]:
+                  - /url: /shop?category=food
+              - listitem [ref=e615]:
+                - link "Supplements" [ref=e616] [cursor=pointer]:
+                  - /url: /shop?category=supplements
+              - listitem [ref=e617]:
+                - link "Cat Products" [ref=e618] [cursor=pointer]:
+                  - /url: /shop?pet=cat
+              - listitem [ref=e619]:
+                - link "Dog Products" [ref=e620] [cursor=pointer]:
+                  - /url: /shop?pet=dog
+          - generic [ref=e621]:
+            - heading "Company" [level=3] [ref=e622]
+            - list [ref=e623]:
+              - listitem [ref=e624]:
+                - link "About Us" [ref=e625] [cursor=pointer]:
+                  - /url: /about
+              - listitem [ref=e626]:
+                - link "Careers" [ref=e627] [cursor=pointer]:
+                  - /url: /careers
+              - listitem [ref=e628]:
+                - link "Blog" [ref=e629] [cursor=pointer]:
+                  - /url: /blog
+              - listitem [ref=e630]:
+                - link "Contact" [ref=e631] [cursor=pointer]:
+                  - /url: /contact
+          - generic [ref=e632]:
+            - heading "Customer Service" [level=3] [ref=e633]
+            - list [ref=e634]:
+              - listitem [ref=e635]:
+                - link "Help Center" [ref=e636] [cursor=pointer]:
+                  - /url: /help
+              - listitem [ref=e637]:
+                - link "Shipping & Delivery" [ref=e638] [cursor=pointer]:
+                  - /url: /shipping
+              - listitem [ref=e639]:
+                - link "Returns & Refunds" [ref=e640] [cursor=pointer]:
+                  - /url: /returns
+              - listitem [ref=e641]:
+                - link "Contact Us" [ref=e642] [cursor=pointer]:
+                  - /url: /contact
+              - listitem [ref=e643]:
+                - link "Wishlist" [ref=e644] [cursor=pointer]:
+                  - /url: /wishlist
+              - listitem [ref=e645]:
+                - link "Privacy Policy" [ref=e646] [cursor=pointer]:
+                  - /url: /privacy
+              - listitem [ref=e647]:
+                - link "Terms & Conditions" [ref=e648] [cursor=pointer]:
+                  - /url: /terms
+        - paragraph [ref=e650]: © — PetPals. All rights reserved.
+  - region "Notifications (F8)":
+    - list
+```

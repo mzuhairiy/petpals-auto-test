@@ -1,0 +1,2415 @@
+{
+  "config": {
+    "configFile": "/home/runner/work/petpals-auto-test/petpals-auto-test/playwright.config.ts",
+    "rootDir": "/home/runner/work/petpals-auto-test/petpals-auto-test/tests",
+    "forbidOnly": true,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "ci": {
+        "commitHref": "https://github.com/mzuhairiy/petpals-auto-test/commit/1930b60dafc7dca4db74ca1188d8ef4df43d5d48",
+        "commitHash": "1930b60dafc7dca4db74ca1188d8ef4df43d5d48",
+        "buildHref": "https://github.com/mzuhairiy/petpals-auto-test/actions/runs/24388895541"
+      },
+      "gitCommit": {
+        "shortHash": "1930b60",
+        "hash": "1930b60dafc7dca4db74ca1188d8ef4df43d5d48",
+        "subject": "fix: enhance test result parsing and reporting in E2E workflow for improved accuracy",
+        "body": "fix: enhance test result parsing and reporting in E2E workflow for improved accuracy\n",
+        "author": {
+          "name": "Muhammad Zuhairi",
+          "email": "zuhairimuhammad13@gmail.com",
+          "time": 1776154803000
+        },
+        "committer": {
+          "name": "Muhammad Zuhairi",
+          "email": "zuhairimuhammad13@gmail.com",
+          "time": 1776154803000
+        },
+        "branch": "main"
+      },
+      "actualWorkers": 2
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/home/runner/work/petpals-auto-test/petpals-auto-test/test-results",
+        "repeatEach": 1,
+        "retries": 1,
+        "metadata": {
+          "ci": {
+            "commitHref": "https://github.com/mzuhairiy/petpals-auto-test/commit/1930b60dafc7dca4db74ca1188d8ef4df43d5d48",
+            "commitHash": "1930b60dafc7dca4db74ca1188d8ef4df43d5d48",
+            "buildHref": "https://github.com/mzuhairiy/petpals-auto-test/actions/runs/24388895541"
+          },
+          "gitCommit": {
+            "shortHash": "1930b60",
+            "hash": "1930b60dafc7dca4db74ca1188d8ef4df43d5d48",
+            "subject": "fix: enhance test result parsing and reporting in E2E workflow for improved accuracy",
+            "body": "fix: enhance test result parsing and reporting in E2E workflow for improved accuracy\n",
+            "author": {
+              "name": "Muhammad Zuhairi",
+              "email": "zuhairimuhammad13@gmail.com",
+              "time": 1776154803000
+            },
+            "committer": {
+              "name": "Muhammad Zuhairi",
+              "email": "zuhairimuhammad13@gmail.com",
+              "time": 1776154803000
+            },
+            "branch": "main"
+          },
+          "actualWorkers": 2
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/home/runner/work/petpals-auto-test/petpals-auto-test/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 120000
+      },
+      {
+        "outputDir": "/home/runner/work/petpals-auto-test/petpals-auto-test/test-results",
+        "repeatEach": 1,
+        "retries": 1,
+        "metadata": {
+          "ci": {
+            "commitHref": "https://github.com/mzuhairiy/petpals-auto-test/commit/1930b60dafc7dca4db74ca1188d8ef4df43d5d48",
+            "commitHash": "1930b60dafc7dca4db74ca1188d8ef4df43d5d48",
+            "buildHref": "https://github.com/mzuhairiy/petpals-auto-test/actions/runs/24388895541"
+          },
+          "gitCommit": {
+            "shortHash": "1930b60",
+            "hash": "1930b60dafc7dca4db74ca1188d8ef4df43d5d48",
+            "subject": "fix: enhance test result parsing and reporting in E2E workflow for improved accuracy",
+            "body": "fix: enhance test result parsing and reporting in E2E workflow for improved accuracy\n",
+            "author": {
+              "name": "Muhammad Zuhairi",
+              "email": "zuhairimuhammad13@gmail.com",
+              "time": 1776154803000
+            },
+            "committer": {
+              "name": "Muhammad Zuhairi",
+              "email": "zuhairimuhammad13@gmail.com",
+              "time": 1776154803000
+            },
+            "branch": "main"
+          },
+          "actualWorkers": 2
+        },
+        "id": "firefox",
+        "name": "firefox",
+        "testDir": "/home/runner/work/petpals-auto-test/petpals-auto-test/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 120000
+      },
+      {
+        "outputDir": "/home/runner/work/petpals-auto-test/petpals-auto-test/test-results",
+        "repeatEach": 1,
+        "retries": 1,
+        "metadata": {
+          "ci": {
+            "commitHref": "https://github.com/mzuhairiy/petpals-auto-test/commit/1930b60dafc7dca4db74ca1188d8ef4df43d5d48",
+            "commitHash": "1930b60dafc7dca4db74ca1188d8ef4df43d5d48",
+            "buildHref": "https://github.com/mzuhairiy/petpals-auto-test/actions/runs/24388895541"
+          },
+          "gitCommit": {
+            "shortHash": "1930b60",
+            "hash": "1930b60dafc7dca4db74ca1188d8ef4df43d5d48",
+            "subject": "fix: enhance test result parsing and reporting in E2E workflow for improved accuracy",
+            "body": "fix: enhance test result parsing and reporting in E2E workflow for improved accuracy\n",
+            "author": {
+              "name": "Muhammad Zuhairi",
+              "email": "zuhairimuhammad13@gmail.com",
+              "time": 1776154803000
+            },
+            "committer": {
+              "name": "Muhammad Zuhairi",
+              "email": "zuhairimuhammad13@gmail.com",
+              "time": 1776154803000
+            },
+            "branch": "main"
+          },
+          "actualWorkers": 2
+        },
+        "id": "webkit",
+        "name": "webkit",
+        "testDir": "/home/runner/work/petpals-auto-test/petpals-auto-test/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 120000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "html",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "playwright-report/results.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "runAgents": "none",
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.58.2",
+    "workers": 2,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "account.spec.ts",
+      "file": "account.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Account E2E",
+          "file": "account.spec.ts",
+          "line": 4,
+          "column": 6,
+          "specs": [],
+          "suites": [
+            {
+              "title": "Account Navigation",
+              "file": "account.spec.ts",
+              "line": 11,
+              "column": 10,
+              "specs": [
+                {
+                  "title": "should navigate to account page after login @smoke @account @navigation",
+                  "ok": true,
+                  "tags": [
+                    "smoke",
+                    "account",
+                    "navigation"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 0,
+                          "parallelIndex": 0,
+                          "status": "passed",
+                          "duration": 6269,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-04-14T08:32:46.462Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "ad4620ead4e6d9cc2627-5a5fff66f9ee6cadc891",
+                  "file": "account.spec.ts",
+                  "line": 13,
+                  "column": 13
+                },
+                {
+                  "title": "should navigate to orders page after login @smoke @account @navigation",
+                  "ok": true,
+                  "tags": [
+                    "smoke",
+                    "account",
+                    "navigation"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 1,
+                          "parallelIndex": 1,
+                          "status": "passed",
+                          "duration": 7064,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-04-14T08:32:46.457Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "ad4620ead4e6d9cc2627-c6ae2c55222797494f31",
+                  "file": "account.spec.ts",
+                  "line": 21,
+                  "column": 13
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "authentication.spec.ts",
+      "file": "authentication.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Authentication E2E",
+          "file": "authentication.spec.ts",
+          "line": 5,
+          "column": 6,
+          "specs": [],
+          "suites": [
+            {
+              "title": "Login Flow",
+              "file": "authentication.spec.ts",
+              "line": 12,
+              "column": 10,
+              "specs": [
+                {
+                  "title": "should login with valid credentials @smoke @auth",
+                  "ok": true,
+                  "tags": [
+                    "smoke",
+                    "auth"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 0,
+                          "parallelIndex": 0,
+                          "status": "passed",
+                          "duration": 7745,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-04-14T08:32:53.055Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "70f6afe7e350c931056e-4ac6dd1889727140c670",
+                  "file": "authentication.spec.ts",
+                  "line": 13,
+                  "column": 13
+                },
+                {
+                  "title": "should show error toast with invalid credentials @auth",
+                  "ok": true,
+                  "tags": [
+                    "auth"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 1,
+                          "parallelIndex": 1,
+                          "status": "passed",
+                          "duration": 6906,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-04-14T08:32:53.661Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "70f6afe7e350c931056e-b9a6c4e067fc26bdd89a",
+                  "file": "authentication.spec.ts",
+                  "line": 19,
+                  "column": 13
+                },
+                {
+                  "title": "should not submit with empty credentials @auth",
+                  "ok": true,
+                  "tags": [
+                    "auth"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 1,
+                          "parallelIndex": 1,
+                          "status": "passed",
+                          "duration": 5506,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-04-14T08:33:00.591Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "70f6afe7e350c931056e-31cdcbcd9a2c0d21416d",
+                  "file": "authentication.spec.ts",
+                  "line": 25,
+                  "column": 13
+                },
+                {
+                  "title": "should show validation for invalid email format @auth",
+                  "ok": true,
+                  "tags": [
+                    "auth"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 0,
+                          "parallelIndex": 0,
+                          "status": "failed",
+                          "duration": 30160,
+                          "error": {
+                            "message": "TimeoutError: page.goto: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://staging.petpals-demo.shop/\", waiting until \"load\"\u001b[22m\n",
+                            "stack": "TimeoutError: page.goto: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://staging.petpals-demo.shop/\", waiting until \"load\"\u001b[22m\n\n    at /home/runner/work/petpals-auto-test/petpals-auto-test/tests/authentication.spec.ts:8:20",
+                            "location": {
+                              "file": "/home/runner/work/petpals-auto-test/petpals-auto-test/tests/authentication.spec.ts",
+                              "column": 20,
+                              "line": 8
+                            },
+                            "snippet": "\u001b[0m \u001b[90m  6 |\u001b[39m\n \u001b[90m  7 |\u001b[39m     test\u001b[33m.\u001b[39mbeforeEach(\u001b[36masync\u001b[39m ({ page\u001b[33m,\u001b[39m homeElements }) \u001b[33m=>\u001b[39m {\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m  8 |\u001b[39m         \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(config\u001b[33m.\u001b[39mbaseUrl)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                    \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m  9 |\u001b[39m         \u001b[36mawait\u001b[39m expect(homeElements\u001b[33m.\u001b[39m\u001b[33mSIGN_IN_BUTTON\u001b[39m)\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m 10 |\u001b[39m     })\u001b[33m;\u001b[39m\n \u001b[90m 11 |\u001b[39m\u001b[0m"
+                          },
+                          "errors": [
+                            {
+                              "location": {
+                                "file": "/home/runner/work/petpals-auto-test/petpals-auto-test/tests/authentication.spec.ts",
+                                "column": 20,
+                                "line": 8
+                              },
+                              "message": "TimeoutError: page.goto: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://staging.petpals-demo.shop/\", waiting until \"load\"\u001b[22m\n\n\n   6 |\n   7 |     test.beforeEach(async ({ page, homeElements }) => {\n>  8 |         await page.goto(config.baseUrl);\n     |                    ^\n   9 |         await expect(homeElements.SIGN_IN_BUTTON).toBeVisible();\n  10 |     });\n  11 |\n    at /home/runner/work/petpals-auto-test/petpals-auto-test/tests/authentication.spec.ts:8:20"
+                            }
+                          ],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-04-14T08:33:00.834Z",
+                          "annotations": [],
+                          "attachments": [
+                            {
+                              "name": "screenshot",
+                              "contentType": "image/png",
+                              "path": "/home/runner/work/petpals-auto-test/petpals-auto-test/test-results/authentication-Authenticat-5884e-r-invalid-email-format-auth-chromium/test-failed-1.png"
+                            },
+                            {
+                              "name": "error-context",
+                              "contentType": "text/markdown",
+                              "path": "/home/runner/work/petpals-auto-test/petpals-auto-test/test-results/authentication-Authenticat-5884e-r-invalid-email-format-auth-chromium/error-context.md"
+                            }
+                          ],
+                          "errorLocation": {
+                            "file": "/home/runner/work/petpals-auto-test/petpals-auto-test/tests/authentication.spec.ts",
+                            "column": 20,
+                            "line": 8
+                          }
+                        },
+                        {
+                          "workerIndex": 2,
+                          "parallelIndex": 0,
+                          "status": "passed",
+                          "duration": 5839,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 1,
+                          "startTime": "2026-04-14T08:33:32.392Z",
+                          "annotations": [],
+                          "attachments": [
+                            {
+                              "name": "trace",
+                              "contentType": "application/zip",
+                              "path": "/home/runner/work/petpals-auto-test/petpals-auto-test/test-results/authentication-Authenticat-5884e-r-invalid-email-format-auth-chromium-retry1/trace.zip"
+                            }
+                          ]
+                        }
+                      ],
+                      "status": "flaky"
+                    }
+                  ],
+                  "id": "70f6afe7e350c931056e-43c9659b834bf8aabdbf",
+                  "file": "authentication.spec.ts",
+                  "line": 32,
+                  "column": 13
+                },
+                {
+                  "title": "should show error toast with unregistered email @auth",
+                  "ok": true,
+                  "tags": [
+                    "auth"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 1,
+                          "parallelIndex": 1,
+                          "status": "passed",
+                          "duration": 7210,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-04-14T08:33:06.123Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "70f6afe7e350c931056e-b4f041892243aba192e5",
+                  "file": "authentication.spec.ts",
+                  "line": 40,
+                  "column": 13
+                },
+                {
+                  "title": "should navigate to sign-up page from sign-in @smoke @auth @navigation",
+                  "ok": true,
+                  "tags": [
+                    "smoke",
+                    "auth",
+                    "navigation"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 1,
+                          "parallelIndex": 1,
+                          "status": "passed",
+                          "duration": 5349,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-04-14T08:33:13.362Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "70f6afe7e350c931056e-1bcf7364161aeaeb5aa8",
+                  "file": "authentication.spec.ts",
+                  "line": 48,
+                  "column": 13
+                },
+                {
+                  "title": "should navigate to forgot password page @auth @navigation",
+                  "ok": true,
+                  "tags": [
+                    "auth",
+                    "navigation"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 1,
+                          "parallelIndex": 1,
+                          "status": "passed",
+                          "duration": 6523,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-04-14T08:33:18.735Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "70f6afe7e350c931056e-0a3d2a256c84736d0f14",
+                  "file": "authentication.spec.ts",
+                  "line": 54,
+                  "column": 13
+                }
+              ]
+            },
+            {
+              "title": "Logout Flow",
+              "file": "authentication.spec.ts",
+              "line": 61,
+              "column": 10,
+              "specs": [
+                {
+                  "title": "should logout and return to unauthenticated state @smoke @auth",
+                  "ok": true,
+                  "tags": [
+                    "smoke",
+                    "auth"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 1,
+                          "parallelIndex": 1,
+                          "status": "passed",
+                          "duration": 6878,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-04-14T08:33:25.281Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "70f6afe7e350c931056e-9b9a4bb4b08fe393b7e5",
+                  "file": "authentication.spec.ts",
+                  "line": 62,
+                  "column": 13
+                }
+              ]
+            },
+            {
+              "title": "Registration Flow",
+              "file": "authentication.spec.ts",
+              "line": 73,
+              "column": 10,
+              "specs": [
+                {
+                  "title": "should register with valid data @smoke @auth",
+                  "ok": true,
+                  "tags": [
+                    "smoke",
+                    "auth"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 1,
+                          "parallelIndex": 1,
+                          "status": "passed",
+                          "duration": 9179,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-04-14T08:33:32.183Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "70f6afe7e350c931056e-41ab417bda09873d9f34",
+                  "file": "authentication.spec.ts",
+                  "line": 81,
+                  "column": 13
+                },
+                {
+                  "title": "should not register with mismatched passwords @auth",
+                  "ok": true,
+                  "tags": [
+                    "auth"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 2,
+                          "parallelIndex": 0,
+                          "status": "passed",
+                          "duration": 6349,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-04-14T08:33:38.494Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "70f6afe7e350c931056e-4fdc61b5651ea7097df5",
+                  "file": "authentication.spec.ts",
+                  "line": 95,
+                  "column": 13
+                },
+                {
+                  "title": "should not register without accepting terms @auth",
+                  "ok": true,
+                  "tags": [
+                    "auth"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 1,
+                          "parallelIndex": 1,
+                          "status": "passed",
+                          "duration": 4562,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-04-14T08:33:41.392Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "70f6afe7e350c931056e-0abc7b30b7f501d594e3",
+                  "file": "authentication.spec.ts",
+                  "line": 107,
+                  "column": 13
+                },
+                {
+                  "title": "should navigate to sign-in page from sign-up @auth @navigation",
+                  "ok": true,
+                  "tags": [
+                    "auth",
+                    "navigation"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 2,
+                          "parallelIndex": 0,
+                          "status": "passed",
+                          "duration": 7617,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-04-14T08:33:44.865Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "70f6afe7e350c931056e-7d35276d134063145294",
+                  "file": "authentication.spec.ts",
+                  "line": 114,
+                  "column": 13
+                },
+                {
+                  "title": "should not register with empty email @auth",
+                  "ok": true,
+                  "tags": [
+                    "auth"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 1,
+                          "parallelIndex": 1,
+                          "status": "passed",
+                          "duration": 8333,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-04-14T08:33:45.974Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "70f6afe7e350c931056e-319553dd1d2d734a8c2d",
+                  "file": "authentication.spec.ts",
+                  "line": 120,
+                  "column": 13
+                },
+                {
+                  "title": "should not register with registered email format @auth",
+                  "ok": true,
+                  "tags": [
+                    "auth"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 2,
+                          "parallelIndex": 0,
+                          "status": "passed",
+                          "duration": 7707,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-04-14T08:33:52.505Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "70f6afe7e350c931056e-d7947dc51ab727edfcfc",
+                  "file": "authentication.spec.ts",
+                  "line": 132,
+                  "column": 13
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "navigation.spec.ts",
+      "file": "navigation.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Navigation E2E",
+          "file": "navigation.spec.ts",
+          "line": 5,
+          "column": 6,
+          "specs": [],
+          "suites": [
+            {
+              "title": "Header Navigation",
+              "file": "navigation.spec.ts",
+              "line": 12,
+              "column": 10,
+              "specs": [
+                {
+                  "title": "should navigate to Shop page and load product listing @smoke @navigation",
+                  "ok": true,
+                  "tags": [
+                    "smoke",
+                    "navigation"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 1,
+                          "parallelIndex": 1,
+                          "status": "passed",
+                          "duration": 30529,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-04-14T08:33:54.322Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "5d2868f7d23420c27cca-915202c1ec3cd0c825b6",
+                  "file": "navigation.spec.ts",
+                  "line": 14,
+                  "column": 13
+                },
+                {
+                  "title": "should navigate to Cats page with cat filter applied @navigation",
+                  "ok": true,
+                  "tags": [
+                    "navigation"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 2,
+                          "parallelIndex": 0,
+                          "status": "passed",
+                          "duration": 4705,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-04-14T08:34:00.240Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "5d2868f7d23420c27cca-6e84b075c8aefde67a57",
+                  "file": "navigation.spec.ts",
+                  "line": 20,
+                  "column": 13
+                },
+                {
+                  "title": "should navigate to Dogs page with dog filter applied @navigation",
+                  "ok": true,
+                  "tags": [
+                    "navigation"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 2,
+                          "parallelIndex": 0,
+                          "status": "passed",
+                          "duration": 6633,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-04-14T08:34:04.970Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "5d2868f7d23420c27cca-4870c2e28319f4cfc550",
+                  "file": "navigation.spec.ts",
+                  "line": 25,
+                  "column": 13
+                },
+                {
+                  "title": "should return to homepage when clicking logo from shop page @smoke @navigation",
+                  "ok": true,
+                  "tags": [
+                    "smoke",
+                    "navigation"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 2,
+                          "parallelIndex": 0,
+                          "status": "passed",
+                          "duration": 6152,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-04-14T08:34:11.623Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "5d2868f7d23420c27cca-223f7b885f68f62ea9dc",
+                  "file": "navigation.spec.ts",
+                  "line": 30,
+                  "column": 13
+                },
+                {
+                  "title": "should navigate to Sign In page @smoke @navigation",
+                  "ok": true,
+                  "tags": [
+                    "smoke",
+                    "navigation"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 2,
+                          "parallelIndex": 0,
+                          "status": "passed",
+                          "duration": 31618,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-04-14T08:34:17.802Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "5d2868f7d23420c27cca-1bef40de207d8fde4ddb",
+                  "file": "navigation.spec.ts",
+                  "line": 38,
+                  "column": 13
+                },
+                {
+                  "title": "should navigate to Sign Up page @smoke @navigation",
+                  "ok": true,
+                  "tags": [
+                    "smoke",
+                    "navigation"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 1,
+                          "parallelIndex": 1,
+                          "status": "passed",
+                          "duration": 11779,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-04-14T08:34:24.865Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "5d2868f7d23420c27cca-d21d392ea91dddb60e10",
+                  "file": "navigation.spec.ts",
+                  "line": 44,
+                  "column": 13
+                },
+                {
+                  "title": "should navigate to Cart page @smoke @navigation",
+                  "ok": true,
+                  "tags": [
+                    "smoke",
+                    "navigation"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 1,
+                          "parallelIndex": 1,
+                          "status": "passed",
+                          "duration": 5353,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-04-14T08:34:36.659Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "5d2868f7d23420c27cca-c704b06942a6ef255443",
+                  "file": "navigation.spec.ts",
+                  "line": 50,
+                  "column": 13
+                }
+              ]
+            },
+            {
+              "title": "Footer Navigation",
+              "file": "navigation.spec.ts",
+              "line": 56,
+              "column": 10,
+              "specs": [
+                {
+                  "title": "should navigate to Pet Toys from footer @navigation",
+                  "ok": true,
+                  "tags": [
+                    "navigation"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 1,
+                          "parallelIndex": 1,
+                          "status": "passed",
+                          "duration": 7672,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-04-14T08:34:42.044Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "5d2868f7d23420c27cca-baaa29ef3e6ba2fe559c",
+                  "file": "navigation.spec.ts",
+                  "line": 58,
+                  "column": 13
+                },
+                {
+                  "title": "should navigate to About Us from footer @navigation",
+                  "ok": true,
+                  "tags": [
+                    "navigation"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 2,
+                          "parallelIndex": 0,
+                          "status": "passed",
+                          "duration": 6310,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-04-14T08:34:49.437Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "5d2868f7d23420c27cca-14ed864edf6db1131b95",
+                  "file": "navigation.spec.ts",
+                  "line": 63,
+                  "column": 13
+                },
+                {
+                  "title": "should navigate to Cat Products from footer @navigation",
+                  "ok": true,
+                  "tags": [
+                    "navigation"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 1,
+                          "parallelIndex": 1,
+                          "status": "passed",
+                          "duration": 5308,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-04-14T08:34:49.752Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "5d2868f7d23420c27cca-40ed060be9d076eec841",
+                  "file": "navigation.spec.ts",
+                  "line": 68,
+                  "column": 13
+                },
+                {
+                  "title": "should navigate to Dog Products from footer @navigation",
+                  "ok": true,
+                  "tags": [
+                    "navigation"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 1,
+                          "parallelIndex": 1,
+                          "status": "passed",
+                          "duration": 6254,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-04-14T08:34:55.074Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "5d2868f7d23420c27cca-0e5f66396353f335d610",
+                  "file": "navigation.spec.ts",
+                  "line": 73,
+                  "column": 13
+                }
+              ]
+            },
+            {
+              "title": "Newsletter",
+              "file": "navigation.spec.ts",
+              "line": 79,
+              "column": 10,
+              "specs": [
+                {
+                  "title": "should subscribe to newsletter and receive confirmation",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 2,
+                          "parallelIndex": 0,
+                          "status": "passed",
+                          "duration": 4543,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-04-14T08:34:55.764Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "5d2868f7d23420c27cca-674e9e017e40d1ecfaac",
+                  "file": "navigation.spec.ts",
+                  "line": 81,
+                  "column": 13
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "product.spec.ts",
+      "file": "product.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Product E2E",
+          "file": "product.spec.ts",
+          "line": 5,
+          "column": 6,
+          "specs": [],
+          "suites": [
+            {
+              "title": "Product Detail Page",
+              "file": "product.spec.ts",
+              "line": 12,
+              "column": 10,
+              "specs": [
+                {
+                  "title": "should load product detail page with interactive elements @smoke @product",
+                  "ok": true,
+                  "tags": [
+                    "smoke",
+                    "product"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [
+                        {
+                          "type": "randomProductIndex",
+                          "description": "15"
+                        },
+                        {
+                          "type": "productName",
+                          "description": "Premium Dry Cat Food"
+                        }
+                      ],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 2,
+                          "parallelIndex": 0,
+                          "status": "passed",
+                          "duration": 19582,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-04-14T08:35:00.325Z",
+                          "annotations": [
+                            {
+                              "type": "randomProductIndex",
+                              "description": "15"
+                            },
+                            {
+                              "type": "productName",
+                              "description": "Premium Dry Cat Food"
+                            }
+                          ],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "2fa8ab87beca8e7f39ce-e0b82363e8407b439b0a",
+                  "file": "product.spec.ts",
+                  "line": 14,
+                  "column": 13
+                },
+                {
+                  "title": "should increase product quantity using controls @product",
+                  "ok": true,
+                  "tags": [
+                    "product"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [
+                        {
+                          "type": "randomProductIndex",
+                          "description": "6"
+                        },
+                        {
+                          "type": "productName",
+                          "description": "Dog Dental Chews"
+                        }
+                      ],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 1,
+                          "parallelIndex": 1,
+                          "status": "failed",
+                          "duration": 30180,
+                          "error": {
+                            "message": "TimeoutError: page.goto: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://staging.petpals-demo.shop/\", waiting until \"load\"\u001b[22m\n",
+                            "stack": "TimeoutError: page.goto: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://staging.petpals-demo.shop/\", waiting until \"load\"\u001b[22m\n\n    at /home/runner/work/petpals-auto-test/petpals-auto-test/tests/product.spec.ts:8:20",
+                            "location": {
+                              "file": "/home/runner/work/petpals-auto-test/petpals-auto-test/tests/product.spec.ts",
+                              "column": 20,
+                              "line": 8
+                            },
+                            "snippet": "\u001b[0m \u001b[90m  6 |\u001b[39m\n \u001b[90m  7 |\u001b[39m     test\u001b[33m.\u001b[39mbeforeEach(\u001b[36masync\u001b[39m ({ page\u001b[33m,\u001b[39m homeElements }) \u001b[33m=>\u001b[39m {\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m  8 |\u001b[39m         \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(config\u001b[33m.\u001b[39mbaseUrl)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                    \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m  9 |\u001b[39m         \u001b[36mawait\u001b[39m expect(homeElements\u001b[33m.\u001b[39m\u001b[33mSIGN_IN_BUTTON\u001b[39m)\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m 10 |\u001b[39m     })\u001b[33m;\u001b[39m\n \u001b[90m 11 |\u001b[39m\u001b[0m"
+                          },
+                          "errors": [
+                            {
+                              "location": {
+                                "file": "/home/runner/work/petpals-auto-test/petpals-auto-test/tests/product.spec.ts",
+                                "column": 20,
+                                "line": 8
+                              },
+                              "message": "TimeoutError: page.goto: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://staging.petpals-demo.shop/\", waiting until \"load\"\u001b[22m\n\n\n   6 |\n   7 |     test.beforeEach(async ({ page, homeElements }) => {\n>  8 |         await page.goto(config.baseUrl);\n     |                    ^\n   9 |         await expect(homeElements.SIGN_IN_BUTTON).toBeVisible();\n  10 |     });\n  11 |\n    at /home/runner/work/petpals-auto-test/petpals-auto-test/tests/product.spec.ts:8:20"
+                            }
+                          ],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-04-14T08:35:01.346Z",
+                          "annotations": [],
+                          "attachments": [
+                            {
+                              "name": "screenshot",
+                              "contentType": "image/png",
+                              "path": "/home/runner/work/petpals-auto-test/petpals-auto-test/test-results/product-Product-E2E-Produc-e8b2f-tity-using-controls-product-chromium/test-failed-1.png"
+                            },
+                            {
+                              "name": "error-context",
+                              "contentType": "text/markdown",
+                              "path": "/home/runner/work/petpals-auto-test/petpals-auto-test/test-results/product-Product-E2E-Produc-e8b2f-tity-using-controls-product-chromium/error-context.md"
+                            }
+                          ],
+                          "errorLocation": {
+                            "file": "/home/runner/work/petpals-auto-test/petpals-auto-test/tests/product.spec.ts",
+                            "column": 20,
+                            "line": 8
+                          }
+                        },
+                        {
+                          "workerIndex": 3,
+                          "parallelIndex": 1,
+                          "status": "passed",
+                          "duration": 7128,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 1,
+                          "startTime": "2026-04-14T08:35:32.904Z",
+                          "annotations": [
+                            {
+                              "type": "randomProductIndex",
+                              "description": "6"
+                            },
+                            {
+                              "type": "productName",
+                              "description": "Dog Dental Chews"
+                            }
+                          ],
+                          "attachments": [
+                            {
+                              "name": "trace",
+                              "contentType": "application/zip",
+                              "path": "/home/runner/work/petpals-auto-test/petpals-auto-test/test-results/product-Product-E2E-Produc-e8b2f-tity-using-controls-product-chromium-retry1/trace.zip"
+                            }
+                          ]
+                        }
+                      ],
+                      "status": "flaky"
+                    }
+                  ],
+                  "id": "2fa8ab87beca8e7f39ce-4a93fd64eb67903fd229",
+                  "file": "product.spec.ts",
+                  "line": 30,
+                  "column": 13
+                },
+                {
+                  "title": "should switch between product tabs @product",
+                  "ok": true,
+                  "tags": [
+                    "product"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [
+                        {
+                          "type": "randomProductIndex",
+                          "description": "11"
+                        },
+                        {
+                          "type": "productName",
+                          "description": "Cat Immune Support Supplements"
+                        }
+                      ],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 2,
+                          "parallelIndex": 0,
+                          "status": "passed",
+                          "duration": 6105,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-04-14T08:35:19.923Z",
+                          "annotations": [
+                            {
+                              "type": "randomProductIndex",
+                              "description": "11"
+                            },
+                            {
+                              "type": "productName",
+                              "description": "Cat Immune Support Supplements"
+                            }
+                          ],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "2fa8ab87beca8e7f39ce-8187919842ff1e316600",
+                  "file": "product.spec.ts",
+                  "line": 58,
+                  "column": 13
+                }
+              ]
+            },
+            {
+              "title": "Wishlist Operations",
+              "file": "product.spec.ts",
+              "line": 77,
+              "column": 10,
+              "specs": [
+                {
+                  "title": "should add product to wishlist and verify it appears on wishlist page @smoke @wishlist",
+                  "ok": true,
+                  "tags": [
+                    "smoke",
+                    "wishlist"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [
+                        {
+                          "type": "randomProductIndex",
+                          "description": "0"
+                        },
+                        {
+                          "type": "productName",
+                          "description": "Dog Probiotic Supplements"
+                        }
+                      ],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 2,
+                          "parallelIndex": 0,
+                          "status": "passed",
+                          "duration": 11837,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-04-14T08:35:26.047Z",
+                          "annotations": [
+                            {
+                              "type": "randomProductIndex",
+                              "description": "0"
+                            },
+                            {
+                              "type": "productName",
+                              "description": "Dog Probiotic Supplements"
+                            }
+                          ],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "2fa8ab87beca8e7f39ce-f1be46b51defc0af805a",
+                  "file": "product.spec.ts",
+                  "line": 79,
+                  "column": 13
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "shopping.spec.ts",
+      "file": "shopping.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Shopping E2E",
+          "file": "shopping.spec.ts",
+          "line": 5,
+          "column": 6,
+          "specs": [],
+          "suites": [
+            {
+              "title": "Product Browsing & Filtering",
+              "file": "shopping.spec.ts",
+              "line": 12,
+              "column": 10,
+              "specs": [
+                {
+                  "title": "should display all products on shop page @smoke @shop",
+                  "ok": true,
+                  "tags": [
+                    "smoke",
+                    "shop"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 2,
+                          "parallelIndex": 0,
+                          "status": "passed",
+                          "duration": 5901,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-04-14T08:35:37.912Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "f177f4eaa9abb9f5894f-81bbc313845feb87c4c7",
+                  "file": "shopping.spec.ts",
+                  "line": 19,
+                  "column": 13
+                },
+                {
+                  "title": "should filter products by Toys category and update URL @shop",
+                  "ok": true,
+                  "tags": [
+                    "shop"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 3,
+                          "parallelIndex": 1,
+                          "status": "passed",
+                          "duration": 8435,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-04-14T08:35:40.372Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "f177f4eaa9abb9f5894f-76dc689f819927e490b7",
+                  "file": "shopping.spec.ts",
+                  "line": 24,
+                  "column": 13
+                },
+                {
+                  "title": "should filter products by Food category and update URL @shop",
+                  "ok": true,
+                  "tags": [
+                    "shop"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 2,
+                          "parallelIndex": 0,
+                          "status": "passed",
+                          "duration": 6557,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-04-14T08:35:43.851Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "f177f4eaa9abb9f5894f-24bf94334c47c7f9404b",
+                  "file": "shopping.spec.ts",
+                  "line": 35,
+                  "column": 13
+                },
+                {
+                  "title": "should filter products by Supplements category and update URL @shop",
+                  "ok": true,
+                  "tags": [
+                    "shop"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 3,
+                          "parallelIndex": 1,
+                          "status": "passed",
+                          "duration": 8694,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-04-14T08:35:48.827Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "f177f4eaa9abb9f5894f-c247d119d7209d08171d",
+                  "file": "shopping.spec.ts",
+                  "line": 46,
+                  "column": 13
+                },
+                {
+                  "title": "should filter products by Cats pet type @shop",
+                  "ok": true,
+                  "tags": [
+                    "shop"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 2,
+                          "parallelIndex": 0,
+                          "status": "passed",
+                          "duration": 6555,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-04-14T08:35:50.426Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "f177f4eaa9abb9f5894f-4a169e92222a18e9de3c",
+                  "file": "shopping.spec.ts",
+                  "line": 57,
+                  "column": 13
+                },
+                {
+                  "title": "should filter products by Dogs pet type @shop",
+                  "ok": true,
+                  "tags": [
+                    "shop"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 2,
+                          "parallelIndex": 0,
+                          "status": "failed",
+                          "duration": 37733,
+                          "error": {
+                            "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).\u001b[22mtoHaveURL\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected pattern: \u001b[32m/pet=dog/\u001b[39m\nReceived string:  \u001b[31m\"https://staging.petpals-demo.shop/shop\"\u001b[39m\nTimeout: 30000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveURL\" with timeout 30000ms\u001b[22m\n\u001b[2m    34 × unexpected value \"https://staging.petpals-demo.shop/shop\"\u001b[22m\n",
+                            "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).\u001b[22mtoHaveURL\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected pattern: \u001b[32m/pet=dog/\u001b[39m\nReceived string:  \u001b[31m\"https://staging.petpals-demo.shop/shop\"\u001b[39m\nTimeout: 30000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveURL\" with timeout 30000ms\u001b[22m\n\u001b[2m    34 × unexpected value \"https://staging.petpals-demo.shop/shop\"\u001b[22m\n\n    at /home/runner/work/petpals-auto-test/petpals-auto-test/tests/shopping.spec.ts:73:32",
+                            "location": {
+                              "file": "/home/runner/work/petpals-auto-test/petpals-auto-test/tests/shopping.spec.ts",
+                              "column": 32,
+                              "line": 73
+                            },
+                            "snippet": "\u001b[0m \u001b[90m 71 |\u001b[39m             \u001b[36mawait\u001b[39m shopActions\u001b[33m.\u001b[39mfilterByPetType(\u001b[32m'Dogs'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 72 |\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 73 |\u001b[39m             \u001b[36mawait\u001b[39m expect(page)\u001b[33m.\u001b[39mtoHaveURL(\u001b[35m/pet=dog/\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 74 |\u001b[39m             \u001b[36mconst\u001b[39m filteredCount \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m shopActions\u001b[33m.\u001b[39mgetProductCount()\u001b[33m;\u001b[39m\n \u001b[90m 75 |\u001b[39m             expect(filteredCount\u001b[33m,\u001b[39m \u001b[32m'Filtered results should not be empty'\u001b[39m)\u001b[33m.\u001b[39mtoBeGreaterThan(\u001b[35m0\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 76 |\u001b[39m             expect(filteredCount\u001b[33m,\u001b[39m \u001b[32m'Filtered count should be less than initial'\u001b[39m)\u001b[33m.\u001b[39mtoBeLessThanOrEqual(initialCount)\u001b[33m;\u001b[39m\u001b[0m"
+                          },
+                          "errors": [
+                            {
+                              "location": {
+                                "file": "/home/runner/work/petpals-auto-test/petpals-auto-test/tests/shopping.spec.ts",
+                                "column": 32,
+                                "line": 73
+                              },
+                              "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).\u001b[22mtoHaveURL\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected pattern: \u001b[32m/pet=dog/\u001b[39m\nReceived string:  \u001b[31m\"https://staging.petpals-demo.shop/shop\"\u001b[39m\nTimeout: 30000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveURL\" with timeout 30000ms\u001b[22m\n\u001b[2m    34 × unexpected value \"https://staging.petpals-demo.shop/shop\"\u001b[22m\n\n\n  71 |             await shopActions.filterByPetType('Dogs');\n  72 |\n> 73 |             await expect(page).toHaveURL(/pet=dog/);\n     |                                ^\n  74 |             const filteredCount = await shopActions.getProductCount();\n  75 |             expect(filteredCount, 'Filtered results should not be empty').toBeGreaterThan(0);\n  76 |             expect(filteredCount, 'Filtered count should be less than initial').toBeLessThanOrEqual(initialCount);\n    at /home/runner/work/petpals-auto-test/petpals-auto-test/tests/shopping.spec.ts:73:32"
+                            }
+                          ],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-04-14T08:35:56.999Z",
+                          "annotations": [],
+                          "attachments": [
+                            {
+                              "name": "screenshot",
+                              "contentType": "image/png",
+                              "path": "/home/runner/work/petpals-auto-test/petpals-auto-test/test-results/shopping-Shopping-E2E-Prod-0b7fc-ducts-by-Dogs-pet-type-shop-chromium/test-failed-1.png"
+                            },
+                            {
+                              "name": "error-context",
+                              "contentType": "text/markdown",
+                              "path": "/home/runner/work/petpals-auto-test/petpals-auto-test/test-results/shopping-Shopping-E2E-Prod-0b7fc-ducts-by-Dogs-pet-type-shop-chromium/error-context.md"
+                            }
+                          ],
+                          "errorLocation": {
+                            "file": "/home/runner/work/petpals-auto-test/petpals-auto-test/tests/shopping.spec.ts",
+                            "column": 32,
+                            "line": 73
+                          }
+                        },
+                        {
+                          "workerIndex": 4,
+                          "parallelIndex": 0,
+                          "status": "passed",
+                          "duration": 7785,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 1,
+                          "startTime": "2026-04-14T08:36:36.096Z",
+                          "annotations": [],
+                          "attachments": [
+                            {
+                              "name": "trace",
+                              "contentType": "application/zip",
+                              "path": "/home/runner/work/petpals-auto-test/petpals-auto-test/test-results/shopping-Shopping-E2E-Prod-0b7fc-ducts-by-Dogs-pet-type-shop-chromium-retry1/trace.zip"
+                            }
+                          ]
+                        }
+                      ],
+                      "status": "flaky"
+                    }
+                  ],
+                  "id": "f177f4eaa9abb9f5894f-e7d9a40ee05be5d12784",
+                  "file": "shopping.spec.ts",
+                  "line": 68,
+                  "column": 13
+                },
+                {
+                  "title": "should sort products by highest rated @shop",
+                  "ok": true,
+                  "tags": [
+                    "shop"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 3,
+                          "parallelIndex": 1,
+                          "status": "passed",
+                          "duration": 6197,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-04-14T08:35:57.538Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "f177f4eaa9abb9f5894f-d63778dea09537d250d2",
+                  "file": "shopping.spec.ts",
+                  "line": 79,
+                  "column": 13
+                },
+                {
+                  "title": "should sort products by newest first @shop",
+                  "ok": true,
+                  "tags": [
+                    "shop"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 3,
+                          "parallelIndex": 1,
+                          "status": "passed",
+                          "duration": 8456,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-04-14T08:36:03.751Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "f177f4eaa9abb9f5894f-0eff5579683d65cc8ca1",
+                  "file": "shopping.spec.ts",
+                  "line": 88,
+                  "column": 13
+                },
+                {
+                  "title": "should filter products by price range @shop",
+                  "ok": true,
+                  "tags": [
+                    "shop"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 3,
+                          "parallelIndex": 1,
+                          "status": "passed",
+                          "duration": 6224,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-04-14T08:36:12.245Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "f177f4eaa9abb9f5894f-191353edb7facedbb43d",
+                  "file": "shopping.spec.ts",
+                  "line": 97,
+                  "column": 13
+                },
+                {
+                  "title": "should combine category and pet type filters @shop",
+                  "ok": true,
+                  "tags": [
+                    "shop"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 3,
+                          "parallelIndex": 1,
+                          "status": "passed",
+                          "duration": 7842,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-04-14T08:36:18.490Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "f177f4eaa9abb9f5894f-b1dc0101e371c9747a16",
+                  "file": "shopping.spec.ts",
+                  "line": 115,
+                  "column": 13
+                },
+                {
+                  "title": "should clear filters and restore all products @shop",
+                  "ok": true,
+                  "tags": [
+                    "shop"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 3,
+                          "parallelIndex": 1,
+                          "status": "passed",
+                          "duration": 9040,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-04-14T08:36:26.348Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "f177f4eaa9abb9f5894f-542f9a6215aa0003233d",
+                  "file": "shopping.spec.ts",
+                  "line": 126,
+                  "column": 13
+                },
+                {
+                  "title": "should persist filters on page reload @shop",
+                  "ok": true,
+                  "tags": [
+                    "shop"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 3,
+                          "parallelIndex": 1,
+                          "status": "passed",
+                          "duration": 6056,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-04-14T08:36:35.409Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "f177f4eaa9abb9f5894f-28734d6136abb56c4152",
+                  "file": "shopping.spec.ts",
+                  "line": 143,
+                  "column": 13
+                },
+                {
+                  "title": "should navigate to correct product detail page when clicking a product @smoke @shop @product",
+                  "ok": true,
+                  "tags": [
+                    "smoke",
+                    "shop",
+                    "product"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 3,
+                          "parallelIndex": 1,
+                          "status": "passed",
+                          "duration": 9439,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-04-14T08:36:41.481Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "f177f4eaa9abb9f5894f-55d1b1d12dbbdd0b1a91",
+                  "file": "shopping.spec.ts",
+                  "line": 156,
+                  "column": 13
+                }
+              ]
+            },
+            {
+              "title": "Cart Operations",
+              "file": "shopping.spec.ts",
+              "line": 170,
+              "column": 10,
+              "specs": [
+                {
+                  "title": "should add product to cart from homepage and verify in cart @smoke @cart",
+                  "ok": true,
+                  "tags": [
+                    "smoke",
+                    "cart"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [
+                        {
+                          "type": "randomCartButtonIndex",
+                          "description": "8"
+                        },
+                        {
+                          "type": "productName",
+                          "description": "Cat Water Fountain"
+                        }
+                      ],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 4,
+                          "parallelIndex": 0,
+                          "status": "passed",
+                          "duration": 6122,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-04-14T08:36:44.344Z",
+                          "annotations": [
+                            {
+                              "type": "randomCartButtonIndex",
+                              "description": "8"
+                            },
+                            {
+                              "type": "productName",
+                              "description": "Cat Water Fountain"
+                            }
+                          ],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "f177f4eaa9abb9f5894f-c8ac935aaa622c4f638f",
+                  "file": "shopping.spec.ts",
+                  "line": 172,
+                  "column": 13
+                },
+                {
+                  "title": "should add product to cart from product detail page @cart",
+                  "ok": true,
+                  "tags": [
+                    "cart"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [
+                        {
+                          "type": "randomProductIndex",
+                          "description": "10"
+                        },
+                        {
+                          "type": "productName",
+                          "description": "Dog Joint Health Supplements"
+                        }
+                      ],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 4,
+                          "parallelIndex": 0,
+                          "status": "passed",
+                          "duration": 9214,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-04-14T08:36:50.489Z",
+                          "annotations": [
+                            {
+                              "type": "randomProductIndex",
+                              "description": "10"
+                            },
+                            {
+                              "type": "productName",
+                              "description": "Dog Joint Health Supplements"
+                            }
+                          ],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "f177f4eaa9abb9f5894f-bd12ca1e211c98e94709",
+                  "file": "shopping.spec.ts",
+                  "line": 188,
+                  "column": 13
+                }
+              ]
+            },
+            {
+              "title": "Checkout",
+              "file": "shopping.spec.ts",
+              "line": 211,
+              "column": 10,
+              "specs": [
+                {
+                  "title": "should complete full checkout flow with Midtrans credit card payment @smoke @checkout",
+                  "ok": true,
+                  "tags": [
+                    "smoke",
+                    "checkout"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [
+                        {
+                          "type": "randomCartButtonIndex",
+                          "description": "11"
+                        },
+                        {
+                          "type": "productName",
+                          "description": "Wet Cat Food Variety Pack"
+                        }
+                      ],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 3,
+                          "parallelIndex": 1,
+                          "status": "passed",
+                          "duration": 24959,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-04-14T08:36:50.936Z",
+                          "annotations": [
+                            {
+                              "type": "randomCartButtonIndex",
+                              "description": "11"
+                            },
+                            {
+                              "type": "productName",
+                              "description": "Wet Cat Food Variety Pack"
+                            }
+                          ],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "f177f4eaa9abb9f5894f-476e1cdff7fc8247cac6",
+                  "file": "shopping.spec.ts",
+                  "line": 213,
+                  "column": 13
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-04-14T08:32:44.776Z",
+    "duration": 271217.098,
+    "expected": 45,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 3
+  }
+}
