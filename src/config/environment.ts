@@ -19,6 +19,7 @@ export interface AppConfig {
     baseUrl: string;
     profiles: {
         validUser: UserProfile;
+        adminUser: UserProfile;
     };
 }
 
@@ -30,6 +31,10 @@ const config: AppConfig = {
             email: process.env.TEST_USER_EMAIL || 'garaga@petpals.com',
             password: process.env.TEST_USER_PASSWORD || '@admin123',
         },
+        adminUser: {
+            email: process.env.ADMIN_USER_EMAIL || 'admin@petpals.com',
+            password: process.env.ADMIN_USER_PASSWORD || 'admin123',
+        }
     },
 };
 
