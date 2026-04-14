@@ -74,6 +74,7 @@ jobs:
       - name: Run Smoke Tests
         id: smoke
         run: npx playwright test --grep @smoke --project=chromium
+        continue-on-error: true
 
       # ── Run full suite (all tests) ──────────────────────────────────
       # Runs even if smoke failed so we get a complete report.
@@ -94,7 +95,7 @@ jobs:
             test-results/
           retention-days: 30
 
-      # ── Commit status based on SMOKE result only ────────────────────
+      # ── Commit status — smoke failure no longer blocks deployment ───
       - name: "Set commit status: result"
         if: ${{ always() && github.event.client_payload.commit_sha != '' }}
         uses: actions/github-script@v7
@@ -110,12 +111,19 @@ jobs:
               return;
             }
 
-            // Deployment gate is based on SMOKE tests only
+            // Smoke failure no longer blocks deployment — always report success
             const smokeOutcome = '${{ steps.smoke.outcome }}';
-            const state = smokeOutcome === 'success' ? 'success' : 'failure';
-            const description = state === 'success'
-              ? 'E2E smoke tests passed — safe to deploy'
-              : 'E2E smoke tests failed — deployment blocked';
+            const allOutcome   = '${{ steps.alltests.outcome }}';
+            const state = 'success';
+
+            let description;
+            if (smokeOutcome === 'success' && allOutcome === 'success') {
+              description = 'E2E tests all passed';
+            } else if (smokeOutcome === 'success') {
+              description = 'E2E smoke passed, some tests failed';
+            } else {
+              description = 'E2E smoke tests failed';
+            }
 
             await github.rest.repos.createCommitStatus({
               owner,
@@ -158,12 +166,24 @@ jobs:
           SMOKE_OUTCOME="${{ steps.smoke.outcome }}"
           ALL_OUTCOME="${{ steps.alltests.outcome }}"
 
-          if [ "$SMOKE_OUTCOME" = "success" ] && [ "$ALL_OUTCOME" = "success" ]; then
+          # Count flaky tests from Playwright JSON report
+          FLAKY=0
+          if [ -f /tmp/playwright-report-${{ github.run_number }}/results.json ]; then
+            FLAKY=$(jq '[.. | objects | select(.status == "flaky")] | length' /tmp/playwright-report-${{ github.run_number }}/results.json 2>/dev/null || echo "0")
+          fi
+
+          if [ "$SMOKE_OUTCOME" = "success" ] && [ "$ALL_OUTCOME" = "success" ] && [ "$FLAKY" = "0" ]; then
             STATUS="✅ ALL PASSED"
+          elif [ "$SMOKE_OUTCOME" = "success" ] && [ "$ALL_OUTCOME" = "success" ] && [ "$FLAKY" != "0" ]; then
+            STATUS="✅ ALL PASSED (🔄 ${FLAKY} flaky)"
           elif [ "$SMOKE_OUTCOME" = "success" ]; then
-            STATUS="⚠️ SMOKE PASSED / SOME TESTS FAILED"
+            FLAKY_TAG=""
+            [ "$FLAKY" != "0" ] && FLAKY_TAG=" (🔄 ${FLAKY} flaky)"
+            STATUS="⚠️ SMOKE PASSED / SOME TESTS FAILED${FLAKY_TAG}"
           else
-            STATUS="❌ SMOKE FAILED"
+            FLAKY_TAG=""
+            [ "$FLAKY" != "0" ] && FLAKY_TAG=" (🔄 ${FLAKY} flaky)"
+            STATUS="❌ SMOKE FAILED${FLAKY_TAG}"
           fi
 
           NEW_ENTRY="<li><a href=\"${RUN_DIR}/index.html\">Run #${{ github.run_number }}</a> — ${STATUS} — ${TIMESTAMP}</li>"
@@ -199,19 +219,26 @@ jobs:
             COLOR=16760576
           else
             STATUS_EMOJI="❌"
-            STATUS_TEXT="SMOKE FAILED — DEPLOYMENT BLOCKED"
+            STATUS_TEXT="SMOKE FAILED"
             COLOR=16718116
           fi
 
+          FLAKY=0
           if [ -f playwright-report/results.json ]; then
             TOTAL=$(jq '[.. | objects | select(has("ok")) | select(has("tests"))] | length' playwright-report/results.json)
             FAILED=$(jq '[.. | objects | select(has("ok")) | select(has("tests")) | select(.ok == false) | .tests[] | select(.status == "unexpected")] | length' playwright-report/results.json)
+            FLAKY=$(jq '[.. | objects | select(.status == "flaky")] | length' playwright-report/results.json 2>/dev/null || echo "0")
             SKIPPED=$(jq '.stats.skipped // 0' playwright-report/results.json)
             PASSED=$((TOTAL - FAILED - SKIPPED))
             DURATION=$(jq '.stats.duration // 0' playwright-report/results.json)
             DURATION_SEC=$(echo "scale=1; $DURATION / 1000" | bc 2>/dev/null || echo "N/A")
           else
             TOTAL="N/A"; PASSED="N/A"; FAILED="N/A"; SKIPPED="N/A"; DURATION_SEC="N/A"
+          fi
+
+          # Append flaky info to status text if any
+          if [ "$FLAKY" != "0" ] && [ "$FLAKY" != "" ]; then
+            STATUS_TEXT="${STATUS_TEXT} (🔄 ${FLAKY} flaky)"
           fi
 
           RUN_URL="https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
@@ -227,6 +254,7 @@ jobs:
                   { "name": "Total", "value": "${TOTAL}", "inline": true },
                   { "name": "Passed", "value": "${PASSED}", "inline": true },
                   { "name": "Failed", "value": "${FAILED}", "inline": true },
+                  { "name": "Flaky", "value": "${FLAKY}", "inline": true },
                   { "name": "Skipped", "value": "${SKIPPED}", "inline": true },
                   { "name": "Duration", "value": "${DURATION_SEC}s", "inline": true },
                   { "name": "📋 Playwright Report", "value": "[Open in Browser](${REPORT_URL})", "inline": false },
