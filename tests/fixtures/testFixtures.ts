@@ -1,17 +1,17 @@
 import { test as base } from '@playwright/test';
-import LoginActions from '../../pages/actions/LoginAction';
-import RegisterActions from '../../pages/actions/RegisterAction';
-import HomeActions from '../../pages/actions/HomeAction';
-import ShopActions from '../../pages/actions/ShopAction';
-import ProductActions from '../../pages/actions/ProductAction';
-import LayoutActions from '../../pages/actions/LayoutAction';
-import CheckoutActions from '../../pages/actions/CheckoutAction';
-import AuthElements from '../../pages/locators/AuthPageElements';
-import HomePageElements from '../../pages/locators/HomePageElements';
-import LayoutElements from '../../pages/locators/LayoutElements';
-import ShopPageElements from '../../pages/locators/ShopPageElements';
-import ProductPageElements from '../../pages/locators/ProductPageElements';
-import CartPageElements from '../../pages/locators/CartPageElements';
+import LoginActions from '../../page-objects/actions/LoginAction';
+import RegisterActions from '../../page-objects/actions/RegisterAction';
+import HomeActions from '../../page-objects/actions/HomeAction';
+import ShopActions from '../../page-objects/actions/ShopAction';
+import ProductActions from '../../page-objects/actions/ProductAction';
+import LayoutActions from '../../page-objects/actions/LayoutAction';
+import CheckoutActions from '../../page-objects/actions/CheckoutAction';
+import AuthElements from '../../page-objects/locators/AuthPageElements';
+import HomePageElements from '../../page-objects/locators/HomePageElements';
+import LayoutElements from '../../page-objects/locators/LayoutElements';
+import ShopPageElements from '../../page-objects/locators/ShopPageElements';
+import ProductPageElements from '../../page-objects/locators/ProductPageElements';
+import CartPageElements from '../../page-objects/locators/CartPageElements';
 import { ToastComponent } from '../../src/components';
 
 type TestFixtures = {

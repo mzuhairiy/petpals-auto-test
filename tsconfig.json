@@ -11,10 +11,11 @@
     "isolatedModules": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
+    "ignoreDeprecations": "6.0",
     "baseUrl": ".",
     "paths": {
-      "@actions/*": ["pages/actions/*"],
-      "@locators/*": ["pages/locators/*"],
+      "@actions/*": ["page-objects/actions/*"],
+      "@locators/*": ["page-objects/locators/*"],
       "@utils/*": ["utils/*"],
       "@components/*": ["src/components/*"],
       "@helpers/*": ["src/helpers/*"],
@@ -23,7 +24,7 @@
   },
   "include": [
     "tests/**/*.ts",
-    "pages/**/*.ts",
+    "page-objects/**/*.ts",
     "utils/**/*.ts",
     "src/**/*.ts",
     "playwright.config.ts"

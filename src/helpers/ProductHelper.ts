@@ -1,8 +1,8 @@
 import { expect, type Page, type Locator, type TestInfo } from '@playwright/test';
-import LayoutElements from '../../pages/locators/LayoutElements';
-import ShopPageElements from '../../pages/locators/ShopPageElements';
-import ProductPageElements from '../../pages/locators/ProductPageElements';
-import HomePageElements from '../../pages/locators/HomePageElements';
+import LayoutElements from '../../page-objects/locators/LayoutElements';
+import ShopPageElements from '../../page-objects/locators/ShopPageElements';
+import ProductPageElements from '../../page-objects/locators/ProductPageElements';
+import HomePageElements from '../../page-objects/locators/HomePageElements';
 
 /**
  * Removes all products from the wishlist page.
