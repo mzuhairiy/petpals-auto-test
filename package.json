@@ -11,7 +11,8 @@
     "test:chromium": "npx playwright test --project=chromium",
     "test:firefox": "npx playwright test --project=firefox",
     "test:webkit": "npx playwright test --project=webkit",
-    "report": "npx playwright show-report"
+    "report": "npx playwright show-report",
+    "push:testrail": "npx ts-node src/utils/TestRailPusher.ts"
   },
   "keywords": [],
   "author": "",
@@ -22,7 +23,9 @@
   "devDependencies": {
     "@faker-js/faker": "^10.4.0",
     "@playwright/test": "^1.58.2",
-    "@types/node": "^25.4.0",
-    "cross-env": "^10.1.0"
+    "@types/node": "^25.6.0",
+    "cross-env": "^10.1.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^6.0.3"
   }
 }
