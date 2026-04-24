@@ -1,39 +1,43 @@
 {
-  "compilerOptions": {
-    "target": "ES2022",
-    "module": "ESNext",
-    "moduleResolution": "bundler",
-    "strict": true,
-    "esModuleInterop": true,
-    "allowImportingTsExtensions": true,
-    "noEmit": true,
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
-    "ignoreDeprecations": "6.0",
-    "types": ["node"],
-    "baseUrl": ".",
-    "paths": {
-      "@actions/*": ["page-objects/actions/*"],
-      "@locators/*": ["page-objects/locators/*"],
-      "@utils/*": ["utils/*"],
-      "@components/*": ["src/components/*"],
-      "@helpers/*": ["src/helpers/*"],
-      "@config/*": ["src/config/*"]
-    }
-  },
-  "include": [
-    "tests/**/*.ts",
-    "page-objects/**/*.ts",
-    "utils/**/*.ts",
-    "src/**/*.ts",
-    "playwright.config.ts"
-  ],
-  "exclude": [
-    "node_modules",
-    "test-results",
-    "playwright-report",
-    "playwright-automated-test-opencart"
-  ]
+    "compilerOptions": {
+        "target": "ES2022",
+        "module": "ESNext",
+        "moduleResolution": "bundler",
+        "strict": true,
+        "esModuleInterop": true,
+        "allowImportingTsExtensions": true,
+        "noEmit": true,
+        "resolveJsonModule": true,
+        "isolatedModules": true,
+        "skipLibCheck": true,
+        "forceConsistentCasingInFileNames": true,
+        "ignoreDeprecations": "6.0",
+        "types": ["node"],
+        "baseUrl": ".",
+        "paths": {
+            "@pages/*": ["pages/*"],
+            "@components/*": ["pages/components/*"],
+            "@fixtures/*": ["fixtures/*"],
+            "@utils/*": ["utils/*"],
+            "@config/*": ["config/*"],
+            "@constants/*": ["constants/*"],
+            "@test-data/*": ["test-data/*"]
+        }
+    },
+    "include": [
+        "tests/**/*.ts",
+        "pages/**/*.ts",
+        "fixtures/**/*.ts",
+        "utils/**/*.ts",
+        "config/**/*.ts",
+        "constants/**/*.ts",
+        "scripts/**/*.ts",
+        "playwright.config.ts"
+    ],
+    "exclude": [
+        "node_modules",
+        "test-results",
+        "playwright-report",
+        "blob-report"
+    ]
 }

@@ -1,0 +1,9 @@
+{
+    "search": {
+        "products": ["Cat Water Fountain", "Dog Kibble", "Chew Toy", "Cat Scratching", "Dog Tennis"]
+    },
+    "priceFilter": {
+        "min": 50000,
+        "max": 200000
+    }
+}

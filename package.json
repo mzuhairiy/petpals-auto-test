@@ -1,31 +1,36 @@
 {
-  "name": "petpals-auto-test",
-  "version": "1.0.0",
-  "description": "Playwright automated tests for PetPals application",
-  "main": "index.ts",
-  "scripts": {
-    "test": "npx playwright test",
-    "test:local": "cross-env TEST_ENV=local npx playwright test",
-    "test:staging": "cross-env TEST_ENV=staging npx playwright test",
-    "test:headed": "npx playwright test --headed",
-    "test:chromium": "npx playwright test --project=chromium",
-    "test:firefox": "npx playwright test --project=firefox",
-    "test:webkit": "npx playwright test --project=webkit",
-    "report": "npx playwright show-report",
-    "push:testrail": "npx ts-node src/utils/TestRailPusher.ts"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "dotenv": "^16.3.1"
-  },
-  "devDependencies": {
-    "@faker-js/faker": "^10.4.0",
-    "@playwright/test": "^1.58.2",
-    "@types/node": "^25.6.0",
-    "cross-env": "^10.1.0",
-    "ts-node": "^10.9.2",
-    "typescript": "^6.0.3"
-  }
+    "name": "petpals-auto-test",
+    "version": "2.0.0",
+    "description": "Playwright automated tests for PetPals application — POM architecture",
+    "main": "index.ts",
+    "scripts": {
+        "test": "npx playwright test",
+        "test:local": "cross-env TEST_ENV=local npx playwright test",
+        "test:staging": "cross-env TEST_ENV=staging npx playwright test",
+        "test:headed": "npx playwright test --headed",
+        "test:chromium": "npx playwright test --project=chromium",
+        "test:firefox": "npx playwright test --project=firefox",
+        "test:webkit": "npx playwright test --project=webkit",
+        "test:smoke": "npx playwright test --grep @smoke",
+        "test:auth": "npx playwright test tests/auth/",
+        "test:shop": "npx playwright test tests/shop/",
+        "test:navigation": "npx playwright test tests/navigation/",
+        "test:account": "npx playwright test tests/account/",
+        "report": "npx playwright show-report",
+        "push:testrail": "npx ts-node scripts/testrail-pusher.ts"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "dotenv": "^16.3.1"
+    },
+    "devDependencies": {
+        "@faker-js/faker": "^10.4.0",
+        "@playwright/test": "^1.58.2",
+        "@types/node": "^25.6.0",
+        "cross-env": "^10.1.0",
+        "ts-node": "^10.9.2",
+        "typescript": "^6.0.3"
+    }
 }
