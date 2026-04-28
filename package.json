@@ -17,7 +17,9 @@
         "test:navigation": "npx playwright test tests/navigation/",
         "test:account": "npx playwright test tests/account/",
         "report": "npx playwright show-report",
-        "push:testrail": "npx ts-node scripts/testrail-pusher.ts"
+        "push:testrail": "npx ts-node scripts/testrail-pusher.ts",
+        "test:testrail": "cross-env TESTRAIL_REPORT=true npx playwright test",
+        "test:testrail:auth": "cross-env TESTRAIL_REPORT=true npx playwright test tests/auth/"
     },
     "keywords": [],
     "author": "",

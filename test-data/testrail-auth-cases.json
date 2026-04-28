@@ -1,0 +1,258 @@
+[
+    {
+        "title": "US-20 — Login with valid credentials",
+        "section_name": "Auth",
+        "type_id": 1,
+        "priority_id": 2,
+        "refs": "US-20",
+        "preconds": "User has a registered account with valid credentials.\nUser is on the home page and not signed in.",
+        "steps_separated": [
+            {
+                "content": "Click the 'Sign In' button in the navbar.",
+                "expected": "The Sign In page is displayed."
+            },
+            {
+                "content": "Enter a valid registered email and password.",
+                "expected": "Fields accept the input without validation errors."
+            },
+            {
+                "content": "Click the 'Sign In' submit button.",
+                "expected": "A success toast is displayed. The navbar shows 'Sign Out' instead of 'Sign In'."
+            }
+        ]
+    },
+    {
+        "title": "US-20 — Login with invalid credentials shows error",
+        "section_name": "Auth",
+        "type_id": 1,
+        "priority_id": 2,
+        "refs": "US-20",
+        "preconds": "User is on the home page and not signed in.",
+        "steps_separated": [
+            {
+                "content": "Click the 'Sign In' button in the navbar.",
+                "expected": "The Sign In page is displayed."
+            },
+            {
+                "content": "Enter a valid email but an incorrect password.",
+                "expected": "Fields accept the input."
+            },
+            {
+                "content": "Click the 'Sign In' submit button.",
+                "expected": "An error toast is displayed. The URL remains on the sign-in page."
+            }
+        ]
+    },
+    {
+        "title": "US-20 — Login with empty credentials is prevented",
+        "section_name": "Auth",
+        "type_id": 1,
+        "priority_id": 2,
+        "refs": "US-20",
+        "preconds": "User is on the home page and not signed in.",
+        "steps_separated": [
+            {
+                "content": "Click the 'Sign In' button in the navbar.",
+                "expected": "The Sign In page is displayed."
+            },
+            {
+                "content": "Leave email and password fields empty and click 'Sign In'.",
+                "expected": "The URL remains on the sign-in page. Validation errors are shown for both email and password fields."
+            }
+        ]
+    },
+    {
+        "title": "US-20 — Login with invalid email format shows validation error",
+        "section_name": "Auth",
+        "type_id": 1,
+        "priority_id": 3,
+        "refs": "US-20",
+        "preconds": "User is on the home page and not signed in.",
+        "steps_separated": [
+            {
+                "content": "Click the 'Sign In' button in the navbar.",
+                "expected": "The Sign In page is displayed."
+            },
+            {
+                "content": "Enter an invalid email format (e.g., 'not-an-email') and a password.",
+                "expected": "Fields accept the input."
+            },
+            {
+                "content": "Click the 'Sign In' submit button.",
+                "expected": "A validation error is shown on the email field."
+            }
+        ]
+    },
+    {
+        "title": "US-20 — Login with unregistered email shows error",
+        "section_name": "Auth",
+        "type_id": 1,
+        "priority_id": 2,
+        "refs": "US-20",
+        "preconds": "User is on the home page and not signed in.",
+        "steps_separated": [
+            {
+                "content": "Click the 'Sign In' button in the navbar.",
+                "expected": "The Sign In page is displayed."
+            },
+            {
+                "content": "Enter an email that is not registered and any password.",
+                "expected": "Fields accept the input."
+            },
+            {
+                "content": "Click the 'Sign In' submit button.",
+                "expected": "An error toast indicating invalid credentials is displayed."
+            }
+        ]
+    },
+    {
+        "title": "US-20 — Navigate to sign-up page from sign-in",
+        "section_name": "Auth",
+        "type_id": 1,
+        "priority_id": 3,
+        "refs": "US-20",
+        "preconds": "User is on the Sign In page.",
+        "steps_separated": [
+            {
+                "content": "Click the 'Sign Up' link on the sign-in page.",
+                "expected": "The URL changes to the sign-up page. The Sign Up heading is visible."
+            }
+        ]
+    },
+    {
+        "title": "US-22 — Navigate to forgot password page from sign-in",
+        "section_name": "Auth",
+        "type_id": 1,
+        "priority_id": 3,
+        "refs": "US-22",
+        "preconds": "User is on the Sign In page.",
+        "steps_separated": [
+            {
+                "content": "Click the 'Forgot Password' link on the sign-in page.",
+                "expected": "The URL changes to the forgot password page. The Forgot Password heading is visible."
+            }
+        ]
+    },
+    {
+        "title": "US-20 — Logout returns to unauthenticated state",
+        "section_name": "Auth",
+        "type_id": 1,
+        "priority_id": 2,
+        "refs": "US-20",
+        "preconds": "User is signed in with valid credentials.",
+        "steps_separated": [
+            {
+                "content": "Verify the 'Sign Out' button is visible in the navbar.",
+                "expected": "'Sign Out' button is visible."
+            },
+            {
+                "content": "Click the 'Sign Out' button.",
+                "expected": "User is redirected to the sign-in page. The 'Sign Up' button is visible. The 'Sign Out' button is no longer visible."
+            }
+        ]
+    },
+    {
+        "title": "US-19 — Register with valid data",
+        "section_name": "Auth",
+        "type_id": 1,
+        "priority_id": 2,
+        "refs": "US-19",
+        "preconds": "User is on the Sign Up page.",
+        "steps_separated": [
+            {
+                "content": "Enter a valid full name, unique email, password, and confirm password. Accept terms.",
+                "expected": "All fields accept the input without validation errors."
+            },
+            {
+                "content": "Click the 'Sign Up' submit button.",
+                "expected": "User is redirected away from the sign-up page (to sign-in or home), or a success toast is displayed."
+            }
+        ]
+    },
+    {
+        "title": "US-19 — Register with mismatched passwords is prevented",
+        "section_name": "Auth",
+        "type_id": 1,
+        "priority_id": 2,
+        "refs": "US-19",
+        "preconds": "User is on the Sign Up page.",
+        "steps_separated": [
+            {
+                "content": "Enter valid name and email. Enter 'Password123!' as password and 'DifferentPassword456!' as confirm password.",
+                "expected": "Fields accept the input."
+            },
+            {
+                "content": "Click the 'Sign Up' submit button.",
+                "expected": "A validation error is shown on the confirm password field."
+            }
+        ]
+    },
+    {
+        "title": "US-19 — Register without accepting terms is prevented",
+        "section_name": "Auth",
+        "type_id": 1,
+        "priority_id": 2,
+        "refs": "US-19",
+        "preconds": "User is on the Sign Up page.",
+        "steps_separated": [
+            {
+                "content": "Enter valid name, email, password, and confirm password. Do NOT check the terms checkbox.",
+                "expected": "Fields accept the input."
+            },
+            {
+                "content": "Click the 'Sign Up' submit button.",
+                "expected": "The URL remains on the sign-up page. A terms validation error is displayed."
+            }
+        ]
+    },
+    {
+        "title": "US-19 — Register with empty email is prevented",
+        "section_name": "Auth",
+        "type_id": 1,
+        "priority_id": 3,
+        "refs": "US-19",
+        "preconds": "User is on the Sign Up page.",
+        "steps_separated": [
+            {
+                "content": "Enter valid name, leave email empty, enter matching passwords.",
+                "expected": "Fields accept the input."
+            },
+            {
+                "content": "Click the 'Sign Up' submit button.",
+                "expected": "The URL remains on the sign-up page. An email validation error is displayed."
+            }
+        ]
+    },
+    {
+        "title": "US-19 — Register with already registered email shows error",
+        "section_name": "Auth",
+        "type_id": 1,
+        "priority_id": 2,
+        "refs": "US-19",
+        "preconds": "User is on the Sign Up page. An account with the test email already exists.",
+        "steps_separated": [
+            {
+                "content": "Enter valid name, an already-registered email, and matching passwords. Accept terms.",
+                "expected": "Fields accept the input."
+            },
+            {
+                "content": "Click the 'Sign Up' submit button.",
+                "expected": "The URL remains on the sign-up page. An error toast indicating the email is already registered is displayed."
+            }
+        ]
+    },
+    {
+        "title": "US-19 — Navigate to sign-in page from sign-up",
+        "section_name": "Auth",
+        "type_id": 1,
+        "priority_id": 3,
+        "refs": "US-19",
+        "preconds": "User is on the Sign Up page.",
+        "steps_separated": [
+            {
+                "content": "Click the 'Sign In' link on the sign-up page.",
+                "expected": "The URL changes to the sign-in page. The Sign In heading is visible."
+            }
+        ]
+    }
+]

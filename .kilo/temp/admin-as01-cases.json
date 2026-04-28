@@ -1,0 +1,96 @@
+[
+    {
+        "title": "AS-01 — Add product with valid fields",
+        "section_name": "Admin",
+        "type_id": 3,
+        "priority_id": 3,
+        "refs": "AS-01",
+        "preconds": "User is signed in as an admin and on the admin products page.",
+        "steps_separated": [
+            {
+                "content": "Navigate to the Admin Products page",
+                "expected": "Products page is displayed with list of products and 'Add Product' button"
+            },
+            {
+                "content": "Click the 'Add Product' button",
+                "expected": "Product creation form is shown with fields for name, description, price, category, etc."
+            },
+            {
+                "content": "Fill in all required fields with valid data (e.g., name: 'Dog Toy', price: 10.00, category: 'Toys', pet: 'Dog')",
+                "expected": "Form accepts the input"
+            },
+            {
+                "content": "Click the 'Save' or 'Add' button",
+                "expected": "Product is created and user is redirected to the products list"
+            },
+            {
+                "content": "Verify the new product appears in the catalog",
+                "expected": "The created product 'Dog Toy' is visible in the products list"
+            }
+        ]
+    },
+    {
+        "title": "AS-01 — Update existing product",
+        "section_name": "Admin",
+        "type_id": 3,
+        "priority_id": 3,
+        "refs": "AS-01",
+        "preconds": "User is signed in as an admin and an existing product exists.",
+        "steps_separated": [
+            {
+                "content": "Navigate to the Admin Products page",
+                "expected": "Products page is displayed"
+            },
+            {
+                "content": "Find an existing product in the list",
+                "expected": "Product details are visible"
+            },
+            {
+                "content": "Click 'Edit' or the product to edit",
+                "expected": "Product edit form is shown with current values"
+            },
+            {
+                "content": "Update a field (e.g., change price from 10.00 to 15.00)",
+                "expected": "Form accepts the change"
+            },
+            {
+                "content": "Click 'Save' or 'Update' button",
+                "expected": "Product is updated and user is redirected to the products list"
+            },
+            {
+                "content": "Verify the changes are reflected",
+                "expected": "The product's price is now 15.00 in the list"
+            }
+        ]
+    },
+    {
+        "title": "AS-01 — Delete existing product",
+        "section_name": "Admin",
+        "type_id": 3,
+        "priority_id": 3,
+        "refs": "AS-01",
+        "preconds": "User is signed in as an admin and an existing product exists.",
+        "steps_separated": [
+            {
+                "content": "Navigate to the Admin Products page",
+                "expected": "Products page is displayed"
+            },
+            {
+                "content": "Find an existing product in the list",
+                "expected": "Product details are visible"
+            },
+            {
+                "content": "Click 'Delete' button or action for the product",
+                "expected": "Confirmation dialog appears"
+            },
+            {
+                "content": "Confirm the deletion",
+                "expected": "Product is deleted and user is redirected to the products list"
+            },
+            {
+                "content": "Verify the product is removed",
+                "expected": "The product no longer appears in the products list"
+            }
+        ]
+    }
+]

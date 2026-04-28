@@ -14,6 +14,9 @@ export default defineConfig({
     reporter: [
         ['html'],
         ['json', { outputFile: 'playwright-report/results.json' }],
+        ...(process.env.TESTRAIL_REPORT === 'true'
+            ? [['./utils/testrail-reporter.ts'] as const]
+            : []),
     ],
     use: {
         baseURL: config.baseUrl,

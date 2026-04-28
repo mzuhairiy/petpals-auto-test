@@ -1,0 +1,467 @@
+- generic:
+  - generic:
+    - main:
+      - generic:
+        - generic:
+          - generic:
+            - generic:
+              - link:
+                - /url: /admin
+                - img
+                - generic: PetPals Admin
+              - navigation:
+                - link:
+                  - /url: /admin
+                  - img
+                  - text: Dashboard
+                - link:
+                  - /url: /admin/products
+                  - img
+                  - text: Products
+                - link:
+                  - /url: /admin/orders
+                  - img
+                  - text: Orders
+            - generic:
+              - generic: Admin User
+              - button:
+                - img
+                - generic: Logout
+        - main:
+          - generic:
+            - generic:
+              - generic:
+                - img
+                - heading [level=1]: Products
+              - button [expanded]:
+                - img
+                - text: Add Product
+            - generic:
+              - generic:
+                - generic:
+                  - generic:
+                    - img
+                    - textbox:
+                      - /placeholder: Search products...
+              - generic:
+                - generic:
+                  - table:
+                    - rowgroup:
+                      - row:
+                        - columnheader: Product
+                        - columnheader: Category
+                        - columnheader: Pet
+                        - columnheader: Price
+                        - columnheader: Stock
+                        - columnheader: Status
+                        - columnheader: Actions
+                    - rowgroup:
+                      - row:
+                        - cell:
+                          - generic:
+                            - img
+                            - generic:
+                              - generic: Dog Probiotic Supplements
+                              - generic: dog-probiotic-supplements
+                        - cell: SUPPLEMENTS
+                        - cell: DOG
+                        - cell:
+                          - generic: Rp 447.840
+                        - cell: "47"
+                        - cell:
+                          - generic:
+                            - generic: New
+                        - cell:
+                          - generic:
+                            - button:
+                              - img
+                            - button:
+                              - img
+                      - row:
+                        - cell:
+                          - generic:
+                            - img
+                            - generic:
+                              - generic: Cat Water Fountain
+                              - generic: cat-water-fountain
+                        - cell: FOOD
+                        - cell: CAT
+                        - cell:
+                          - generic:
+                            - text: Rp 479.840
+                            - generic: Rp 559.840
+                        - cell: "17"
+                        - cell:
+                          - generic:
+                            - generic: 15% OFF
+                            - generic: Featured
+                        - cell:
+                          - generic:
+                            - button:
+                              - img
+                            - button:
+                              - img
+                      - row:
+                        - cell:
+                          - generic:
+                            - img
+                            - generic:
+                              - generic: Dog Training Treats Pouch
+                              - generic: dog-training-treats-pouch
+                        - cell: TOYS
+                        - cell: DOG
+                        - cell:
+                          - generic: Rp 271.840
+                        - cell: "30"
+                        - cell
+                        - cell:
+                          - generic:
+                            - button:
+                              - img
+                            - button:
+                              - img
+                      - row:
+                        - cell:
+                          - generic:
+                            - img
+                            - generic:
+                              - generic: Cat Hairball Control Treats
+                              - generic: cat-hairball-control-treats
+                        - cell: SUPPLEMENTS
+                        - cell: CAT
+                        - cell:
+                          - generic: Rp 191.840
+                        - cell: "40"
+                        - cell
+                        - cell:
+                          - generic:
+                            - button:
+                              - img
+                            - button:
+                              - img
+                      - row:
+                        - cell:
+                          - generic:
+                            - img
+                            - generic:
+                              - generic: Dog Anxiety Calming Vest
+                              - generic: dog-anxiety-calming-vest
+                        - cell: SUPPLEMENTS
+                        - cell: DOG
+                        - cell:
+                          - generic: Rp 719.840
+                        - cell: "25"
+                        - cell:
+                          - generic:
+                            - generic: New
+                        - cell:
+                          - generic:
+                            - button:
+                              - img
+                            - button:
+                              - img
+                      - row:
+                        - cell:
+                          - generic:
+                            - img
+                            - generic:
+                              - generic: Cat Scratching Post
+                              - generic: cat-scratching-post
+                        - cell: TOYS
+                        - cell: CAT
+                        - cell:
+                          - generic:
+                            - text: Rp 639.840
+                            - generic: Rp 799.840
+                        - cell: "10"
+                        - cell:
+                          - generic:
+                            - generic: 20% OFF
+                            - generic: Featured
+                        - cell:
+                          - generic:
+                            - button:
+                              - img
+                            - button:
+                              - img
+                      - row:
+                        - cell:
+                          - generic:
+                            - img
+                            - generic:
+                              - generic: Dog Dental Chews
+                              - generic: dog-dental-chews
+                        - cell: FOOD
+                        - cell: DOG
+                        - cell:
+                          - generic: Rp 239.840
+                        - cell: "43"
+                        - cell
+                        - cell:
+                          - generic:
+                            - button:
+                              - img
+                            - button:
+                              - img
+                      - row:
+                        - cell:
+                          - generic:
+                            - img
+                            - generic:
+                              - generic: Wet Cat Food Variety Pack
+                              - generic: wet-cat-food-variety-pack
+                        - cell: FOOD
+                        - cell: CAT
+                        - cell:
+                          - generic: Rp 303.840
+                        - cell: "60"
+                        - cell
+                        - cell:
+                          - generic:
+                            - button:
+                              - img
+                            - button:
+                              - img
+                      - row:
+                        - cell:
+                          - generic:
+                            - img
+                            - generic:
+                              - generic: Dog Tennis Ball Launcher
+                              - generic: dog-tennis-ball-launcher
+                        - cell: TOYS
+                        - cell: DOG
+                        - cell:
+                          - generic:
+                            - text: Rp 399.840
+                            - generic: Rp 479.840
+                        - cell: "20"
+                        - cell:
+                          - generic:
+                            - generic: 15% OFF
+                            - generic: Featured
+                        - cell:
+                          - generic:
+                            - button:
+                              - img
+                            - button:
+                              - img
+                      - row:
+                        - cell:
+                          - generic:
+                            - img
+                            - generic:
+                              - generic: Catnip Mice Toys (3-Pack)
+                              - generic: catnip-mice-toys-3-pack
+                        - cell: TOYS
+                        - cell: CAT
+                        - cell:
+                          - generic: Rp 159.840
+                        - cell: "48"
+                        - cell
+                        - cell:
+                          - generic:
+                            - button:
+                              - img
+                            - button:
+                              - img
+                      - row:
+                        - cell:
+                          - generic:
+                            - img
+                            - generic:
+                              - generic: Dog Joint Health Supplements
+                              - generic: dog-joint-health-supplements
+                        - cell: SUPPLEMENTS
+                        - cell: DOG
+                        - cell:
+                          - generic: Rp 527.840
+                        - cell: "40"
+                        - cell:
+                          - generic:
+                            - generic: Featured
+                        - cell:
+                          - generic:
+                            - button:
+                              - img
+                            - button:
+                              - img
+                      - row:
+                        - cell:
+                          - generic:
+                            - img
+                            - generic:
+                              - generic: Cat Immune Support Supplements
+                              - generic: cat-immune-support-supplements
+                        - cell: SUPPLEMENTS
+                        - cell: CAT
+                        - cell:
+                          - generic: Rp 479.840
+                        - cell: "22"
+                        - cell:
+                          - generic:
+                            - generic: New
+                            - generic: Featured
+                        - cell:
+                          - generic:
+                            - button:
+                              - img
+                            - button:
+                              - img
+                      - row:
+                        - cell:
+                          - generic:
+                            - img
+                            - generic:
+                              - generic: Durable Dog Chew Toy
+                              - generic: durable-dog-chew-toy
+                        - cell: TOYS
+                        - cell: DOG
+                        - cell:
+                          - generic:
+                            - text: Rp 303.840
+                            - generic: Rp 367.840
+                        - cell: "30"
+                        - cell:
+                          - generic:
+                            - generic: 15% OFF
+                            - generic: Featured
+                        - cell:
+                          - generic:
+                            - button:
+                              - img
+                            - button:
+                              - img
+                      - row:
+                        - cell:
+                          - generic:
+                            - img
+                            - generic:
+                              - generic: Premium Dog Kibble
+                              - generic: premium-dog-kibble
+                        - cell: FOOD
+                        - cell: DOG
+                        - cell:
+                          - generic: Rp 559.840
+                        - cell: "45"
+                        - cell:
+                          - generic:
+                            - generic: Featured
+                        - cell:
+                          - generic:
+                            - button:
+                              - img
+                            - button:
+                              - img
+                      - row:
+                        - cell:
+                          - generic:
+                            - img
+                            - generic:
+                              - generic: Interactive Cat Toy
+                              - generic: interactive-cat-toy
+                        - cell: TOYS
+                        - cell: CAT
+                        - cell:
+                          - generic:
+                            - text: Rp 207.840
+                            - generic: Rp 271.840
+                        - cell: "32"
+                        - cell:
+                          - generic:
+                            - generic: New
+                            - generic: 20% OFF
+                            - generic: Featured
+                        - cell:
+                          - generic:
+                            - button:
+                              - img
+                            - button:
+                              - img
+                      - row:
+                        - cell:
+                          - generic:
+                            - img
+                            - generic:
+                              - generic: Premium Dry Cat Food
+                              - generic: premium-dry-cat-food
+                        - cell: FOOD
+                        - cell: CAT
+                        - cell:
+                          - generic: Rp 399.840
+                        - cell: "50"
+                        - cell:
+                          - generic:
+                            - generic: Featured
+                        - cell:
+                          - generic:
+                            - button:
+                              - img
+                            - button:
+                              - img
+  - list
+  - alert
+  - generic: "0"
+  - dialog "Add New Product" [ref=e1242]:
+    - generic [ref=e1243]:
+      - generic [ref=e1244]:
+        - heading "Add New Product" [level=2] [ref=e1245]
+        - paragraph [ref=e1246]: Fill in the product details below
+      - generic [ref=e1247]:
+        - generic [ref=e1248]:
+          - generic [ref=e1249]:
+            - text: Name
+            - textbox "Name" [active] [ref=e1250]
+          - generic [ref=e1251]:
+            - text: Slug
+            - textbox "Slug" [ref=e1252]
+        - generic [ref=e1253]:
+          - text: Description
+          - textbox "Description" [ref=e1254]
+        - generic [ref=e1255]:
+          - generic [ref=e1256]:
+            - text: Price (IDR)
+            - spinbutton "Price (IDR)" [ref=e1257]: "0"
+          - generic [ref=e1258]:
+            - text: Original Price (IDR)
+            - spinbutton "Original Price (IDR)" [ref=e1259]
+          - generic [ref=e1260]:
+            - text: Stock
+            - spinbutton "Stock" [ref=e1261]: "0"
+        - generic [ref=e1262]:
+          - generic [ref=e1263]:
+            - text: Image URL
+            - textbox "Image URL" [ref=e1264]:
+              - /placeholder: https://...
+          - generic [ref=e1265]:
+            - text: Discount (%)
+            - spinbutton "Discount (%)" [ref=e1266]: "0"
+        - generic [ref=e1267]:
+          - generic [ref=e1268]:
+            - text: Category
+            - combobox [ref=e1269] [cursor=pointer]:
+              - generic: Food
+              - img [ref=e1270]
+            - combobox [ref=e1272]
+          - generic [ref=e1273]:
+            - text: Pet Type
+            - combobox [ref=e1274] [cursor=pointer]:
+              - generic: Dog
+              - img [ref=e1275]
+            - combobox [ref=e1277]
+          - generic [ref=e1278]:
+            - text: Tags (comma separated)
+            - textbox "tag1, tag2, tag3" [ref=e1279]
+        - generic [ref=e1280]:
+          - generic [ref=e1281]:
+            - checkbox "Mark as New" [ref=e1282]
+            - generic [ref=e1283]: Mark as New
+          - generic [ref=e1284]:
+            - checkbox "Featured" [ref=e1285]
+            - generic [ref=e1286]: Featured
+      - generic [ref=e1287]:
+        - button "Cancel" [ref=e1288] [cursor=pointer]
+        - button "Create" [ref=e1289] [cursor=pointer]
+    - button "Close" [ref=e1290] [cursor=pointer]:
+      - img [ref=e1291]
+      - generic [ref=e1294]: Close

@@ -13,7 +13,7 @@ test.describe('Registration Flow', () => {
         await expect(registerPage.heading).toBeVisible();
     });
 
-    test('should register with valid data @smoke @auth', async ({ page, registerPage, toast }) => {
+    test('should register with valid data @TC87 @smoke @auth', async ({ page, registerPage, toast }) => {
         const userCreds = generateUserCreds();
         await registerPage.register(userCreds);
         await page.waitForURL(url => !url.toString().includes('/sign-up'), { timeout: 10000 }).catch(() => {});
@@ -27,7 +27,7 @@ test.describe('Registration Flow', () => {
         }
     });
 
-    test('should not register with mismatched passwords @auth', async ({ registerPage }) => {
+    test('should not register with mismatched passwords @TC88 @auth', async ({ registerPage }) => {
         const userCreds = generateUserCreds();
         await registerPage.register({
             fullName: userCreds.fullName,
@@ -38,20 +38,20 @@ test.describe('Registration Flow', () => {
         await expect(registerPage.confirmPasswordError).toBeVisible();
     });
 
-    test('should not register without accepting terms @auth', async ({ page, registerPage }) => {
+    test('should not register without accepting terms @TC89 @auth', async ({ page, registerPage }) => {
         const userCreds = generateUserCreds();
         await registerPage.registerWithoutTerms(userCreds);
         await expect(page).toHaveURL(URL_PATTERNS.signUp);
         await expect(registerPage.termsError).toBeVisible();
     });
 
-    test('should navigate to sign-in page from sign-up @auth @navigation', async ({ page, registerPage, loginPage }) => {
+    test('should navigate to sign-in page from sign-up @TC92 @auth @navigation', async ({ page, registerPage, loginPage }) => {
         await registerPage.navigateToSignIn();
         await expect(page).toHaveURL(URL_PATTERNS.signIn);
         await expect(loginPage.heading).toBeVisible();
     });
 
-    test('should not register with empty email @auth', async ({ page, registerPage }) => {
+    test('should not register with empty email @TC90 @auth', async ({ page, registerPage }) => {
         const userCreds = generateUserCreds();
         await registerPage.register({
             fullName: userCreds.fullName,
@@ -63,7 +63,7 @@ test.describe('Registration Flow', () => {
         await expect(registerPage.emailError).toBeVisible();
     });
 
-    test('should not register with already registered email @auth', async ({ page, registerPage, toast }) => {
+    test('should not register with already registered email @TC91 @auth', async ({ page, registerPage, toast }) => {
         const userCreds = generateUserCreds();
         await registerPage.register({
             fullName: userCreds.fullName,

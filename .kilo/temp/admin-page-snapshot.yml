@@ -1,0 +1,155 @@
+- generic [active] [ref=e1]:
+  - main [ref=e37]:
+    - generic [ref=e657]:
+      - generic [ref=e659]:
+        - generic [ref=e660]:
+          - link "PetPals Admin" [ref=e661] [cursor=pointer]:
+            - /url: /admin
+            - img [ref=e662]
+            - generic [ref=e667]: PetPals Admin
+          - navigation [ref=e668]:
+            - link "Dashboard" [ref=e669] [cursor=pointer]:
+              - /url: /admin
+              - img [ref=e670]
+              - text: Dashboard
+            - link "Products" [ref=e675] [cursor=pointer]:
+              - /url: /admin/products
+              - img [ref=e676]
+              - text: Products
+            - link "Orders" [ref=e680] [cursor=pointer]:
+              - /url: /admin/orders
+              - img [ref=e681]
+              - text: Orders
+        - generic [ref=e685]:
+          - generic [ref=e686]: Admin User
+          - button "Logout" [ref=e687] [cursor=pointer]:
+            - img
+            - generic [ref=e688]: Logout
+      - main [ref=e689]:
+        - generic [ref=e690]:
+          - heading "Dashboard" [level=1] [ref=e691]
+          - generic [ref=e692]:
+            - link "Total Orders 11" [ref=e693] [cursor=pointer]:
+              - /url: /admin/orders
+              - generic [ref=e694]:
+                - generic [ref=e695]:
+                  - generic [ref=e696]: Total Orders
+                  - img [ref=e698]
+                - generic [ref=e703]: "11"
+            - link "Total Revenue Rp 5.601.264" [ref=e704] [cursor=pointer]:
+              - /url: /admin/orders
+              - generic [ref=e705]:
+                - generic [ref=e706]:
+                  - generic [ref=e707]: Total Revenue
+                  - img [ref=e709]
+                - generic [ref=e712]: Rp 5.601.264
+            - link "Total Products 16" [ref=e713] [cursor=pointer]:
+              - /url: /admin/products
+              - generic [ref=e714]:
+                - generic [ref=e715]:
+                  - generic [ref=e716]: Total Products
+                  - img [ref=e718]
+                - generic [ref=e723]: "16"
+            - link "Low Stock 1" [ref=e724] [cursor=pointer]:
+              - /url: /admin/products
+              - generic [ref=e725]:
+                - generic [ref=e726]:
+                  - generic [ref=e727]: Low Stock
+                  - img [ref=e729]
+                - generic [ref=e732]: "1"
+          - generic [ref=e733]:
+            - generic [ref=e734]:
+              - generic [ref=e735]:
+                - generic [ref=e736]:
+                  - img [ref=e737]
+                  - text: Monthly Revenue
+                - generic [ref=e740]: Revenue over the last 6 months
+              - img [ref=e745]:
+                - generic [ref=e752]: Apr
+                - generic [ref=e754]:
+                  - generic [ref=e756]: Rp 0k
+                  - generic [ref=e758]: Rp1500k
+                  - generic [ref=e760]: Rp3000k
+                  - generic [ref=e762]: Rp4500k
+                  - generic [ref=e764]: Rp6000k
+            - generic [ref=e770]:
+              - generic [ref=e771]:
+                - generic [ref=e772]:
+                  - img [ref=e773]
+                  - text: Daily Orders
+                - generic [ref=e777]: Orders in the last 7 days
+              - img [ref=e782]:
+                - generic [ref=e787]:
+                  - generic [ref=e789]: Thu, Apr 23
+                  - generic [ref=e791]: Fri, Apr 24
+                  - generic [ref=e793]: Sat, Apr 25
+                  - generic [ref=e795]: Sun, Apr 26
+                  - generic [ref=e797]: Tue, Apr 28
+                - generic [ref=e799]:
+                  - generic [ref=e801]: "0"
+                  - generic [ref=e803]: "2"
+                  - generic [ref=e805]: "4"
+                  - generic [ref=e807]: "6"
+                  - generic [ref=e809]: "8"
+          - generic [ref=e820]:
+            - generic [ref=e821]:
+              - generic [ref=e822]:
+                - generic [ref=e823]:
+                  - img [ref=e824]
+                  - text: Orders by Status
+                - generic [ref=e829]: Current order status distribution
+              - img [ref=e834]:
+                - generic [ref=e835]:
+                  - generic [ref=e836]:
+                    - img [ref=e897]
+                    - img [ref=e899]
+                  - generic [ref=e900]:
+                    - generic [ref=e902]: PENDING 73%
+                    - generic [ref=e904]: PROCESSING 27%
+            - generic [ref=e841]:
+              - generic [ref=e842]:
+                - generic [ref=e843]:
+                  - generic [ref=e844]: Recent Orders
+                  - generic [ref=e845]: Latest orders in the system
+                - link "View all" [ref=e846] [cursor=pointer]:
+                  - /url: /admin/orders
+              - generic [ref=e848]:
+                - generic [ref=e849]:
+                  - generic [ref=e850]:
+                    - generic [ref=e851]: 2664e417...
+                    - generic [ref=e852]: 4/24/2026
+                  - generic [ref=e853]:
+                    - generic [ref=e854]: Rp 552.824
+                    - generic [ref=e855]: PENDING
+                - generic [ref=e856]:
+                  - generic [ref=e857]:
+                    - generic [ref=e858]: f6f38a91...
+                    - generic [ref=e859]: 4/24/2026
+                  - generic [ref=e860]:
+                    - generic [ref=e861]: Rp 703.824
+                    - generic [ref=e862]: PENDING
+                - generic [ref=e863]:
+                  - generic [ref=e864]:
+                    - generic [ref=e865]: b6a9fce9...
+                    - generic [ref=e866]: 4/24/2026
+                  - generic [ref=e867]:
+                    - generic [ref=e868]: Rp 703.824
+                    - generic [ref=e869]: PENDING
+                - generic [ref=e870]:
+                  - generic [ref=e871]:
+                    - generic [ref=e872]: e5978c62...
+                    - generic [ref=e873]: 4/24/2026
+                  - generic [ref=e874]:
+                    - generic [ref=e875]: Rp 517.624
+                    - generic [ref=e876]: PENDING
+                - generic [ref=e877]:
+                  - generic [ref=e878]:
+                    - generic [ref=e879]: 7748c89c...
+                    - generic [ref=e880]: 4/24/2026
+                  - generic [ref=e881]:
+                    - generic [ref=e882]: Rp 703.824
+                    - generic [ref=e883]: PENDING
+  - region "Notifications (F8)":
+    - list
+  - alert [ref=e656]
+  - generic [ref=e895]: "0"
