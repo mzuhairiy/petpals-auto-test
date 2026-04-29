@@ -20,6 +20,49 @@ Create Playwright automated tests using POM pattern, based on TestRail test case
 - Stop and ask before destructive operations (overwriting files, deleting)
 - Use Playwright MCP for element inspection and autonomous testing ONLY with approval
 
+## Environment Configuration — `config/env.config.ts`
+
+All tests **MUST** use `config/env.config.ts` for the base URL and user credentials. **Never hardcode URLs or credentials** in test files or page objects.
+
+**Import:**
+```typescript
+import config from '../../config/env.config';
+```
+
+**BASE_URL:**
+```typescript
+config.baseUrl  // e.g. 'https://staging.petpals-demo.shop'
+```
+- Loaded from `process.env.BASE_URL` (falls back to `'https://staging.petpals-demo.shop'`)
+- Environment is selected via `TEST_ENV` variable (defaults to `staging`)
+- The `.env.{TEST_ENV}` file is loaded automatically
+
+**User Profiles (Credentials):**
+```typescript
+config.profiles.validUser.email     // e.g. 'garaga@petpals.com'
+config.profiles.validUser.password  // e.g. '@admin123'
+
+config.profiles.adminUser.email     // e.g. 'admin@petpals.com'
+config.profiles.adminUser.password  // e.g. 'admin123'
+```
+- `validUser` — Standard registered user for general test flows (login, shop, cart, account)
+- `adminUser` — Admin user for admin panel tests (product management, etc.)
+- Values come from environment variables (`TEST_USER_EMAIL`, `TEST_USER_PASSWORD`, `ADMIN_USER_EMAIL`, `ADMIN_USER_PASSWORD`) with sensible defaults
+
+**Usage in tests:**
+```typescript
+// Navigation — use relative paths; baseUrl is set in playwright.config.ts from config.baseUrl
+await page.goto('/');
+
+// Login with valid user
+await loginPage.login(config.profiles.validUser.email, config.profiles.validUser.password);
+
+// Login with admin user
+await loginPage.login(config.profiles.adminUser.email, config.profiles.adminUser.password);
+```
+
+> **Never** use raw strings like `'garaga@petpals.com'` or `'https://staging.petpals-demo.shop'` in tests. Always reference `config`.
+
 ---
 
 ## Step 1 — Analyze Test Case

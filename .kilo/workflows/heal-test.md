@@ -20,6 +20,52 @@ Fix failing tests and update tests when UI changes, using autonomous debugging a
 - Stop and ask before destructive operations (overwriting files, deleting)
 - Use Playwright MCP for debugging and UI scanning ONLY with approval
 
+## Environment Configuration — `config/env.config.ts`
+
+When debugging and healing tests, always verify that the correct environment configuration is being used. The centralized config lives in `config/env.config.ts`. **Never hardcode URLs or credentials** in fixes.
+
+**Import:**
+```typescript
+import config from '../../config/env.config';
+```
+
+**BASE_URL:**
+```typescript
+config.baseUrl  // e.g. 'https://staging.petpals-demo.shop'
+```
+- Loaded from `process.env.BASE_URL` (falls back to `'https://staging.petpals-demo.shop'`)
+- Environment is selected via `TEST_ENV` variable (defaults to `staging`)
+- The `.env.{TEST_ENV}` file is loaded automatically
+
+**User Profiles (Credentials):**
+```typescript
+config.profiles.validUser.email     // e.g. 'garaga@petpals.com'
+config.profiles.validUser.password  // e.g. '@admin123'
+
+config.profiles.adminUser.email     // e.g. 'admin@petpals.com'
+config.profiles.adminUser.password  // e.g. 'admin123'
+```
+- `validUser` — Standard registered user for general test flows (login, shop, cart, account)
+- `adminUser` — Admin user for admin panel tests (product management, etc.)
+- Values come from environment variables (`TEST_USER_EMAIL`, `TEST_USER_PASSWORD`, `ADMIN_USER_EMAIL`, `ADMIN_USER_PASSWORD`) with sensible defaults
+
+**When diagnosing failures**, check:
+1. Is the correct `TEST_ENV` being used? (local vs staging)
+2. Is `BASE_URL` resolving to the expected host?
+3. Are credentials still valid? (`config.profiles.validUser` / `config.profiles.adminUser`)
+4. Has the `.env.{TEST_ENV}` file been updated or is it missing?
+
+**When applying fixes**, always use `config` references:
+```typescript
+// Correct — uses config
+await loginPage.login(config.profiles.validUser.email, config.profiles.validUser.password);
+
+// Wrong — hardcoded credentials
+await loginPage.login('garaga@petpals.com', '@admin123');
+```
+
+> Environment-specific failures (local vs CI) are often caused by mismatched `TEST_ENV` or missing `.env` files. Always verify `config.env` and `config.baseUrl` first.
+
 ---
 
 ## Step 1 — Detect Failing Test(s)
@@ -84,7 +130,7 @@ Review artifacts:
 
 ## Step 3 — Reproduce Failure (with approval)
 
-**⚠️ Ask user before debugging:**
+**Ask user before debugging:**
 ```
 I need to reproduce the failure to identify root cause.
 This will:
@@ -135,7 +181,7 @@ Issue identified:
 
 ## Step 4 — Scan UI for Changes (with approval)
 
-**⚠️ Ask user before scanning:**
+**Ask user before scanning:**
 ```
 I need to scan the Sign In page to detect UI changes.
 This will:
@@ -324,7 +370,7 @@ await expect(toast.message).toHaveText('Welcome back!'); // Updated copy
 
 ## Step 7 — User Review and Approval
 
-**⚠️ Show changes before applying:**
+**Show changes before applying:**
 
 ```
 Root cause: Selector change in Sign In button
@@ -386,7 +432,7 @@ Or select: (e.g., 1,3)
 
 ## Step 8 — Apply Fix
 
-**⚠️ Ask before overwriting:**
+**Ask before overwriting:**
 ```
 Ready to apply fix to /pages/login.page.ts
 

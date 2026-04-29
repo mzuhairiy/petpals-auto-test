@@ -17,6 +17,37 @@ Generate test cases from user stories and requirements, create TestRail-compatib
 - Use clear, action-oriented titles with story references
 - Save to `.kilo/temp/{feature-area}-{story-id}-cases.json`
 
+## Environment Configuration — `config/env.config.ts`
+
+`config/env.config.ts` is the single source of truth for the test environment (base URL, environment selection via TEST_ENV, and user profiles/credentials). Automation code should import and use this file at runtime. However, test case descriptions and TestRail JSON must remain human-readable and must NOT contain explicit references to code/config variables.
+
+Guidelines for writing test cases:
+- Keep preconditions and step text generic and readable. Do NOT include code-like references such as `config.baseUrl` or `config.profiles.adminUser.email` in the step descriptions.
+- The automation layer (test code) will map generic, human-readable steps to concrete values from `config/env.config.ts` when executing tests.
+- If you need to indicate which profile the automation should use, include a metadata field (e.g., `profile: validUser`) in the JSON, but do not put credentials or config references inside the step text.
+
+Examples (preferred):
+```
+Precondition: User has a registered account with valid credentials.
+Step: Navigate to the Sign In page.
+Step: Enter the registered user's email.
+Step: Enter the registered user's password.
+Step: Click the 'Sign In' button.
+```
+
+Examples (avoid):
+```
+Precondition: User has valid credentials (see config.profiles.validUser)
+Step: Go to base URL (config.baseUrl)
+Step: Enter email (config.profiles.adminUser.email)
+```
+
+Rationale:
+- Keeping steps generic prevents leaking environment-specific details and secrets into TestRail or exported JSON.
+- It keeps test cases understandable to non-technical stakeholders while allowing automation to remain environment-aware via the centralized config.
+
+> ⚠️ Use a metadata field (not step text) to indicate automation-specific routing such as which profile to use.
+
 ---
 
 ## Step 1 — Select Story or Scenario
@@ -242,7 +273,7 @@ Before saving or pushing:
 4. ✅ `steps_separated` has at least 1 step
 5. ✅ Each step has `content` and `expected`
 6. ✅ `title` is unique within file
-7. ��� JSON is valid
+7. ✅ JSON is valid
 
 ---
 
