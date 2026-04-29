@@ -8,7 +8,6 @@ import ShopPage from '../pages/shop.page';
 import ProductPage from '../pages/product.page';
 import CartPage from '../pages/cart.page';
 import AccountPage from '../pages/account.page';
-import AdminProductsPage from '../pages/admin-products.page';
 
 // Components
 import { NavbarComponent } from '../pages/components/navbar.component';
@@ -30,7 +29,6 @@ type TestFixtures = {
     productPage: ProductPage;
     cartPage: CartPage;
     accountPage: AccountPage;
-    adminProductsPage: AdminProductsPage;
 
     // Components
     navbar: NavbarComponent;
@@ -47,7 +45,6 @@ export const test = base.extend<TestFixtures>({
     productPage: async ({ page }, use) => { await use(new ProductPage(page)); },
     cartPage: async ({ page }, use) => { await use(new CartPage(page)); },
     accountPage: async ({ page }, use) => { await use(new AccountPage(page)); },
-    adminProductsPage: async ({ page }, use) => { await use(new AdminProductsPage(page)); },
 
     // Components
     navbar: async ({ page }, use) => { await use(new NavbarComponent(page)); },
