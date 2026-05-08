@@ -52,6 +52,6 @@ export default class AccountPage extends BasePage {
     }
 
     getWishlistItemByName(productName: string): Locator {
-        return this.page.locator('[data-testid^="wishlist-item-"]', { hasText: productName }).first();
+        return this.wishlistItems.filter({ hasText: productName }).first();
     }
 }

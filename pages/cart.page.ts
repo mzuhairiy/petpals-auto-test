@@ -1,5 +1,6 @@
 import { type Page, type Locator } from '@playwright/test';
 import BasePage from './base.page';
+import { TEST_CREDIT_CARD, SNAP_IFRAME_TIMEOUT, NAVIGATION_TIMEOUT, TOAST_TIMEOUT } from '../constants/env.constants';
 
 /**
  * CartPage — Cart and checkout page object.
@@ -160,22 +161,21 @@ export default class CartPage extends BasePage {
         expiry?: string;
         cvv?: string;
     }): Promise<void> {
-        const cardNumber = options?.cardNumber ?? '4811 1111 1111 1114';
-        const expiry = options?.expiry ?? '02/27';
-        const cvv = options?.cvv ?? '123';
+        const cardNumber = options?.cardNumber ?? TEST_CREDIT_CARD.number;
+        const expiry = options?.expiry ?? TEST_CREDIT_CARD.expiry;
+        const cvv = options?.cvv ?? TEST_CREDIT_CARD.cvv;
 
         await this.clickPayNow();
 
-        const snapIframe = this.page.locator('iframe[name^="popup_"]');
         const fallbackWarning = this.page.getByText('Payment popup could not load');
 
         const winner = await Promise.race([
-            snapIframe.waitFor({ state: 'attached', timeout: 20_000 }).then(() => 'iframe' as const),
-            fallbackWarning.waitFor({ state: 'visible', timeout: 20_000 }).then(() => 'fallback' as const),
+            this.snapIframe.waitFor({ state: 'attached', timeout: SNAP_IFRAME_TIMEOUT }).then(() => 'iframe' as const),
+            fallbackWarning.waitFor({ state: 'visible', timeout: SNAP_IFRAME_TIMEOUT }).then(() => 'fallback' as const),
         ]);
 
         if (winner === 'iframe') {
-            await this.payViaSnapIframe(snapIframe, cardNumber, expiry, cvv);
+            await this.payViaSnapIframe(this.snapIframe, cardNumber, expiry, cvv);
         } else {
             await this.payViaRedirect(cardNumber, expiry, cvv);
         }
@@ -185,24 +185,21 @@ export default class CartPage extends BasePage {
         snapIframe: Locator,
         cardNumber: string, expiry: string, cvv: string,
     ): Promise<void> {
-        // Wait for iframe to be fully visible (not just attached to DOM)
-        await snapIframe.waitFor({ state: 'visible', timeout: 30_000 });
+        await snapIframe.waitFor({ state: 'visible', timeout: NAVIGATION_TIMEOUT });
 
         const snapFrame = snapIframe.contentFrame();
 
-        // Wait for the Midtrans payment form to render inside the iframe
         const creditCardLink = snapFrame.getByRole('link', { name: /Credit\/debit card/ });
-        await creditCardLink.waitFor({ state: 'visible', timeout: 30_000 });
+        await creditCardLink.waitFor({ state: 'visible', timeout: NAVIGATION_TIMEOUT });
         await creditCardLink.click();
 
         await snapFrame.getByRole('textbox', { name: /1234 1234 1234/ }).fill(cardNumber);
         await snapFrame.getByRole('textbox', { name: 'MM/YY' }).fill(expiry);
         await snapFrame.locator('#card-cvv').fill(cvv);
 
-        // Wait for Midtrans to process card fields before submitting
         const payButton = snapFrame.getByRole('button', { name: 'Pay now' });
-        await payButton.waitFor({ state: 'visible', timeout: 10_000 });
-        await payButton.click({ delay: 5000 });
+        await payButton.waitFor({ state: 'visible', timeout: TOAST_TIMEOUT });
+        await payButton.click();
     }
 
     private async payViaRedirect(

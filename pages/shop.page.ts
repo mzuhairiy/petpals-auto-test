@@ -100,7 +100,9 @@ export default class ShopPage extends BasePage {
             Supplements: this.categorySupplementsCheckbox,
         };
         await checkboxMap[category].click();
-        await this.waitForDomReady();
+        await this.waitForNetworkIdle();
+        // Wait for heading to update (indicates filter applied)
+        await this.heading.waitFor({ state: 'visible' });
     }
 
     async filterByPetType(petType: 'Cats' | 'Dogs'): Promise<void> {
@@ -109,7 +111,9 @@ export default class ShopPage extends BasePage {
             Dogs: this.petTypeDogsCheckbox,
         };
         await checkboxMap[petType].click();
-        await this.waitForDomReady();
+        await this.waitForNetworkIdle();
+        // Wait for heading to update (indicates filter applied)
+        await this.heading.waitFor({ state: 'visible' });
     }
 
     async sortBy(option: 'Price: Low to High' | 'Price: High to Low' | 'Highest Rated' | 'Newest First'): Promise<void> {
@@ -138,7 +142,7 @@ export default class ShopPage extends BasePage {
     // ── Product grid interactions ──
 
     async getProductCount(): Promise<number> {
-        await this.waitForDomReady();
+        await this.waitForNetworkIdle();
         return await this.productCards.count();
     }
 

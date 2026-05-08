@@ -83,13 +83,13 @@ export default class HomePage extends BasePage {
         // Cat products section
         this.catProductsTitle = this.byTestId('cat-products-title');
         this.catProductCards = page.locator('[data-testid="cat-products-grid"] a[data-testid^="product-card-link-"]');
-        this.catAddToCartButtons = this.byTestIdPrefix('add-to-cart-');
+        this.catAddToCartButtons = page.locator('[data-testid="cat-products-grid"] [data-testid^="add-to-cart-"]');
         this.viewAllCatProductsLink = this.byTestId('view-all-cat-products-btn');
 
         // Dog products section
         this.dogProductsTitle = this.byTestId('dog-products-title');
         this.dogProductCards = page.locator('[data-testid="dog-products-grid"] a[data-testid^="product-card-link-"]');
-        this.dogAddToCartButtons = this.byTestIdPrefix('add-to-cart-');
+        this.dogAddToCartButtons = page.locator('[data-testid="dog-products-grid"] [data-testid^="add-to-cart-"]');
         this.viewAllDogProductsLink = this.byTestId('view-all-dog-products-btn');
 
         // Newsletter section

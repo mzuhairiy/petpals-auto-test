@@ -1,4 +1,5 @@
 import { type Page, type Locator, expect } from '@playwright/test';
+import { TOAST_TIMEOUT } from '../../constants/env.constants';
 
 /**
  * ToastComponent — reusable toast notification handler.
@@ -14,8 +15,6 @@ import { type Page, type Locator, expect } from '@playwright/test';
  */
 export class ToastComponent {
     private readonly page: Page;
-    private static readonly TOAST_TIMEOUT = 10_000;
-
     // Root locator
     readonly viewport: Locator;
 
@@ -27,13 +26,11 @@ export class ToastComponent {
     // ── Generic assertions ──
 
     async assertToastMessage(text: string, timeout?: number): Promise<void> {
-        const effectiveTimeout = timeout ?? ToastComponent.TOAST_TIMEOUT;
-        const toastLocator = this.page.locator('[data-testid="toast-viewport"]').getByText(text);
-        await expect(toastLocator).toBeVisible({ timeout: effectiveTimeout });
+        await expect(this.viewport.getByText(text)).toBeVisible({ timeout: timeout ?? TOAST_TIMEOUT });
     }
 
     getByText(text: string): Locator {
-        return this.page.locator('[data-testid="toast-viewport"]').getByText(text);
+        return this.viewport.getByText(text);
     }
 
     // ── Auth toasts ──

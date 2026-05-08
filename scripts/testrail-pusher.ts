@@ -52,6 +52,8 @@ class TestRailPusher {
     private email: string;
     private apiKey: string;
     private sectionCache: Map<string, number> = new Map();
+    private sectionsFetched = false;
+    private casesCache: Map<number, TestRailCaseResponse[]> = new Map();
 
     constructor() {
         this.baseUrl = (process.env.TESTRAIL_BASE_URL || '').replace(/\/+$/, '');
@@ -204,7 +206,8 @@ class TestRailPusher {
         }
 
         // Fetch and cache all sections on first call
-        if (this.sectionCache.size === 0) {
+        if (!this.sectionsFetched) {
+            this.sectionsFetched = true;
             const sections = await this.getSections();
             for (const section of sections) {
                 this.sectionCache.set(section.name.toLowerCase(), section.id);
@@ -257,12 +260,15 @@ class TestRailPusher {
         return result?.cases || [];
     }
 
-    async pushCase(testCase: TestRailCase, skipDuplicates: boolean = true): Promise<number> {
+    async pushCase(testCase: TestRailCase, skipDuplicates: boolean = true): Promise<{ caseId: number; skipped: boolean }> {
         const sectionId = await this.resolveSectionId(testCase.section_name);
 
         // Check for existing case with same title to avoid duplicates
         if (skipDuplicates) {
-            const existingCases = await this.getExistingCases(sectionId);
+            if (!this.casesCache.has(sectionId)) {
+                this.casesCache.set(sectionId, await this.getExistingCases(sectionId));
+            }
+            const existingCases = this.casesCache.get(sectionId)!;
             const duplicate = existingCases.find(
                 (c) => c.title.toLowerCase() === testCase.title.toLowerCase(),
             );
@@ -271,7 +277,7 @@ class TestRailPusher {
                 logger.info(
                     `⏭️  Skipping duplicate: "${testCase.title}" already exists (Case ID: ${duplicate.id})`,
                 );
-                return duplicate.id;
+                return { caseId: duplicate.id, skipped: true };
             }
         }
 
@@ -300,7 +306,7 @@ class TestRailPusher {
         logger.info(
             `✅ Pushed case: "${testCase.title}" → Section "${testCase.section_name}" (Case ID: ${result.id})`,
         );
-        return result.id;
+        return { caseId: result.id, skipped: false };
     }
 
     async pushFromFile(filePath: string, skipDuplicates: boolean = true): Promise<void> {
@@ -336,12 +342,13 @@ class TestRailPusher {
         const results: { title: string; caseId: number; skipped: boolean }[] = [];
 
         for (const testCase of cases) {
-            const caseId = await this.pushCase(testCase, skipDuplicates);
-            results.push({ title: testCase.title, caseId, skipped: false });
+            const { caseId, skipped } = await this.pushCase(testCase, skipDuplicates);
+            results.push({ title: testCase.title, caseId, skipped });
         }
 
         const pushed = results.filter((r) => !r.skipped).length;
-        logger.info(`\n✅ Done — ${pushed}/${results.length} case(s) pushed:`);
+        const skipped = results.length - pushed;
+        logger.info(`\n✅ Done — ${pushed} pushed, ${skipped} skipped (${results.length} total):`);
         results.forEach((r) =>
             logger.info(`  - "${r.title}" → Case ID: ${r.caseId}`),
         );
