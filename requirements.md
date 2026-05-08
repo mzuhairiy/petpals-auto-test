@@ -443,10 +443,10 @@ A privileged user who manages products and orders and monitors store performance
 ## 5. Admin Stories and Acceptance Criteria
 
 ### AS-01 — Admin product management
-**Story:** As an admin, I want to create/update/delete products so the catalog stays accurate.
+**Story:** As an admin, I want to add/update/delete products so the catalog stays accurate.
 
 **Acceptance criteria**
-- Given I am an admin, when I create a product with valid fields, then it appears in the catalog.
+- Given I am an admin, when I add a product with valid fields, then it appears in the catalog.
 - Given I am an admin, when I update a product, then changes are reflected in the catalog.
 - Given I am an admin, when I delete a product, then it is removed from the catalog.
 
