@@ -15,7 +15,9 @@
       "command": [
         "npx",
         "-y",
-        "@playwright/mcp@latest"
+        "@playwright/mcp@latest",
+        "--output-dir",
+        ".kilo/snapshots"
       ]
     }
   },

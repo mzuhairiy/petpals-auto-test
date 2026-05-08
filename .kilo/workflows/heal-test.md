@@ -142,7 +142,10 @@ This will:
 Proceed with autonomous debugging? (y/n)
 ```
 
-**If approved:**
+**If approved, save all artifacts to `.kilo/snapshots/`:**
+- Accessibility snapshots → `.kilo/snapshots/{page-name}-snapshot`
+- Screenshots → `.kilo/snapshots/{page-name}-screenshot.png`
+- Traces → `.kilo/snapshots/{test-name}-trace.zip`
 
 Run test in debug mode:
 ```bash
@@ -193,7 +196,9 @@ This will:
 Proceed with UI scan? (y/n)
 ```
 
-**If approved:**
+**If approved, save all artifacts to `.kilo/snapshots/`:**
+- Accessibility snapshots → `.kilo/snapshots/{page-name}-snapshot`
+- Screenshots → `.kilo/snapshots/{page-name}-screenshot.png`
 
 Compare expected vs actual:
 

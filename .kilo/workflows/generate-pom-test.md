@@ -202,7 +202,8 @@ Proceed with page inspection? (y/n)
 1. Navigate to target page
 2. Capture element selectors (prefer `data-testid`)
 3. Document findings
-4. Take screenshots (save to `.kilo/temp/screenshots/`)
+4. Take screenshots (save to `.kilo/snapshots/`)
+5. Save accessibility snapshots to `.kilo/snapshots/{page-name}-snapshot` using the filesystem MCP
 
 Example findings:
 ```
