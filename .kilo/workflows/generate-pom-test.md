@@ -120,19 +120,19 @@ import { type Page, type Locator } from '@playwright/test';
 import BasePage from './base.page';
 
 export default class LoginPage extends BasePage {
-    // Locators (readonly)
     readonly heading: Locator;
     readonly emailField: Locator;
+    readonly passwordField: Locator;
     readonly signInButton: Locator;
     
     constructor(page: Page) {
         super(page);
         this.heading = page.getByText('Sign in to your account', { exact: true });
         this.emailField = this.byTestId('signin-email-input');
+        this.passwordField = this.byTestId('signin-password-input');
         this.signInButton = this.byTestId('signin-submit-btn');
     }
     
-    // Interaction methods (NO assertions)
     async login(email: string, password: string): Promise<void> {
         await this.emailField.fill(email);
         await this.passwordField.fill(password);
@@ -152,8 +152,8 @@ export default class LoginPage extends BasePage {
 
 **Test Pattern:**
 ```typescript
-import { test, expect } from '../../fixtures/base.fixture';
-import config from '../../config/env.config';
+import { test, expect } from '@fixtures/base.fixture';
+import config from '@config/env.config';
 
 test.describe('Login Flow', () => {
     test.beforeEach(async ({ page, navbar }) => {
@@ -244,14 +244,7 @@ Check if Page Object exists in `/pages`:
 import { type Page, type Locator } from '@playwright/test';
 import BasePage from './base.page';
 
-/**
- * {FeatureName}Page — {Brief description}
- *
- * Contains locators and interactions for {feature}.
- * NO assertions — tests handle all verification.
- */
 export default class {FeatureName}Page extends BasePage {
-    // ── Locators ──
     readonly heading: Locator;
     readonly {field}Field: Locator;
     readonly {action}Button: Locator;
@@ -263,7 +256,6 @@ export default class {FeatureName}Page extends BasePage {
         this.{action}Button = this.byTestId('{testid}');
     }
     
-    // ── Interactions ──
     async {methodName}({params}): Promise<void> {
         // Implementation
         await this.waitForDomReady();
@@ -295,9 +287,9 @@ Examples:
 ### Generate Test Code
 
 ```typescript
-import { test, expect } from '../../fixtures/base.fixture';
-import config from '../../config/env.config';
-import { URL_PATTERNS } from '../../constants/env.constants';
+import { test, expect } from '@fixtures/base.fixture';
+import config from '@config/env.config';
+import { URL_PATTERNS } from '@constants/env.constants';
 
 test.describe('{Feature} Flow', () => {
 

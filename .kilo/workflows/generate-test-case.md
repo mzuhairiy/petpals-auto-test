@@ -229,15 +229,11 @@ npx ts-node scripts/testrail-pusher.ts .kilo/temp/auth-us20-cases.json
 
 Expected output:
 ```
-✓ Fetched sections from TestRail
-✓ Section 'Auth' found (ID: 123)
-✓ Created case: US-20 — Login with valid credentials (C456)
-✓ Created case: US-20 — Login with invalid credentials shows error (C457)
+📁 Created section: "Auth" (ID: 123)   ← only if section is new
+✅ Pushed case: "US-20 — Login with valid credentials" → Section "Auth" (Case ID: 456)
+✅ Pushed case: "US-20 — Login with invalid credentials shows error" → Section "Auth" (Case ID: 457)
 
-Summary:
-  Created: 2
-  Skipped: 0
-  Failed: 0
+✅ Done — 2 pushed, 0 skipped (2 total)
 ```
 
 ---
@@ -248,7 +244,7 @@ After successful push:
 ```
 Test cases pushed successfully!
 
-Case IDs for automation tagging:
+Case IDs for automation tagging (prepend "C" to each Case ID from the output above):
   @C456 — US-20 — Login with valid credentials
   @C457 — US-20 — Login with invalid credentials shows error
 

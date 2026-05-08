@@ -311,25 +311,25 @@ test('should login @C456', async ({ loginPage, navbar }) => {
 
 ### Fix Type 3: Add Explicit Wait
 
-**Current:**
+Timing issues are fixed in the **test**, not the page object. Page objects must not contain assertions.
+
+**Current test:**
 ```typescript
-async login(email: string, password: string): Promise<void> {
-    await this.emailField.fill(email);
-    await this.passwordField.fill(password);
-    await this.signInButton.click();
-}
+test('should login @C456', async ({ loginPage, navbar }) => {
+    await navbar.navigateToSignIn();
+    await loginPage.login(email, password);
+    await expect(navbar.signOutButton).toBeVisible();
+});
 ```
 
-**Proposed:**
+**Proposed test (wait for button enabled before calling login):**
 ```typescript
-async login(email: string, password: string): Promise<void> {
-    await this.emailField.fill(email);
-    await this.passwordField.fill(password);
-    // Wait for button to be enabled (form validation)
-    await expect(this.signInButton).toBeEnabled();
-    await this.signInButton.click();
-    await this.waitForDomReady();
-}
+test('should login @C456', async ({ loginPage, navbar }) => {
+    await navbar.navigateToSignIn();
+    await expect(loginPage.signInButton).toBeEnabled(); // wait here, in the test
+    await loginPage.login(email, password);
+    await expect(navbar.signOutButton).toBeVisible();
+});
 ```
 
 ### Fix Type 4: Update Test Data
@@ -436,17 +436,13 @@ Or select: (e.g., 1,3)
 ```
 Ready to apply fix to /pages/login.page.ts
 
-This will modify the file. Backup will be created at:
-  .kilo/backups/login.page.ts.{timestamp}
-
 Proceed? (y/n)
 ```
 
 **If approved:**
-1. Create backup
-2. Apply changes
-3. Verify TypeScript compilation
-4. Show confirmation
+1. Apply changes
+2. Verify TypeScript compilation: `npx tsc --noEmit`
+3. Show confirmation
 
 ---
 

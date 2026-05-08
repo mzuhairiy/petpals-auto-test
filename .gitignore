@@ -31,3 +31,5 @@ Thumbs.db
 
 # Reports
 /reports/
+/.kilo/temp/
+/.kilo/fix-reports/
