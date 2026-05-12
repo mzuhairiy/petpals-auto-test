@@ -1,6 +1,6 @@
 # PetPals Automated Tests
 
-End-to-end test automation for the [PetPals](https://petpals.vercel.app) pet products e-commerce application, built with Playwright and TypeScript using strict Page Object Model (POM) architecture.
+End-to-end test automation for the Petpals, pet products e-commerce application, built with Playwright and TypeScript using strict Page Object Model (POM) architecture.
 
 ## Prerequisites
 
